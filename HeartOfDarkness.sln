@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeartOfDarkness.Client", "src\HeartOfDarkness\Client\HeartOfDarkness.Client\HeartOfDarkness.Client.csproj", "{ED596C83-4531-4AA6-B93E-F123BD02E141}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{75547EF5-A56C-41FB-9814-2842A01078C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HeartOfDarkness", "HeartOfDarkness", "{DB120520-893C-43D4-801E-7773CC29F169}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{5190551C-F7E3-414B-BEC5-8CE8E681ED53}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED596C83-4531-4AA6-B93E-F123BD02E141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED596C83-4531-4AA6-B93E-F123BD02E141}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED596C83-4531-4AA6-B93E-F123BD02E141}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED596C83-4531-4AA6-B93E-F123BD02E141}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ED596C83-4531-4AA6-B93E-F123BD02E141} = {5190551C-F7E3-414B-BEC5-8CE8E681ED53}
+		{DB120520-893C-43D4-801E-7773CC29F169} = {75547EF5-A56C-41FB-9814-2842A01078C2}
+		{5190551C-F7E3-414B-BEC5-8CE8E681ED53} = {DB120520-893C-43D4-801E-7773CC29F169}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F1C94A9F-C353-458C-8A68-E216567BA3BB}
+	EndGlobalSection
+EndGlobal
