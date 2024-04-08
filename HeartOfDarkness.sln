@@ -11,6 +11,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HeartOfDarkness", "HeartOfD
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{5190551C-F7E3-414B-BEC5-8CE8E681ED53}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", "{B7E8F9D2-7C54-4B20-A94C-12EB58A60F79}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeartOfDarkness.Components", "src\HeartOfDarkness\Components\HeartOfDarkness.Components\HeartOfDarkness.Components.csproj", "{8AECB867-1B24-4473-9E4B-529E8D690912}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F8308D49-4E9E-4B3E-B550-857BF5A030B9}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{5B36B390-630E-4056-9956-5A8AE2C320F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeartOfDarkness.Components.UnitTests", "test\HeartOfDarkness\Components\HeartOfDarkness.Components.UnitTests\HeartOfDarkness.Components.UnitTests.csproj", "{2B35BD82-F151-4202-9751-DC45DA2A3107}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HeartOfDarkness", "HeartOfDarkness", "{F36933E2-46A4-4250-ACFA-D963DEF25649}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", "{4ED9A1DF-5E62-47D5-87B2-163C31CF4DF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +41,14 @@ Global
 		{ED596C83-4531-4AA6-B93E-F123BD02E141}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED596C83-4531-4AA6-B93E-F123BD02E141}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED596C83-4531-4AA6-B93E-F123BD02E141}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AECB867-1B24-4473-9E4B-529E8D690912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AECB867-1B24-4473-9E4B-529E8D690912}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AECB867-1B24-4473-9E4B-529E8D690912}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AECB867-1B24-4473-9E4B-529E8D690912}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B35BD82-F151-4202-9751-DC45DA2A3107}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B35BD82-F151-4202-9751-DC45DA2A3107}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B35BD82-F151-4202-9751-DC45DA2A3107}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B35BD82-F151-4202-9751-DC45DA2A3107}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -29,6 +57,11 @@ Global
 		{ED596C83-4531-4AA6-B93E-F123BD02E141} = {5190551C-F7E3-414B-BEC5-8CE8E681ED53}
 		{DB120520-893C-43D4-801E-7773CC29F169} = {75547EF5-A56C-41FB-9814-2842A01078C2}
 		{5190551C-F7E3-414B-BEC5-8CE8E681ED53} = {DB120520-893C-43D4-801E-7773CC29F169}
+		{B7E8F9D2-7C54-4B20-A94C-12EB58A60F79} = {DB120520-893C-43D4-801E-7773CC29F169}
+		{8AECB867-1B24-4473-9E4B-529E8D690912} = {B7E8F9D2-7C54-4B20-A94C-12EB58A60F79}
+		{2B35BD82-F151-4202-9751-DC45DA2A3107} = {4ED9A1DF-5E62-47D5-87B2-163C31CF4DF9}
+		{F36933E2-46A4-4250-ACFA-D963DEF25649} = {5B36B390-630E-4056-9956-5A8AE2C320F1}
+		{4ED9A1DF-5E62-47D5-87B2-163C31CF4DF9} = {F36933E2-46A4-4250-ACFA-D963DEF25649}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F1C94A9F-C353-458C-8A68-E216567BA3BB}
