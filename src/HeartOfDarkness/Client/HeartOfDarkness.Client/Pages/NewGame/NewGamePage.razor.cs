@@ -1,34 +1,36 @@
-﻿using Blazored.LocalStorage;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 
 namespace HeartOfDarkness.Client.Pages.NewGame;
 
 public class NewGamePageBase : ComponentBase {
 
-	private List<Game> _games = [];
-
 	[Inject]
 	protected IGameFactory GameFactory { get; set; } = default!;
 
 	[Inject]
-	protected ILocalStorageService Storage { get; set; } = default!;
+	protected GameState State { get; set; } = default!;
 
-	protected IEnumerable<Game> Games => _games;
+	protected IEnumerable<Game> Games => State.Games;
 
 	protected override async Task OnAfterRenderAsync(
 		bool firstRender
 	) {
 		if (firstRender) {
-			List<Game>? games = await Storage.GetItemAsync<List<Game>?>( "games" ).ConfigureAwait( false );
-			_games = games ?? [];
+			await State.LoadAsync().ConfigureAwait( false );
 			StateHasChanged();
 		}
 	}
 
+	public async Task OnDeleteGameClicked(
+		Game game
+	) {
+		State.DeleteGame( game );
+		await State.SaveAsync().ConfigureAwait( false );
+	}
+
 	protected async Task OnCreateGameClicked() {
 		Game game = GameFactory.Create();
-		_games.Add( game );
-		await Storage.SetItemAsync( "games", _games.ToArray() ).ConfigureAwait( false );
-
+		State.AddGame( game );
+		await State.SaveAsync().ConfigureAwait( false );
 	}
 }

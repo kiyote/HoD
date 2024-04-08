@@ -19,6 +19,7 @@ public static class Program {
 					BaseAddress = new Uri( builder.HostEnvironment.BaseAddress )
 				} )
 				.AddBlazoredLocalStorage()
+				.AddScoped<GameState>()
 				.AddRules();
 
 		await builder

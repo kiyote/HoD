@@ -5,7 +5,13 @@
 
 @foreach (Game game in Games)
 {
-    <ExistingGameComponent Game=game />
+    <div>
+        <ExistingGameComponent Game=game />
+        <button class="btn btn-primary" @onclick="() => OnDeleteGameClicked(game)">
+            Delete
+        </button>
+    </div>
+
 }
 
 <h3>New Game</h3>
