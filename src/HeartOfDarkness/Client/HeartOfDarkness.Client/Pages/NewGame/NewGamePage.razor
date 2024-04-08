@@ -1,0 +1,16 @@
+﻿@page "/NewGame"
+@inherits NewGamePageBase
+
+<PageTitle>New Game</PageTitle>
+
+@foreach (Game game in Games)
+{
+    <ExistingGameComponent Game=game />
+}
+
+<h3>New Game</h3>
+
+<button class="btn btn-primary" @onclick="OnCreateGameClicked">
+    Create Game
+</button>
+

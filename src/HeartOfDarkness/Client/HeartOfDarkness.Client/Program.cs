@@ -1,3 +1,4 @@
+using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -12,8 +13,17 @@ public static class Program {
 		builder.RootComponents.Add<App>( "#app" );
 		builder.RootComponents.Add<HeadOutlet>( "head::after" );
 
-		builder.Services.AddScoped( sp => new HttpClient { BaseAddress = new Uri( builder.HostEnvironment.BaseAddress ) } );
+		_ = builder
+			.Services
+				.AddScoped( sp => new HttpClient {
+					BaseAddress = new Uri( builder.HostEnvironment.BaseAddress )
+				} )
+				.AddBlazoredLocalStorage()
+				.AddRules();
 
-		await builder.Build().RunAsync().ConfigureAwait( false );
+		await builder
+			.Build()
+			.RunAsync()
+			.ConfigureAwait( false );
 	}
 }

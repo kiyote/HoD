@@ -25,11 +25,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{5B36B390-630E-4056-9956-5A8AE2C320F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeartOfDarkness.Components.UnitTests", "test\HeartOfDarkness\Components\HeartOfDarkness.Components.UnitTests\HeartOfDarkness.Components.UnitTests.csproj", "{2B35BD82-F151-4202-9751-DC45DA2A3107}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeartOfDarkness.Components.UnitTests", "test\HeartOfDarkness\Components\HeartOfDarkness.Components.UnitTests\HeartOfDarkness.Components.UnitTests.csproj", "{2B35BD82-F151-4202-9751-DC45DA2A3107}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HeartOfDarkness", "HeartOfDarkness", "{F36933E2-46A4-4250-ACFA-D963DEF25649}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", "{4ED9A1DF-5E62-47D5-87B2-163C31CF4DF9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeartOfDarkness.Rules", "src\HeartOfDarkness\Rules\HeartOfDarkness.Rules\HeartOfDarkness.Rules.csproj", "{DF906CDE-9364-44F0-844B-597CAFC1CCA2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rules", "Rules", "{4A77927E-FA1C-497F-A2C8-73CC5472441D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rules", "Rules", "{6250C724-5FA1-4E01-BBB8-A34FCB4BCDF2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeartOfDarkness.Rules.UnitTests", "test\HeartOfDarkness\Rules\HeartOfDarkness.Rules.UnitTests\HeartOfDarkness.Rules.UnitTests.csproj", "{86637719-839F-4A27-A9EA-800641A420C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +57,14 @@ Global
 		{2B35BD82-F151-4202-9751-DC45DA2A3107}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B35BD82-F151-4202-9751-DC45DA2A3107}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B35BD82-F151-4202-9751-DC45DA2A3107}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF906CDE-9364-44F0-844B-597CAFC1CCA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF906CDE-9364-44F0-844B-597CAFC1CCA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF906CDE-9364-44F0-844B-597CAFC1CCA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF906CDE-9364-44F0-844B-597CAFC1CCA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86637719-839F-4A27-A9EA-800641A420C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86637719-839F-4A27-A9EA-800641A420C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86637719-839F-4A27-A9EA-800641A420C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86637719-839F-4A27-A9EA-800641A420C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +78,10 @@ Global
 		{2B35BD82-F151-4202-9751-DC45DA2A3107} = {4ED9A1DF-5E62-47D5-87B2-163C31CF4DF9}
 		{F36933E2-46A4-4250-ACFA-D963DEF25649} = {5B36B390-630E-4056-9956-5A8AE2C320F1}
 		{4ED9A1DF-5E62-47D5-87B2-163C31CF4DF9} = {F36933E2-46A4-4250-ACFA-D963DEF25649}
+		{DF906CDE-9364-44F0-844B-597CAFC1CCA2} = {4A77927E-FA1C-497F-A2C8-73CC5472441D}
+		{4A77927E-FA1C-497F-A2C8-73CC5472441D} = {DB120520-893C-43D4-801E-7773CC29F169}
+		{6250C724-5FA1-4E01-BBB8-A34FCB4BCDF2} = {F36933E2-46A4-4250-ACFA-D963DEF25649}
+		{86637719-839F-4A27-A9EA-800641A420C6} = {6250C724-5FA1-4E01-BBB8-A34FCB4BCDF2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F1C94A9F-C353-458C-8A68-E216567BA3BB}
