@@ -4,3 +4,4 @@
 // a specific target and scoped to a namespace, type, member, etc.
 
 using System.Diagnostics.CodeAnalysis;
+[assembly: SuppressMessage( "Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "DI is a thing.", Scope = "module" )]

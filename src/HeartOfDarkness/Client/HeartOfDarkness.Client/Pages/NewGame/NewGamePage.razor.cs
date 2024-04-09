@@ -8,15 +8,15 @@ public class NewGamePageBase : ComponentBase {
 	protected IGameFactory GameFactory { get; set; } = default!;
 
 	[Inject]
-	protected GameState State { get; set; } = default!;
+	protected GameState GameState { get; set; } = default!;
 
-	protected IEnumerable<Game> Games => State.Games;
+	protected IEnumerable<Game> Games => GameState.Games;
 
 	protected override async Task OnAfterRenderAsync(
 		bool firstRender
 	) {
-		if (firstRender) {
-			await State.LoadAsync().ConfigureAwait( false );
+		if( firstRender ) {
+			await GameState.LoadAsync().ConfigureAwait( false );
 			StateHasChanged();
 		}
 	}
@@ -24,13 +24,13 @@ public class NewGamePageBase : ComponentBase {
 	public async Task OnDeleteGameClicked(
 		Game game
 	) {
-		State.DeleteGame( game );
-		await State.SaveAsync().ConfigureAwait( false );
+		GameState.DeleteGame( game );
+		await GameState.SaveAsync().ConfigureAwait( false );
 	}
 
 	protected async Task OnCreateGameClicked() {
 		Game game = GameFactory.Create();
-		State.AddGame( game );
-		await State.SaveAsync().ConfigureAwait( false );
+		GameState.AddGame( game );
+		await GameState.SaveAsync().ConfigureAwait( false );
 	}
 }

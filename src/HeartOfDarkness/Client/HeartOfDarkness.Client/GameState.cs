@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Blazored.LocalStorage;
+﻿using Blazored.LocalStorage;
 
 namespace HeartOfDarkness.Client;
 
@@ -25,7 +24,9 @@ public sealed class GameState {
 	public void DeleteGame(
 		Game game
 	) {
+		Console.WriteLine( $"Count: {Games.Count()}" );
 		Games = Games.Except( [game] );
+		Console.WriteLine( $"Count: {Games.Count()}" );
 	}
 
 	public async Task LoadAsync() {
