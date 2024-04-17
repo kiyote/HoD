@@ -1,5 +1,4 @@
 using Blazored.LocalStorage;
-using Fluxor;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -20,7 +19,6 @@ public static class Program {
 					BaseAddress = new Uri( builder.HostEnvironment.BaseAddress )
 				} )
 				.AddBlazoredLocalStorage()
-				.AddScoped<GameState>()
 				.AddRules()
 				.AddFluxor( opts => opts.ScanAssemblies( typeof( Program ).Assembly ) );
 

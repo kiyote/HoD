@@ -3,21 +3,7 @@
 
 <PageTitle>Lobby</PageTitle>
 
-<h3>Games</h3>
-
-@foreach (Game game in Games)
-{
-    <div>
-        <button class="btn btn-primary" @onclick="() => OnPlayGameClicked(game)">
-            Play
-        </button>
-        <ExistingGameComponent Game=game />
-        <button class="btn btn-primary" @onclick="() => OnDeleteGameClicked(game)">
-            Delete
-        </button>
-    </div>
-
-}
+<SavedGamesComponent/>
 
 <h3>New Game</h3>
 

@@ -1,0 +1,25 @@
+﻿@inherits SavedGamesComponentBase
+
+<h3>Saved Games</h3>
+
+@if (SavedGamesState.Value.IsLoading)
+{
+    <LoadingComponent/>
+
+} else
+{
+    @foreach (Game game in SavedGamesState.Value.Games)
+    {
+        <div>
+            <button class="btn btn-primary" @onclick="() => OnPlayGameClicked(game)">
+                Play
+            </button>
+            <ExistingGameComponent Game=game />
+            <button class="btn btn-primary" @onclick="() => OnDeleteGameClicked(game)">
+                Delete
+            </button>
+        </div>
+
+    }
+}
+

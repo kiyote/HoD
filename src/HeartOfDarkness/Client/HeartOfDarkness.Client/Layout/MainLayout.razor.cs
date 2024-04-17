@@ -1,5 +1,4 @@
-﻿using HeartOfDarkness.Client.Store;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 
 namespace HeartOfDarkness.Client.Layout;
 
