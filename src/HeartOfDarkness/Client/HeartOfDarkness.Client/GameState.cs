@@ -15,10 +15,26 @@ public sealed class GameState {
 
 	public IEnumerable<Game> Games { get; private set; } = [];
 
+	public Game Game { get; private set; } = default!;
+
+	public string Title { get; private set; } = "";
+
+	public void SetTite(
+		string title
+	) {
+		Title = title;
+	}
+
 	public void AddGame(
 		Game game
 	) {
 		Games = Games.Append( game );
+	}
+
+	public void LoadGame(
+		Game game
+	) {
+		Game = game;
 	}
 
 	public void DeleteGame(

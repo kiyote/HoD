@@ -1,14 +1,22 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Fluxor;
+using HeartOfDarkness.Client.Store;
+using Microsoft.AspNetCore.Components;
 
-namespace HeartOfDarkness.Client.Pages.NewGame;
+namespace HeartOfDarkness.Client.Pages;
 
-public class NewGamePageBase : ComponentBase {
+public class LobbyPageBase: ComponentBase {
+
+	[Inject]
+	public NavigationManager Navigation { get; set; } = default!;
 
 	[Inject]
 	protected IGameFactory GameFactory { get; set; } = default!;
 
 	[Inject]
 	protected GameState GameState { get; set; } = default!;
+
+	[Inject]
+	public IDispatcher Dispatcher { get; set; } = default!;
 
 	protected IEnumerable<Game> Games => GameState.Games;
 
@@ -19,6 +27,17 @@ public class NewGamePageBase : ComponentBase {
 			await GameState.LoadAsync().ConfigureAwait( false );
 			StateHasChanged();
 		}
+	}
+
+	public async Task OnPlayGameClicked(
+		Game game
+	) {
+		GameState.LoadGame( game );
+
+		Dispatcher.Dispatch( new SetTitleAction( "Set Up" ) );
+
+		await GameState.SaveAsync().ConfigureAwait( false );
+		Navigation.NavigateTo( "/map" );
 	}
 
 	public async Task OnDeleteGameClicked(
