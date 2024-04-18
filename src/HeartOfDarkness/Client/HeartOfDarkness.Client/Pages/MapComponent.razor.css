@@ -1,0 +1,44 @@
+﻿
+.map_container {
+    position: relative;
+    display: inline-block;
+}
+
+.map_image {
+    max-width: 100%;
+    display: block;
+    height: auto;
+    user-select: none
+}
+
+.map_areas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    user-select: none
+}
+
+.hidden {
+    fill-opacity: 0;
+    pointer-events: none;
+}
+
+.selectable {
+    fill: green;
+    cursor: pointer;
+    animation-name: selectable_frames;
+    animation-duration: 1.0s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+@keyframes selectable_frames {
+    from {
+        fill-opacity: 0.0;
+    }
+
+    to {
+        fill-opacity: 0.3;
+    }
+}

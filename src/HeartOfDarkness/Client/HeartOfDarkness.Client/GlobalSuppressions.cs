@@ -5,3 +5,4 @@
 
 using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage( "Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "DI is a thing.", Scope = "module" )]
+[assembly: SuppressMessage( "Reliability", "CA2007:Consider calling ConfigureAwait on the awaited task", Justification = "Using ConfigureAwait.Fody", Scope = "module" )]

@@ -1,16 +1,23 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
-  <ItemGroup>
-	<PackageReference Include="Fluxor" />
-	<PackageReference Include="Fluxor.Blazor.Web" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" />
-	<PackageReference Include="Blazored.LocalStorage" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Fody" />
+		<PackageReference Include="ConfigureAwait.Fody" />
+		<PackageReference Include="Fluxor" />
+		<PackageReference Include="Fluxor.Blazor.Web" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" />
+		<PackageReference Include="Blazored.LocalStorage" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Components\HeartOfDarkness.Components\HeartOfDarkness.Components.csproj" />
-    <ProjectReference Include="..\..\Rules\HeartOfDarkness.Rules\HeartOfDarkness.Rules.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\Components\HeartOfDarkness.Components\HeartOfDarkness.Components.csproj" />
+		<ProjectReference Include="..\..\Rules\HeartOfDarkness.Rules\HeartOfDarkness.Rules.csproj" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<!-- Required for JSInterop -->
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
 
 </Project>

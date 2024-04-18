@@ -14,9 +14,13 @@ public class LobbyPageBase: ComponentBase {
 	[Inject]
 	public IState<SavedGamesState> SavedGamesState { get; set; } = default!;
 
+	[Inject]
+	public NavigationManager Navigation { get; set; } = default!;
+
 	protected Task OnCreateGameClicked() {
 		Game game = GameFactory.Create();
 		Dispatcher.Dispatch( new AddSavedGameAction( game ) );
+		Navigation.NavigateTo( "/portofentry" );
 		return Task.CompletedTask;
 	}
 }
