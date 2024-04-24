@@ -20,7 +20,8 @@ public static class Program {
 				} )
 				.AddBlazoredLocalStorage()
 				.AddRules()
-				.AddFluxor( opts => opts.ScanAssemblies( typeof( Program ).Assembly ) );
+				.AddFluxor( opts => opts.ScanAssemblies( typeof( Program ).Assembly ) )
+				.AddSingleton<Regions>();
 
 		await builder
 			.Build()

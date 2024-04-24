@@ -12,31 +12,35 @@ public partial class MapComponent : ComponentBase, IAsyncDisposable {
 	[Inject]
 	public IJSRuntime JS { get; set; } = default!;
 
+	[Parameter]
+	public EventCallback OnSetInitialMapState{ get; set; }
+
+	[Parameter]
+	public EventCallback<string> OnRegionSelected { get; set; }
+
 	private IJSObjectReference? _module;
 
 	protected override async Task OnAfterRenderAsync(
 		bool firstRender
 	) {
-		if (firstRender) {
+		await base.OnAfterRenderAsync( firstRender );
+		if( firstRender) {
 			_module = await JS.InvokeAsync<IJSObjectReference>(
 				"import",
 				"./Pages/MapComponent.razor.js"
 			);
 
-			await SetRegion( "khartoum", Style.Selectable );
-
+			await OnSetInitialMapState.InvokeAsync();
 		}
-		await base.OnAfterRenderAsync( firstRender );
 	}
 
 
 	[JSInvokable]
-#pragma warning disable CA1822 // Mark members as static
-	public Task OnMapAreaClickedAsync() {
-		Console.WriteLine( "OnMapAreaClickedAsync" );
-		return Task.CompletedTask;
+	public async Task OnRegionClickedAsync(
+		string regionId
+	) {
+		await OnRegionSelected.InvokeAsync( regionId );
 	}
-#pragma warning restore CA1822 // Mark members as static
 
 	public async ValueTask DisposeAsync() {
 		GC.SuppressFinalize( this );
@@ -45,14 +49,14 @@ public partial class MapComponent : ComponentBase, IAsyncDisposable {
 		}
 	}
 
-	private async Task SetRegion(
-		string region,
+	public async Task SetRegion(
+		string regionId,
 		Style style
 	) {
 		await _module!
 			.InvokeVoidAsync(
-				"setAreaStyle",
-				region,
+				"setRegion",
+				regionId,
 				style.ToString().ToLowerInvariant()
 			);
 	}

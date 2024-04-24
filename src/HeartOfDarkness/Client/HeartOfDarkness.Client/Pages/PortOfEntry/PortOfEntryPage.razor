@@ -1,8 +1,9 @@
-﻿@inherits PortOfEntryPageBase
-@page "/portofentry"
+﻿@page "/portofentry"
 
 <h3>Port Of Entry</h3>
 
-<MapComponent>
-
-</MapComponent>
+<MapComponent 
+    @ref="Map"
+    OnSetInitialMapState="OnSetInitialMapStateHandler"
+    OnRegionSelected="OnRegionSelectedHandler"
+/>

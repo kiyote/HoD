@@ -2,7 +2,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Fody" />
-		<PackageReference Include="ConfigureAwait.Fody" />
+		<PackageReference Include="ConfigureAwait.Fody" PrivateAssets="all" />
 		<PackageReference Include="Fluxor" />
 		<PackageReference Include="Fluxor.Blazor.Web" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" />
