@@ -1,5 +1,5 @@
 ﻿using HeartOfDarkness.Client.Store.CurrentGame;
-using HeartOfDarkness.Client.Store.Map;
+using HeartOfDarkness.Client.Store.App;
 using Microsoft.JSInterop;
 
 namespace HeartOfDarkness.Client.Pages;
@@ -19,7 +19,7 @@ public partial class MapComponent : ComponentBase {
 	protected IState<CurrentGameState> GameState { get; set; } = default!;
 
 	[Inject]
-	protected IState<MapState> MapState { get; set; } = default!;
+	protected IState<AppState> AppState { get; set; } = default!;
 
 	[Inject]
 	protected HttpClient Http { get; set; } = default!;

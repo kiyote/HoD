@@ -1,19 +1,19 @@
-﻿using HeartOfDarkness.Client.Store.CurrentGame;
-using HeartOfDarkness.Client.Store.Map;
+﻿using HeartOfDarkness.Client.Store.App;
+using HeartOfDarkness.Client.Store.CurrentGame;
 
 namespace HeartOfDarkness.Client.Pages.PortOfEntry;
 
 public partial class PortOfEntryPage : ComponentBase {
 
 	[Inject]
-	protected IState<MapState> MapState { get; set; } = default!;
+	protected IState<AppState> AppState { get; set; } = default!;
 
 	[Inject]
 	protected IState<CurrentGameState> GameState { get; set; } = default!;
 
 	protected override Task OnInitializedAsync() {
 		foreach (string regionId in GameState.Value.Game.MapDefinition.PortsOfEntry) {
-			MapState.Value[regionId] = MapState.Value[regionId] with { Style = RegionStyle.Highlighted };
+			AppState.Value.Map[regionId] = AppState.Value.Map[regionId] with { Style = RegionStyle.Highlighted };
 		}
 		return base.OnInitializedAsync();
 	}

@@ -1,4 +1,4 @@
-﻿namespace HeartOfDarkness.Client.Store.Map;
+﻿namespace HeartOfDarkness.Client.Store.App;
 
 public enum RegionStyle {
 	Hidden,

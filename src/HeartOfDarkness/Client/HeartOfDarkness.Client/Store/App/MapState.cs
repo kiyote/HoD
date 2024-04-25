@@ -1,9 +1,10 @@
-﻿namespace HeartOfDarkness.Client.Store.Map;
+﻿namespace HeartOfDarkness.Client.Store.App;
 
-[FeatureState]
 public record MapState(
 	Dictionary<string, RegionState> RegionState
 ) {
+	public static readonly MapState None = new MapState();
+
 	public MapState()
 	: this(
 		  []

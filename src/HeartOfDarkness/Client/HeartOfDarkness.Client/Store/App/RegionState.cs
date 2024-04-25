@@ -1,8 +1,8 @@
-﻿namespace HeartOfDarkness.Client.Store.Map;
+﻿namespace HeartOfDarkness.Client.Store.App;
 
 public record RegionState(
 	string RegionId,
-	RegionStyle Style	
+	RegionStyle Style
 ) {
 	public string FinalClass {
 		get {

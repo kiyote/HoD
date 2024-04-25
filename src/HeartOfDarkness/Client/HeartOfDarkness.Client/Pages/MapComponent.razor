@@ -12,7 +12,7 @@
         {
             <MapRegion 
                 Definition=regionDefinition
-                FinalClass="@(MapState.Value.RegionState[regionDefinition.Id].FinalClass)"
+                FinalClass="@(AppState.Value.Map.RegionState[regionDefinition.Id].FinalClass)"
                 OnRegionSelected="@(() => OnRegionSelectedHandler( regionDefinition.Id ))" />
         }
     </svg>

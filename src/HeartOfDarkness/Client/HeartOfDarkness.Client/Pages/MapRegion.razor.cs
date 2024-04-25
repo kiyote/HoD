@@ -1,6 +1,4 @@
-﻿using HeartOfDarkness.Client.Store.Map;
-
-namespace HeartOfDarkness.Client.Pages;
+﻿namespace HeartOfDarkness.Client.Pages;
 
 public partial class MapRegion: ComponentBase {
 
