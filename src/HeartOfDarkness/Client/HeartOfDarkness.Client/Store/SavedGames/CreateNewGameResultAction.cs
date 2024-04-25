@@ -1,6 +1,6 @@
 ﻿namespace HeartOfDarkness.Client.Store.SavedGames;
 
-public record EnumerateSavedGamesResultAction(
+public record CreateNewGameResultAction(
+	SavedGame Game,
 	IEnumerable<SavedGame> Games
-) {
-}
+);

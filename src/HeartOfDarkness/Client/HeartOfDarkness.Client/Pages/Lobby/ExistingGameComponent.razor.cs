@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Components;
-
-namespace HeartOfDarkness.Client.Pages.Lobby;
+﻿namespace HeartOfDarkness.Client.Pages.Lobby;
 
 public class ExistingGameComponentBase : ComponentBase {
 
 	[Parameter]
-	public Game Game { get; set; } = default!;
+	public SavedGame Game { get; set; } = default!;
 }
 

@@ -1,9 +1,9 @@
 using Blazored.LocalStorage;
+using HeartOfDarkness.Client.Data;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
 namespace HeartOfDarkness.Client;
-
 
 public static class Program {
 	public static async Task Main(
@@ -19,9 +19,9 @@ public static class Program {
 					BaseAddress = new Uri( builder.HostEnvironment.BaseAddress )
 				} )
 				.AddBlazoredLocalStorage()
-				.AddRules()
-				.AddFluxor( opts => opts.ScanAssemblies( typeof( Program ).Assembly ) )
-				.AddSingleton<Regions>();
+				.AddFluxor( opts => opts.ScanAssemblies( typeof( Program ).Assembly ).UseRouting() )
+				.AddModel()
+				.AddData();
 
 		await builder
 			.Build()

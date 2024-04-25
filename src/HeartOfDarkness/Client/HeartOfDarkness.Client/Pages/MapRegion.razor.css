@@ -1,0 +1,31 @@
+﻿
+.hidden {
+    fill-opacity: 0;
+    pointer-events: none;
+}
+
+.selectable {
+    fill-opacity: 0;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.highlighted {
+    fill: green;
+    pointer-events: auto;
+    cursor: pointer;
+    animation-name: highlighted_frames;
+    animation-duration: 1.0s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+@keyframes highlighted_frames {
+    from {
+        fill-opacity: 0.0;
+    }
+
+    to {
+        fill-opacity: 0.3;
+    }
+}

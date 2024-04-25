@@ -1,5 +1,4 @@
 ﻿using HeartOfDarkness.Client.Store.SavedGames;
-using Microsoft.AspNetCore.Components;
 
 namespace HeartOfDarkness.Client.Pages;
 
@@ -17,10 +16,9 @@ public class LobbyPageBase: ComponentBase {
 	[Inject]
 	public NavigationManager Navigation { get; set; } = default!;
 
-	protected Task OnCreateGameClicked() {
-		Game game = GameFactory.Create();
-		Dispatcher.Dispatch( new AddSavedGameAction( game ) );
-		Navigation.NavigateTo( "/portofentry" );
-		return Task.CompletedTask;
+	protected async Task OnCreateGameClicked() {
+		Game game = await GameFactory.CreateAsync( CancellationToken.None );
+		Dispatcher.Dispatch( new CreateNewGameAction( game ) );
+		//Navigation.NavigateTo( "/portofentry" );
 	}
 }

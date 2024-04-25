@@ -1,63 +1,45 @@
-﻿using Microsoft.JSInterop;
+﻿using HeartOfDarkness.Client.Store.CurrentGame;
+using HeartOfDarkness.Client.Store.Map;
+using Microsoft.JSInterop;
 
 namespace HeartOfDarkness.Client.Pages;
 
-public partial class MapComponent : ComponentBase, IAsyncDisposable {
+public partial class MapComponent : ComponentBase {
 
 	public enum Style {
 		Hidden,
-		Selectable
+		Selectable,
+		Highlighted
 	}
 
 	[Inject]
-	public IJSRuntime JS { get; set; } = default!;
+	protected IJSRuntime JS { get; set; } = default!;
 
-	[Parameter]
-	public EventCallback OnSetInitialMapState{ get; set; }
+	[Inject]
+	protected IState<CurrentGameState> GameState { get; set; } = default!;
+
+	[Inject]
+	protected IState<MapState> MapState { get; set; } = default!;
+
+	[Inject]
+	protected HttpClient Http { get; set; } = default!;
 
 	[Parameter]
 	public EventCallback<string> OnRegionSelected { get; set; }
 
-	private IJSObjectReference? _module;
+	protected string MapFile => GameState.Value.Game.MapDefinition.Image.File;
 
-	protected override async Task OnAfterRenderAsync(
-		bool firstRender
-	) {
-		await base.OnAfterRenderAsync( firstRender );
-		if( firstRender) {
-			_module = await JS.InvokeAsync<IJSObjectReference>(
-				"import",
-				"./Pages/MapComponent.razor.js"
-			);
+	protected int MapWidth => GameState.Value.Game.MapDefinition.Image.Width;
 
-			await OnSetInitialMapState.InvokeAsync();
-		}
-	}
+	protected int MapHeight => GameState.Value.Game.MapDefinition.Image.Height;
+
+	protected IEnumerable<RegionDefinition> RegionDefinitions => GameState.Value.Game.MapDefinition.Regions;
 
 
 	[JSInvokable]
-	public async Task OnRegionClickedAsync(
+	public async Task OnRegionSelectedHandler(
 		string regionId
 	) {
 		await OnRegionSelected.InvokeAsync( regionId );
-	}
-
-	public async ValueTask DisposeAsync() {
-		GC.SuppressFinalize( this );
-		if (_module is not null) {
-			await _module.DisposeAsync();
-		}
-	}
-
-	public async Task SetRegion(
-		string regionId,
-		Style style
-	) {
-		await _module!
-			.InvokeVoidAsync(
-				"setRegion",
-				regionId,
-				style.ToString().ToLowerInvariant()
-			);
 	}
 }

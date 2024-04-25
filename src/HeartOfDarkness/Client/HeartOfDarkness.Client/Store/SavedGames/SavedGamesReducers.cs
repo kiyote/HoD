@@ -25,7 +25,7 @@ public static class SavedGamesReducers {
 	[ReducerMethod]
 	public static SavedGamesState ReduceAddSavedGameResultAction(
 		SavedGamesState state,
-		AddSavedGameResultAction action
+		CreateNewGameResultAction action
 	) =>
 		state with { IsLoading = false, Games = action.Games };
 }

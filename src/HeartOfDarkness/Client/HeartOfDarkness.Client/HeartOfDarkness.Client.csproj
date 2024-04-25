@@ -10,11 +10,6 @@
 		<PackageReference Include="Blazored.LocalStorage" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\..\Components\HeartOfDarkness.Components\HeartOfDarkness.Components.csproj" />
-		<ProjectReference Include="..\..\Rules\HeartOfDarkness.Rules\HeartOfDarkness.Rules.csproj" />
-	</ItemGroup>
-
 	<PropertyGroup>
 		<!-- Required for JSInterop -->
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>

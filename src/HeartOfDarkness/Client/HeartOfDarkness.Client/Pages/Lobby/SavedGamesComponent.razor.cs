@@ -1,7 +1,6 @@
 ﻿using Fluxor.Blazor.Web.Components;
-using HeartOfDarkness.Client.Store.SavedGames;
 using HeartOfDarkness.Client.Store.CurrentGame;
-using Microsoft.AspNetCore.Components;
+using HeartOfDarkness.Client.Store.SavedGames;
 
 namespace HeartOfDarkness.Client.Pages.Lobby;
 
@@ -22,15 +21,15 @@ public class SavedGamesComponentBase: FluxorComponent {
 	}
 
 	protected Task OnPlayGameClicked(
-		Game game
+		SavedGame game
 	) {
 		Dispatcher.Dispatch( new LoadSavedGameAction( game.Id ) );
-		Navigation.NavigateTo( "/map" );
+		//Navigation.NavigateTo( "/map" );
 		return Task.CompletedTask;
 	}
 
 	protected Task OnDeleteGameClicked(
-		Game game
+		SavedGame game
 	) {
 		Dispatcher.Dispatch( new DeleteSavedGameAction( game.Id ) );
 		return Task.CompletedTask;
