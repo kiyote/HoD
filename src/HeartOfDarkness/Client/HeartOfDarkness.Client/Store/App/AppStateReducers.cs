@@ -6,9 +6,18 @@ namespace HeartOfDarkness.Client.Store.App;
 public static class AppStateReducers {
 
 	[ReducerMethod]
-	public static AppState ReduceInitializeMapStateAction(
+	public static AppState ReduceCreateNewGameAction(
 		AppState state,
-		InitializeMapStateAction action
+		CreateNewGameAction action
+	) {
+		MapState mapState = new MapState( action.Game.MapDefinition.Regions.ToDictionary( r => r.Id, r => new RegionState( r.Id, RegionStyle.Hidden ) ) );
+		return state with { Map = mapState };
+	}
+
+	[ReducerMethod]
+	public static AppState ReduceLoadSavedGameAction(
+		AppState state,
+		LoadSavedGameResultAction action
 	) {
 		MapState mapState = new MapState( action.Game.MapDefinition.Regions.ToDictionary( r => r.Id, r => new RegionState( r.Id, RegionStyle.Hidden ) ) );
 		return state with { Map = mapState };

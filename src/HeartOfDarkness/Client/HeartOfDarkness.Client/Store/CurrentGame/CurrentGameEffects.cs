@@ -1,6 +1,5 @@
 ﻿using Blazored.LocalStorage;
 using Fluxor.Blazor.Web.Middlewares.Routing;
-using HeartOfDarkness.Client.Store.App;
 
 namespace HeartOfDarkness.Client.Store.CurrentGame;
 
@@ -25,7 +24,6 @@ public class CurrentGameEffects {
 		List<SavedGame>? games = await _storage.GetItemAsync<List<SavedGame>?>( "games", CancellationToken.None );
 		SavedGame savedGame = games?.First( g => g.Id == action.Id ) ?? throw new InvalidOperationException();
 		Game game = await _gameFactory.CreateFromSavedGameAsync( savedGame, CancellationToken.None );
-		dispatcher.Dispatch( new InitializeMapStateAction( game ) );
 		dispatcher.Dispatch( new LoadSavedGameResultAction( game ) );
 	}
 

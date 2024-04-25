@@ -1,5 +1,5 @@
 ﻿using Fluxor.Blazor.Web.Components;
-using HeartOfDarkness.Client.Store.CurrentGame;
+using HeartOfDarkness.Client.Store;
 using HeartOfDarkness.Client.Store.SavedGames;
 
 namespace HeartOfDarkness.Client.Pages.Lobby;
@@ -12,26 +12,26 @@ public class SavedGamesComponentBase: FluxorComponent {
 	[Inject]
 	protected IDispatcher Dispatcher { get; set; } = default!;
 
-	[Inject]
-	protected NavigationManager Navigation { get; set; } = default!;
+	protected IEnumerable<SavedGame> SavedGames => SavedGamesState.Value.Games;
 
-	protected override void OnInitialized() {
-		base.OnInitialized();
-		Dispatcher.Dispatch( new EnumerateSavedGamesAction() );
+	protected override void OnAfterRender(
+		bool firstRender
+	) {
+		if (firstRender) {
+			Dispatcher.Dispatch( new EnumerateSavedGamesAction() );
+		}
+		base.OnAfterRender( firstRender );
 	}
 
-	protected Task OnPlayGameClicked(
+	protected void OnPlayGameClicked(
 		SavedGame game
 	) {
 		Dispatcher.Dispatch( new LoadSavedGameAction( game.Id ) );
-		//Navigation.NavigateTo( "/map" );
-		return Task.CompletedTask;
 	}
 
-	protected Task OnDeleteGameClicked(
+	protected void OnDeleteGameClicked(
 		SavedGame game
 	) {
 		Dispatcher.Dispatch( new DeleteSavedGameAction( game.Id ) );
-		return Task.CompletedTask;
 	}
 }

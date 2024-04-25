@@ -1,6 +1,4 @@
 ﻿using Blazored.LocalStorage;
-using Fluxor.Blazor.Web.Middlewares.Routing;
-using HeartOfDarkness.Client.Store.CurrentGame;
 
 namespace HeartOfDarkness.Client.Store.SavedGames;
 
@@ -17,8 +15,9 @@ public class SavedGamesEffects {
 		_savedGameFactory = savedGameFactory;
 	}
 
-	[EffectMethod( typeof( EnumerateSavedGamesAction ) )]
+	[EffectMethod]
 	public async Task HandleEnumerateSavedGamesAction(
+		EnumerateSavedGamesAction _,
 		IDispatcher dispatcher
 	) {
 		List<SavedGame>? games = await _storage.GetItemAsync<List<SavedGame>?>( "games" ).ConfigureAwait( false );
@@ -30,9 +29,9 @@ public class SavedGamesEffects {
 		DeleteSavedGameAction action,
 		IDispatcher dispatcher
 	) {
-		List<SavedGame> games = await _storage.GetItemAsync<List<SavedGame>?>( "games" ).ConfigureAwait( false ) ?? [];
+		List<SavedGame> games = await _storage.GetItemAsync<List<SavedGame>?>( "games" ) ?? [];
 		games = games.Where( g => g.Id != action.Id ).ToList();
-		await _storage.SetItemAsync( "games", games ).ConfigureAwait( false );
+		await _storage.SetItemAsync( "games", games );
 		dispatcher.Dispatch( new DeleteSavedGameResultAction( games ) );
 	}
 
@@ -41,10 +40,10 @@ public class SavedGamesEffects {
 		CreateNewGameAction action,
 		IDispatcher dispatcher
 	) {
-		List<SavedGame> games = await _storage.GetItemAsync<List<SavedGame>?>( "games" ).ConfigureAwait( false ) ?? [];
+		List<SavedGame> games = await _storage.GetItemAsync<List<SavedGame>?>( "games" ) ?? [];
 		SavedGame savedGame = _savedGameFactory.CreateFromGame( action.Game );
 		games.Add( savedGame );
-		await _storage.SetItemAsync( "games", games ).ConfigureAwait( false );
+		await _storage.SetItemAsync( "games", games );
 		dispatcher.Dispatch( new CreateNewGameResultAction( savedGame, games ) );
 	}
 

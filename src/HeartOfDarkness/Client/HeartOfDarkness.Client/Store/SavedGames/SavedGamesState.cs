@@ -7,7 +7,7 @@ public record SavedGamesState(
 ) {
 
 	public SavedGamesState() : this(
-		false,
+		true,
 		[]
 	) {
 	}

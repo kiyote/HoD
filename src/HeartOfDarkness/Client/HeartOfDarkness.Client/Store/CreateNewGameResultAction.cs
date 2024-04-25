@@ -1,4 +1,4 @@
-﻿namespace HeartOfDarkness.Client.Store.SavedGames;
+﻿namespace HeartOfDarkness.Client.Store;
 
 public record CreateNewGameResultAction(
 	SavedGame Game,

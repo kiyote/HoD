@@ -1,8 +1,10 @@
-﻿using HeartOfDarkness.Client.Store.SavedGames;
+﻿using HeartOfDarkness.Client.Store;
+using HeartOfDarkness.Client.Store.App;
+using HeartOfDarkness.Client.Store.SavedGames;
 
 namespace HeartOfDarkness.Client.Pages;
 
-public class LobbyPageBase: ComponentBase {
+public class LobbyPageBase : ComponentBase {
 
 	[Inject]
 	protected IGameFactory GameFactory { get; set; } = default!;
@@ -19,6 +21,5 @@ public class LobbyPageBase: ComponentBase {
 	protected async Task OnCreateGameClicked() {
 		Game game = await GameFactory.CreateAsync( CancellationToken.None );
 		Dispatcher.Dispatch( new CreateNewGameAction( game ) );
-		//Navigation.NavigateTo( "/portofentry" );
 	}
 }

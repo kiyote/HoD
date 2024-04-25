@@ -8,7 +8,7 @@
 
 } else
 {
-    @foreach (SavedGame game in SavedGamesState.Value.Games)
+    @foreach (SavedGame game in SavedGames)
     {
         <div>
             <button class="btn btn-primary" @onclick="() => OnPlayGameClicked(game)">
