@@ -1,4 +1,5 @@
 ﻿using Blazored.LocalStorage;
+using HeartOfDarkness.Client.Data;
 
 namespace HeartOfDarkness.Client.Store.SavedGames;
 

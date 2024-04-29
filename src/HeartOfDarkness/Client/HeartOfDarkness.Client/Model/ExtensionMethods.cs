@@ -6,8 +6,6 @@ public static class ExtensionMethods {
 		this IServiceCollection services
 	) {
 
-		return services
-			.AddSingleton<IGameFactory, GameFactory>()
-			.AddSingleton<ISavedGameFactory, SavedGameFactory>();
+		return services;
 	}
 }

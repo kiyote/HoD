@@ -1,4 +1,4 @@
-﻿namespace HeartOfDarkness.Client.Model;
+﻿namespace HeartOfDarkness.Client.Data;
 
 public interface IGameFactory {
 

@@ -1,8 +1,6 @@
-﻿using HeartOfDarkness.Client.Data;
+﻿namespace HeartOfDarkness.Client.Data;
 
-namespace HeartOfDarkness.Client.Model;
-
-internal sealed class GameFactory: IGameFactory {
+internal sealed class GameFactory : IGameFactory {
 
 	private readonly IMapDefinitionFactory _mapDefinitionFactory;
 

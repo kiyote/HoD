@@ -1,4 +1,5 @@
-﻿
+﻿@inherits MapComponentBase
+
 <div class="map_container">
     <img src="@(MapFile)" class="map_image">
 
@@ -8,12 +9,12 @@
          class="map_areas"
          viewBox="0 0 @(MapWidth) @(MapHeight)">
 
-        @foreach(RegionDefinition regionDefinition in RegionDefinitions)
+        @foreach (RegionDefinition regionDefinition in RegionDefinitions)
         {
-            <MapRegion 
-                Definition=regionDefinition
-                FinalClass="@(AppState.Value.Map.RegionState[regionDefinition.Id].FinalClass)"
-                OnRegionSelected="@(() => OnRegionSelectedHandler( regionDefinition.Id ))" />
+            <MapRegionComponent Id=@(regionDefinition.Id)
+                                Shape=@(regionDefinition.Shape)
+                                RegionStyle="@(State[regionDefinition.Id].Style)"
+                                OnRegionSelected="@(() => OnRegionSelectedHandler( regionDefinition.Id ))" />
         }
     </svg>
 

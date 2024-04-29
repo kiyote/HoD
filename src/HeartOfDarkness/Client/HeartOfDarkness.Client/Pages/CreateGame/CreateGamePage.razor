@@ -1,0 +1,34 @@
+﻿@page "/create"
+@inherits CreateGamePageBase
+
+
+@if (SelectPortOfEntry)
+{
+    <h3>Select Port of Entry or <button class="btn btn-primary" @onclick="OnCancelClicked">Cancel</button></h3>
+    <MapComponent OnRegionSelected="RegionSelectedHandler" State="MapState" />
+} else
+{
+    <h3>Create New Game</h3>
+    <EditForm Model=@NewGame OnValidSubmit="OnCreateGameClicked">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div>
+            <label>
+                Port of Entry:
+            </label>
+            <label>@(NewGame!.PortOfEntry ?? "")</label>
+            <button class="btn btn-primary" @onclick="DoSelectPortOfEntry">
+                Select
+            </button>
+
+        </div>
+        <div>Patron : </div>
+
+        <div>
+            <button type="submit" class="btn btn-primary">
+                Create Game
+            </button>
+        </div>
+    </EditForm>
+
+}

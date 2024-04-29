@@ -1,4 +1,4 @@
-﻿namespace HeartOfDarkness.Client.Model;
+﻿namespace HeartOfDarkness.Client.Data;
 
 internal sealed class SavedGameFactory : ISavedGameFactory {
 	SavedGame ISavedGameFactory.CreateFromGame(

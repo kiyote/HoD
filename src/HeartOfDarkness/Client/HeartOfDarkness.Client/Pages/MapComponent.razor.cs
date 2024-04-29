@@ -1,40 +1,22 @@
-﻿using HeartOfDarkness.Client.Store.CurrentGame;
-using HeartOfDarkness.Client.Store.App;
-using Microsoft.JSInterop;
+﻿using Microsoft.JSInterop;
 
 namespace HeartOfDarkness.Client.Pages;
 
-public partial class MapComponent : ComponentBase {
-
-	public enum Style {
-		Hidden,
-		Selectable,
-		Highlighted
-	}
-
-	[Inject]
-	protected IJSRuntime JS { get; set; } = default!;
-
-	[Inject]
-	protected IState<CurrentGameState> GameState { get; set; } = default!;
-
-	[Inject]
-	protected IState<AppState> AppState { get; set; } = default!;
-
-	[Inject]
-	protected HttpClient Http { get; set; } = default!;
+public class MapComponentBase : ComponentBase {
 
 	[Parameter]
 	public EventCallback<string> OnRegionSelected { get; set; }
 
-	protected string MapFile => GameState.Value.Game.MapDefinition.Image.File;
+	[Parameter, EditorRequired]
+	public MapState State { get; set; } = default!;
 
-	protected int MapWidth => GameState.Value.Game.MapDefinition.Image.Width;
+	protected string MapFile => State.Definition.Image.File;
 
-	protected int MapHeight => GameState.Value.Game.MapDefinition.Image.Height;
+	protected int MapWidth => State.Definition.Image.Width;
 
-	protected IEnumerable<RegionDefinition> RegionDefinitions => GameState.Value.Game.MapDefinition.Regions;
+	protected int MapHeight => State.Definition.Image.Height;
 
+	protected IEnumerable<RegionDefinition> RegionDefinitions => State.Definition.Regions;
 
 	[JSInvokable]
 	public async Task OnRegionSelectedHandler(

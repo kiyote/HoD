@@ -6,6 +6,9 @@ public static class ExtensionMethods {
 		this IServiceCollection services
 	) {
 		return services
-			.AddSingleton<IMapDefinitionFactory, StaticMapDefinitionFactory>();
+			.AddSingleton<IMapDefinitionFactory, StaticMapDefinitionFactory>()
+			.AddSingleton<IGameFactory, GameFactory>()
+			.AddSingleton<ISavedGameFactory, SavedGameFactory>()
+			.AddSingleton<IMapStateFactory, MapStateFactory>();
 	}
 }

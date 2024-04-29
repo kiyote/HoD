@@ -1,5 +1,6 @@
 ﻿using Blazored.LocalStorage;
 using Fluxor.Blazor.Web.Middlewares.Routing;
+using HeartOfDarkness.Client.Data;
 
 namespace HeartOfDarkness.Client.Store.CurrentGame;
 
