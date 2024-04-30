@@ -306,6 +306,7 @@ dotnet_diagnostic.CA1062.severity		= none		# Validate parameter is non-null
 dotnet_diagnostic.CS3009.severity		= none		# base type is not CLS-compliant
 dotnet_diagnostic.CA1303.severity		= none		# localize strings
 dotnet_diagnostic.CA1308.severity		= none		# normalize to upper case
+dotnet_diagnostic.CA2227.severity		= none		# collection properties should be read-only
 
 # Disable all NUnit assertion diagnostics as suggestions until they can be resolved
 dotnet_analyzer_diagnostic.category-Assertion.severity = none

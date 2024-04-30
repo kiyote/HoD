@@ -1,0 +1,10 @@
+﻿@inherits PatronComponentBase
+
+<div>
+    <img src="@Image"
+         width="@Width"
+         height="@Height"
+         @onclick="@(() => OnClickHandler( Id ))"
+         class="selectable" />
+    @Id
+</div>

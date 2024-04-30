@@ -1,10 +1,17 @@
 ﻿using HeartOfDarkness.Client.Data;
 using HeartOfDarkness.Client.Store.App;
-using HeartOfDarkness.Client.Store.CurrentGame;
 
 namespace HeartOfDarkness.Client.Pages.CreateGame;
 
+public enum DisplayState {
+	CreateGame,
+	SelectPortOfEntry,
+	SelectPatron
+}
+
 public class CreateGamePageBase : ComponentBase {
+
+
 
 	[Inject]
 	protected IMapStateFactory MapStateFactory { get; set; } = default!;
@@ -12,9 +19,14 @@ public class CreateGamePageBase : ComponentBase {
 	[Inject]
 	protected IMapDefinitionFactory MapDefinitionFactory { get; set; } = default!;
 
+	[Inject]
+	protected IPatronDefinitionFactory PatronDefinitionFactory { get; set; } = default!;
+
+	protected IList<PatronDefinition> PatronDefinitions { get; set; } = [];
+
 	protected Model.MapState MapState { get; set; } = default!;
 
-	protected bool SelectPortOfEntry { get; set; }
+	protected DisplayState DisplayState { get; set; }
 
 	protected NewGame NewGame { get; set; } = default!;
 
@@ -29,14 +41,24 @@ public class CreateGamePageBase : ComponentBase {
 		if( firstRender ) {
 			MapDefinition mapDefinition = await MapDefinitionFactory.CreateAsync( CancellationToken.None );
 			MapState = await MapStateFactory.CreateAsync( mapDefinition, CancellationToken.None );
+			PatronDefinitions = await PatronDefinitionFactory.CreateAsync( CancellationToken.None );
+			StateHasChanged();
 		}
 	}
 
 	protected Task RegionSelectedHandler(
 		string regionId
 	) {
-		SelectPortOfEntry = false;
+		DisplayState = DisplayState.CreateGame;
 		NewGame.PortOfEntry = regionId;
+		return Task.CompletedTask;
+	}
+
+	protected Task PatronSelectedHandler(
+		string patronId
+	) {
+		DisplayState = DisplayState.CreateGame;
+		NewGame.Patron = patronId;
 		return Task.CompletedTask;
 	}
 
@@ -44,8 +66,13 @@ public class CreateGamePageBase : ComponentBase {
 		foreach( string regionId in MapState.Definition.PortsOfEntry ) {
 			MapState[regionId] = MapState[regionId] with { Style = Model.RegionStyle.Highlighted };
 		}
-		SelectPortOfEntry = true;
-		StateHasChanged();
+		DisplayState = DisplayState.SelectPortOfEntry;
+		//StateHasChanged();
+		return Task.CompletedTask;
+	}
+
+	protected Task DoSelectPatron() {
+		DisplayState = DisplayState.SelectPatron;
 		return Task.CompletedTask;
 	}
 
@@ -54,7 +81,7 @@ public class CreateGamePageBase : ComponentBase {
 	}
 
 	protected Task OnCancelClicked() {
-		SelectPortOfEntry = false;
+		DisplayState = DisplayState.CreateGame;
 		return Task.CompletedTask;
 	}
 }

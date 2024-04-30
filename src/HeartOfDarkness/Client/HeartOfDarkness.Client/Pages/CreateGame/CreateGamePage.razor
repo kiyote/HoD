@@ -2,27 +2,37 @@
 @inherits CreateGamePageBase
 
 
-@if (SelectPortOfEntry)
+@if (DisplayState == DisplayState.SelectPortOfEntry)
 {
     <h3>Select Port of Entry or <button class="btn btn-primary" @onclick="OnCancelClicked">Cancel</button></h3>
-    <MapComponent OnRegionSelected="RegionSelectedHandler" State="MapState" />
-} else
+    <MapComponent OnRegionSelected="RegionSelectedHandler" State=MapState />
+}
+else if (DisplayState == DisplayState.SelectPatron)
+{
+    <h3>Select Patron or <button class="btn btn-primary" @onclick="OnCancelClicked">Cancel</button></h3>
+    <PatronsComponent OnPatronSelected="PatronSelectedHandler" PatronDefinitions=PatronDefinitions />
+}
+else if (DisplayState == DisplayState.CreateGame)
 {
     <h3>Create New Game</h3>
     <EditForm Model=@NewGame OnValidSubmit="OnCreateGameClicked">
         <DataAnnotationsValidator />
         <ValidationSummary />
         <div>
-            <label>
-                Port of Entry:
-            </label>
-            <label>@(NewGame!.PortOfEntry ?? "")</label>
+            Port of Entry:
+            @(NewGame!.PortOfEntry ?? "")
             <button class="btn btn-primary" @onclick="DoSelectPortOfEntry">
                 Select
             </button>
 
         </div>
-        <div>Patron : </div>
+        <div>
+            Patron :
+            @(NewGame!.Patron ?? "")
+            <button class="btn btn-primary" @onclick="DoSelectPatron">
+                Select
+            </button>
+        </div>
 
         <div>
             <button type="submit" class="btn btn-primary">

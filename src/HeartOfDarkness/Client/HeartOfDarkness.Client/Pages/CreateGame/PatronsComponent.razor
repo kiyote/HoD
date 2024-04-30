@@ -1,0 +1,14 @@
+﻿@inherits PatronsComponentBase
+
+<div>
+    @foreach (PatronDefinition patron in PatronDefinitions)
+    {
+        <div>
+            <PatronComponent Id=@patron.PatronId
+                             Image=@patron.Image.File
+                             Width=@patron.Image.Width
+                             Height=@patron.Image.Height
+                             OnPatronSelected="@(() => OnPatronSelectedHandler( patron.PatronId ))" />
+        </div>
+    }
+</div>
