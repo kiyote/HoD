@@ -14,7 +14,7 @@
             <MapRegionComponent Id=@(regionDefinition.Id)
                                 Shape=@(regionDefinition.Shape)
                                 RegionStyle="@(State[regionDefinition.Id].Style)"
-                                OnRegionSelected="@(() => OnRegionSelectedHandler( regionDefinition.Id ))" />
+                                OnRegionSelected="OnRegionSelectedHandler" />
         }
     </svg>
 

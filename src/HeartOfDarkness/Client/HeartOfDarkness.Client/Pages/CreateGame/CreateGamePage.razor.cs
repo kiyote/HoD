@@ -6,7 +6,8 @@ namespace HeartOfDarkness.Client.Pages.CreateGame;
 public enum DisplayState {
 	CreateGame,
 	SelectPortOfEntry,
-	SelectPatron
+	SelectPatron,
+	SelectResources
 }
 
 public class CreateGamePageBase : ComponentBase {
@@ -22,7 +23,12 @@ public class CreateGamePageBase : ComponentBase {
 	[Inject]
 	protected IPatronDefinitionFactory PatronDefinitionFactory { get; set; } = default!;
 
+	[Inject]
+	protected IResourceDefinitionFactory ResourceDefinitionFactory { get; set; } = default!;
+
 	protected IList<PatronDefinition> PatronDefinitions { get; set; } = [];
+
+	protected IList<ResourceDefinition> ResourceDefinitions { get; set; } = [];
 
 	protected Model.MapState MapState { get; set; } = default!;
 
@@ -42,7 +48,7 @@ public class CreateGamePageBase : ComponentBase {
 			MapDefinition mapDefinition = await MapDefinitionFactory.CreateAsync( CancellationToken.None );
 			MapState = await MapStateFactory.CreateAsync( mapDefinition, CancellationToken.None );
 			PatronDefinitions = await PatronDefinitionFactory.CreateAsync( CancellationToken.None );
-			StateHasChanged();
+			ResourceDefinitions = await ResourceDefinitionFactory.CreateAsync( CancellationToken.None );
 		}
 	}
 
@@ -67,12 +73,16 @@ public class CreateGamePageBase : ComponentBase {
 			MapState[regionId] = MapState[regionId] with { Style = Model.RegionStyle.Highlighted };
 		}
 		DisplayState = DisplayState.SelectPortOfEntry;
-		//StateHasChanged();
 		return Task.CompletedTask;
 	}
 
 	protected Task DoSelectPatron() {
 		DisplayState = DisplayState.SelectPatron;
+		return Task.CompletedTask;
+	}
+
+	protected Task DoSelectResources() {
+		DisplayState = DisplayState.SelectResources;
 		return Task.CompletedTask;
 	}
 

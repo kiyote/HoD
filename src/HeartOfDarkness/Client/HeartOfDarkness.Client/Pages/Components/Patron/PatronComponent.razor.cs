@@ -1,6 +1,6 @@
-﻿namespace HeartOfDarkness.Client.Pages;
+﻿namespace HeartOfDarkness.Client.Pages.Components.Patron;
 
-public class PatronComponentBase: ComponentBase {
+public class PatronComponentBase : ComponentBase {
 
 	[Parameter, EditorRequired]
 	public string Image { get; set; } = "";

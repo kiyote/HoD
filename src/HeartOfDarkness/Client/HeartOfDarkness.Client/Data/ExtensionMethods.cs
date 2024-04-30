@@ -10,6 +10,7 @@ public static class ExtensionMethods {
 			.AddSingleton<IGameFactory, GameFactory>()
 			.AddSingleton<ISavedGameFactory, SavedGameFactory>()
 			.AddSingleton<IMapStateFactory, MapStateFactory>()
-			.AddSingleton<IPatronDefinitionFactory, StaticPatronDefinitionFactory>();
+			.AddSingleton<IPatronDefinitionFactory, StaticPatronDefinitionFactory>()
+			.AddSingleton<IResourceDefinitionFactory, StaticResourceDefinitionFactory>();
 	}
 }

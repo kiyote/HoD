@@ -1,4 +1,5 @@
 ﻿@inherits PatronsComponentBase
+@using HeartOfDarkness.Client.Pages.Components.Patron
 
 <div>
     @foreach (PatronDefinition patron in PatronDefinitions)
@@ -8,7 +9,7 @@
                              Image=@patron.Image.File
                              Width=@patron.Image.Width
                              Height=@patron.Image.Height
-                             OnPatronSelected="@(() => OnPatronSelectedHandler( patron.PatronId ))" />
+                             OnPatronSelected="OnPatronSelectedHandler" />
         </div>
     }
 </div>

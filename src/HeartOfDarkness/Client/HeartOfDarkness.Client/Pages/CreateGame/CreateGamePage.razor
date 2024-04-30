@@ -1,16 +1,24 @@
 ﻿@page "/create"
 @inherits CreateGamePageBase
-
+@using HeartOfDarkness.Client.Pages.Components.Map
 
 @if (DisplayState == DisplayState.SelectPortOfEntry)
 {
     <h3>Select Port of Entry or <button class="btn btn-primary" @onclick="OnCancelClicked">Cancel</button></h3>
-    <MapComponent OnRegionSelected="RegionSelectedHandler" State=MapState />
+    <MapComponent OnRegionSelected="RegionSelectedHandler"
+                  State=MapState />
 }
 else if (DisplayState == DisplayState.SelectPatron)
 {
     <h3>Select Patron or <button class="btn btn-primary" @onclick="OnCancelClicked">Cancel</button></h3>
-    <PatronsComponent OnPatronSelected="PatronSelectedHandler" PatronDefinitions=PatronDefinitions />
+    <PatronsComponent OnPatronSelected="PatronSelectedHandler"
+                      PatronDefinitions=PatronDefinitions />
+}
+else if (DisplayState == DisplayState.SelectResources)
+{
+    <h3>Select Resources or <button class="btn btn-primary" @onclick="OnCancelClicked">Cancel</button></h3>
+    <PlayerResourcesComponent Definitions=ResourceDefinitions
+                              Resources=NewGame.Resources />
 }
 else if (DisplayState == DisplayState.CreateGame)
 {
@@ -30,6 +38,12 @@ else if (DisplayState == DisplayState.CreateGame)
             Patron :
             @(NewGame!.Patron ?? "")
             <button class="btn btn-primary" @onclick="DoSelectPatron">
+                Select
+            </button>
+        </div>
+        <div>
+            Resources :
+            <button class="btn btn-primary" @onclick="DoSelectResources">
                 Select
             </button>
         </div>
