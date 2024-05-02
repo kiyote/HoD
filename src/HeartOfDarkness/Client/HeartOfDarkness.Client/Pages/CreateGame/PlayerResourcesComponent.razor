@@ -1,13 +1,14 @@
 ﻿@inherits PlayerResourcesComponentBase
 @using HeartOfDarkness.Client.Pages.Components.Resource
 
-<h3>PlayerResourcesComponent</h3>
+<h3>Resources</h3>
 
 <div class="resources-container">
     @foreach (ResourceDefinition definition in Definitions)
     {
         <ResourceComponent Definition=definition
                            Count=@(Resources.ContainsKey(definition.Id) ? Resources[definition.Id] : 0)
+                           Limit=@(CalculatedLimit(definition.Id))
                            OnResourceSelected="ResourceSelectedHandler" />
     }
 </div>

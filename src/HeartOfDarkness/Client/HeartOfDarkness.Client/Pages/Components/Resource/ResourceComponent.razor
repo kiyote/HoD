@@ -1,16 +1,13 @@
 ﻿@inherits ResourceComponentBase
 
 <div class="resource-container">
-    <div>
-        @Definition.Id 
-        @if(Count > 0)
-        {
-            @Count
-        }
-    </div>
     <img src="@Definition.Image.File"
          width="@Definition.Image.Width"
          height="@Definition.Image.Height"
          class="selectable"
          @onclick="() => OnClickHandler(Definition.Id)"/>
+    <div>
+        @Definition.Id
+        @Count / @Limit
+    </div>
 </div>

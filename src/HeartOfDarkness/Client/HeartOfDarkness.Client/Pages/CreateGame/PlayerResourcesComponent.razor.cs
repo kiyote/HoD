@@ -1,6 +1,6 @@
 ﻿namespace HeartOfDarkness.Client.Pages.CreateGame;
 
-public class PlayerResourcesComponentBase: ComponentBase {
+public class PlayerResourcesComponentBase : ComponentBase {
 
 	[Parameter]
 	public IEnumerable<ResourceDefinition> Definitions { get; set; } = default!;
@@ -11,14 +11,27 @@ public class PlayerResourcesComponentBase: ComponentBase {
 	[Parameter]
 	public IDictionary<string, int> Resources { get; set; } = default!;
 
+	[Parameter]
+	public int Limit { get; set; }
+
 	protected Task ResourceSelectedHandler(
 		string resourceId
 	) {
 		ResourceDefinition definition = Definitions.First( d => d.Id == resourceId );
-		if (!Resources.ContainsKey(resourceId)) {
+		if( !Resources.ContainsKey( resourceId ) ) {
 			Resources[resourceId] = 0;
 		}
+		int limit = CalculatedLimit( resourceId );
 		Resources[resourceId] += 1;
+		if( Resources[resourceId] > limit ) {
+			Resources[resourceId] = limit;
+		}
 		return Task.CompletedTask;
+	}
+
+	protected int CalculatedLimit(
+		string resourceId
+	) {
+		return Math.Min( Limit, Definitions.First( r => r.Id == resourceId ).Limit );
 	}
 }

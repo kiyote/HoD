@@ -1,4 +1,5 @@
-﻿using HeartOfDarkness.Client.Data;
+﻿using Blazored.LocalStorage;
+using HeartOfDarkness.Client.Data;
 using HeartOfDarkness.Client.Store.App;
 
 namespace HeartOfDarkness.Client.Pages.CreateGame;
@@ -7,7 +8,8 @@ public enum DisplayState {
 	CreateGame,
 	SelectPortOfEntry,
 	SelectPatron,
-	SelectResources
+	SelectResources,
+	SelectPlayerColour
 }
 
 public class CreateGamePageBase : ComponentBase {
@@ -26,15 +28,22 @@ public class CreateGamePageBase : ComponentBase {
 	[Inject]
 	protected IResourceDefinitionFactory ResourceDefinitionFactory { get; set; } = default!;
 
+	[Inject]
+	protected IPlayerColourDefinitionFactory PlayerColourDefinitionFactory { get; set; } = default!;
+
 	protected IList<PatronDefinition> PatronDefinitions { get; set; } = [];
 
 	protected IList<ResourceDefinition> ResourceDefinitions { get; set; } = [];
+
+	protected IList<PlayerColourDefinition> PlayerColourDefinitions { get; set; } = [];
 
 	protected Model.MapState MapState { get; set; } = default!;
 
 	protected DisplayState DisplayState { get; set; }
 
 	protected NewGame NewGame { get; set; } = default!;
+
+	protected ElementReference PlayerColourField { get; set; } = default!;
 
 	protected override void OnInitialized() {
 		NewGame = new NewGame();
@@ -49,6 +58,7 @@ public class CreateGamePageBase : ComponentBase {
 			MapState = await MapStateFactory.CreateAsync( mapDefinition, CancellationToken.None );
 			PatronDefinitions = await PatronDefinitionFactory.CreateAsync( CancellationToken.None );
 			ResourceDefinitions = await ResourceDefinitionFactory.CreateAsync( CancellationToken.None );
+			PlayerColourDefinitions = await PlayerColourDefinitionFactory.CreateAsync( CancellationToken.None );
 		}
 	}
 
@@ -57,6 +67,14 @@ public class CreateGamePageBase : ComponentBase {
 	) {
 		DisplayState = DisplayState.CreateGame;
 		NewGame.PortOfEntry = regionId;
+		return Task.CompletedTask;
+	}
+
+	protected Task PlayerColourSelectedHandler(
+		string playerColourId
+	) {
+		DisplayState = DisplayState.CreateGame;
+		NewGame.Colour = playerColourId;
 		return Task.CompletedTask;
 	}
 
@@ -73,6 +91,11 @@ public class CreateGamePageBase : ComponentBase {
 			MapState[regionId] = MapState[regionId] with { Style = Model.RegionStyle.Highlighted };
 		}
 		DisplayState = DisplayState.SelectPortOfEntry;
+		return Task.CompletedTask;
+	}
+
+	protected Task DoSelectPlayerColour() {
+		DisplayState = DisplayState.SelectPlayerColour;
 		return Task.CompletedTask;
 	}
 

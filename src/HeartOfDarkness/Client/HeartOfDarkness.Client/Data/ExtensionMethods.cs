@@ -11,6 +11,7 @@ public static class ExtensionMethods {
 			.AddSingleton<ISavedGameFactory, SavedGameFactory>()
 			.AddSingleton<IMapStateFactory, MapStateFactory>()
 			.AddSingleton<IPatronDefinitionFactory, StaticPatronDefinitionFactory>()
-			.AddSingleton<IResourceDefinitionFactory, StaticResourceDefinitionFactory>();
+			.AddSingleton<IResourceDefinitionFactory, StaticResourceDefinitionFactory>()
+			.AddSingleton<IPlayerColourDefinitionFactory, StaticPlayerColourDefinitionFactory>();
 	}
 }

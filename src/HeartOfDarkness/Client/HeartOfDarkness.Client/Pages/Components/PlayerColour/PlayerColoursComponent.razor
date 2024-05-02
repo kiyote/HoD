@@ -1,0 +1,7 @@
+﻿@inherits PlayerColoursComponentBase
+
+@foreach (PlayerColourDefinition definition in Definitions)
+{
+    <PlayerColourComponent Definition=definition
+                           OnPlayerColourSelected=OnPlayerColourSelected />
+}

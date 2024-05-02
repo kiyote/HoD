@@ -12,7 +12,8 @@ internal sealed class StaticResourceDefinitionFactory : IResourceDefinitionFacto
 					73,
 					73
 				),
-				"Altimeter"
+				"Altimeter",
+				int.MaxValue
 			),
 			new ResourceDefinition(
 				new ResourceImageDefinition(
@@ -20,7 +21,8 @@ internal sealed class StaticResourceDefinitionFactory : IResourceDefinitionFacto
 					73,
 					73
 				),
-				"Ammo"
+				"Ammo",
+				int.MaxValue
 			),
 			new ResourceDefinition(
 				new ResourceImageDefinition(
@@ -28,7 +30,8 @@ internal sealed class StaticResourceDefinitionFactory : IResourceDefinitionFacto
 					73,
 					73
 				),
-				"Bible"
+				"Bible",
+				int.MaxValue
 			),
 			new ResourceDefinition(
 				new ResourceImageDefinition(
@@ -36,7 +39,8 @@ internal sealed class StaticResourceDefinitionFactory : IResourceDefinitionFacto
 					73,
 					73
 				),
-				"Books"
+				"Books",
+				int.MaxValue
 			),
 			new ResourceDefinition(
 				new ResourceImageDefinition(
@@ -44,7 +48,8 @@ internal sealed class StaticResourceDefinitionFactory : IResourceDefinitionFacto
 					73,
 					73
 				),
-				"Canoes"
+				"Canoes",
+				1
 			),
 			new ResourceDefinition(
 				new ResourceImageDefinition(
@@ -52,7 +57,8 @@ internal sealed class StaticResourceDefinitionFactory : IResourceDefinitionFacto
 					73,
 					73
 				),
-				"Cannabis"
+				"Cannabis",
+				int.MaxValue
 			),
 			new ResourceDefinition(
 				new ResourceImageDefinition(
@@ -60,7 +66,8 @@ internal sealed class StaticResourceDefinitionFactory : IResourceDefinitionFacto
 					73,
 					73
 				),
-				"Canteen"
+				"Canteen",
+				int.MaxValue
 			),
 			new ResourceDefinition(
 				new ResourceImageDefinition(
@@ -68,7 +75,8 @@ internal sealed class StaticResourceDefinitionFactory : IResourceDefinitionFacto
 					73,
 					73
 				),
-				"Diary"
+				"Diary",
+				int.MaxValue
 			),
 			new ResourceDefinition(
 				new ResourceImageDefinition(
@@ -76,7 +84,8 @@ internal sealed class StaticResourceDefinitionFactory : IResourceDefinitionFacto
 					73,
 					73
 				),
-				"Fishing Gear"
+				"Fishing Gear",
+				int.MaxValue
 			),
 			new ResourceDefinition(
 				new ResourceImageDefinition(
@@ -84,7 +93,8 @@ internal sealed class StaticResourceDefinitionFactory : IResourceDefinitionFacto
 					73,
 					73
 				),
-				"Guide"
+				"Guide",
+				1
 			),
 			new ResourceDefinition(
 				new ResourceImageDefinition(
@@ -92,7 +102,8 @@ internal sealed class StaticResourceDefinitionFactory : IResourceDefinitionFacto
 					73,
 					73
 				),
-				"Machete"
+				"Machete",
+				int.MaxValue
 			),
 			new ResourceDefinition(
 				new ResourceImageDefinition(
@@ -100,7 +111,8 @@ internal sealed class StaticResourceDefinitionFactory : IResourceDefinitionFacto
 					73,
 					73
 				),
-				"Painting Supplies"
+				"Painting Supplies",
+				int.MaxValue
 			),
 			new ResourceDefinition(
 				new ResourceImageDefinition(
@@ -108,7 +120,8 @@ internal sealed class StaticResourceDefinitionFactory : IResourceDefinitionFacto
 					73,
 					73
 				),
-				"Pickaxe"
+				"Pickaxe",
+				int.MaxValue
 			),
 			new ResourceDefinition(
 				new ResourceImageDefinition(
@@ -116,7 +129,8 @@ internal sealed class StaticResourceDefinitionFactory : IResourceDefinitionFacto
 					73,
 					73
 				),
-				"Quinine"
+				"Quinine",
+				int.MaxValue
 			),
 			new ResourceDefinition(
 				new ResourceImageDefinition(
@@ -124,7 +138,8 @@ internal sealed class StaticResourceDefinitionFactory : IResourceDefinitionFacto
 					73,
 					73
 				),
-				"Revolver"
+				"Revolver",
+				int.MaxValue
 			),
 			new ResourceDefinition(
 				new ResourceImageDefinition(
@@ -132,7 +147,8 @@ internal sealed class StaticResourceDefinitionFactory : IResourceDefinitionFacto
 					73,
 					73
 				),
-				"Rifle"
+				"Rifle",
+				int.MaxValue
 			),
 			new ResourceDefinition(
 				new ResourceImageDefinition(
@@ -140,7 +156,8 @@ internal sealed class StaticResourceDefinitionFactory : IResourceDefinitionFacto
 					73,
 					73
 				),
-				"Survey Equipment"
+				"Survey Equipment",
+				int.MaxValue
 			),
 			new ResourceDefinition(
 				new ResourceImageDefinition(
@@ -148,7 +165,8 @@ internal sealed class StaticResourceDefinitionFactory : IResourceDefinitionFacto
 					73,
 					73
 				),
-				"Telescope"
+				"Telescope",
+				int.MaxValue
 			),
 		];
 

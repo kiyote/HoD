@@ -1,6 +1,7 @@
 ﻿@page "/create"
 @inherits CreateGamePageBase
 @using HeartOfDarkness.Client.Pages.Components.Map
+@using HeartOfDarkness.Client.Pages.Components.PlayerColour
 
 @if (DisplayState == DisplayState.SelectPortOfEntry)
 {
@@ -18,21 +19,34 @@ else if (DisplayState == DisplayState.SelectResources)
 {
     <h3>Select Resources or <button class="btn btn-primary" @onclick="OnCancelClicked">Cancel</button></h3>
     <PlayerResourcesComponent Definitions=ResourceDefinitions
-                              Resources=NewGame.Resources />
+                              Resources=NewGame.Resources
+                              Limit=@(NewGame.PlayerCount + 1)/>
+}
+else if (DisplayState == DisplayState.SelectPlayerColour)
+{
+    <h3>Select Colour or <button class="btn btn-primary" @onclick="OnCancelClicked">Cancel</button></h3>
+    <PlayerColoursComponent Definitions=PlayerColourDefinitions
+                            OnPlayerColourSelected=PlayerColourSelectedHandler />
 }
 else if (DisplayState == DisplayState.CreateGame)
 {
     <h3>Create New Game</h3>
-    <EditForm Model=@NewGame OnValidSubmit="OnCreateGameClicked">
+    <EditForm Model=@NewGame OnValidSubmit=OnCreateGameClicked>
         <DataAnnotationsValidator />
         <ValidationSummary />
+        <div>
+            Colour :
+            @(NewGame!.Colour ?? "")
+            <button class="btn btn-primary" @onclick="DoSelectPlayerColour">
+                Select
+            </button>
+        </div>
         <div>
             Port of Entry:
             @(NewGame!.PortOfEntry ?? "")
             <button class="btn btn-primary" @onclick="DoSelectPortOfEntry">
                 Select
             </button>
-
         </div>
         <div>
             Patron :
