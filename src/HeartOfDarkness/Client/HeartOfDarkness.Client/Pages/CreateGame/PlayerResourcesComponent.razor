@@ -4,11 +4,19 @@
 <h3>Resources</h3>
 
 <div class="resources-container">
-    @foreach (ResourceDefinition definition in Definitions)
+    @foreach (InventoryResourceDefinition definition in InventoryResourceDefinitions)
+    {
+        <InventoryResourceComponent ColourDefinition=PlayerColourDefinition
+                                    Definition=definition
+                                    OnResourceSelected=InventoryResourceSelectedHandler
+                                    Count=@(Resources.ContainsKey(definition.Id) ? Resources[definition.Id] : 0)
+                                    Limit=definition.Maximum />
+    }
+    @foreach (ResourceDefinition definition in ResourceDefinitions)
     {
         <ResourceComponent Definition=definition
                            Count=@(Resources.ContainsKey(definition.Id) ? Resources[definition.Id] : 0)
-                           Limit=@(CalculatedLimit(definition.Id))
-                           OnResourceSelected="ResourceSelectedHandler" />
+                           Limit=@(CalculatedResourceLimit(definition.Id))
+                           OnResourceSelected=ResourceSelectedHandler />
     }
 </div>

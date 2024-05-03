@@ -20,5 +20,6 @@ public class NewGame {
 
 	public int PlayerCount { get; set; }
 
+	[Required( ErrorMessage = "You must select a colour." )]
 	public string Colour { get; set; }
 }

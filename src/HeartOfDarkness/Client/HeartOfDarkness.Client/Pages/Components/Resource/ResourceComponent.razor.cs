@@ -14,11 +14,17 @@ public class ResourceComponentBase : ComponentBase {
 	public int Limit { get; set; }
 
 	[Parameter]
-	public EventCallback<string> OnResourceSelected { get; set; }
+	public EventCallback<(string, int)> OnResourceSelected { get; set; }
 
 	protected async Task OnClickHandler(
 		string resourceId
 	) {
-		await OnResourceSelected.InvokeAsync( resourceId );
+		await OnResourceSelected.InvokeAsync( (resourceId, +1) );
+	}
+
+	protected async Task OnSubtractHandler(
+		string resourceId
+	) {
+		await OnResourceSelected.InvokeAsync( (resourceId, -1) );
 	}
 }

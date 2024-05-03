@@ -18,9 +18,11 @@ else if (DisplayState == DisplayState.SelectPatron)
 else if (DisplayState == DisplayState.SelectResources)
 {
     <h3>Select Resources or <button class="btn btn-primary" @onclick="OnCancelClicked">Cancel</button></h3>
-    <PlayerResourcesComponent Definitions=ResourceDefinitions
+    <PlayerResourcesComponent ResourceDefinitions=ResourceDefinitions
                               Resources=NewGame.Resources
-                              Limit=@(NewGame.PlayerCount + 1)/>
+                              ResourceLimit=@(NewGame.PlayerCount + 1)
+                              InventoryResourceDefinitions=InventoryResourceDefinitions
+                              PlayerColourDefinition=PlayerColourDefinition />
 }
 else if (DisplayState == DisplayState.SelectPlayerColour)
 {
@@ -57,7 +59,7 @@ else if (DisplayState == DisplayState.CreateGame)
         </div>
         <div>
             Resources :
-            <button class="btn btn-primary" @onclick="DoSelectResources">
+            <button class="btn btn-primary" @attributes=ResourcesButtonAttributes @onclick="DoSelectResources">
                 Select
             </button>
         </div>

@@ -1,4 +1,6 @@
 ﻿.resources-container {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    max-width: 60%;
 }

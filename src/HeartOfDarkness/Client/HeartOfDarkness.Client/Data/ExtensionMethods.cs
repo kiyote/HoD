@@ -12,6 +12,7 @@ public static class ExtensionMethods {
 			.AddSingleton<IMapStateFactory, MapStateFactory>()
 			.AddSingleton<IPatronDefinitionFactory, StaticPatronDefinitionFactory>()
 			.AddSingleton<IResourceDefinitionFactory, StaticResourceDefinitionFactory>()
-			.AddSingleton<IPlayerColourDefinitionFactory, StaticPlayerColourDefinitionFactory>();
+			.AddSingleton<IPlayerColourDefinitionFactory, StaticPlayerColourDefinitionFactory>()
+			.AddSingleton<IInventoryResourceDefinitionFactory, StaticInventoryResourceDefinitionFactory>();
 	}
 }

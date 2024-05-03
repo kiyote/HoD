@@ -2,8 +2,7 @@
 
 public record Player(
 	string PortOfEntry,
-	int DramaPoints,
-	PlayerInventory Inventory
+	int DramaPoints
 ) {
-	public static readonly Player None = new Player( "", 0, PlayerInventory.None );
+	public static readonly Player None = new Player( "", 0 );
 }

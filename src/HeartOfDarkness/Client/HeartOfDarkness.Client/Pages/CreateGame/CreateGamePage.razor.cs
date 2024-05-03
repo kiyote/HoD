@@ -31,11 +31,16 @@ public class CreateGamePageBase : ComponentBase {
 	[Inject]
 	protected IPlayerColourDefinitionFactory PlayerColourDefinitionFactory { get; set; } = default!;
 
+	[Inject]
+	protected IInventoryResourceDefinitionFactory InventoryResourceDefinitionFactory { get; set; } = default!;
+
 	protected IList<PatronDefinition> PatronDefinitions { get; set; } = [];
 
 	protected IList<ResourceDefinition> ResourceDefinitions { get; set; } = [];
 
 	protected IList<PlayerColourDefinition> PlayerColourDefinitions { get; set; } = [];
+
+	protected IList<InventoryResourceDefinition> InventoryResourceDefinitions { get; set; } = [];
 
 	protected Model.MapState MapState { get; set; } = default!;
 
@@ -43,7 +48,14 @@ public class CreateGamePageBase : ComponentBase {
 
 	protected NewGame NewGame { get; set; } = default!;
 
-	protected ElementReference PlayerColourField { get; set; } = default!;
+	protected PlayerColourDefinition PlayerColourDefinition { get; set; } = PlayerColourDefinition.None;
+
+	[Parameter]
+	public Dictionary<string, object?> ResourcesButtonAttributes { get; set; } =
+		new Dictionary<string, object?>()
+		{
+			{ "disabled", "" }
+		};
 
 	protected override void OnInitialized() {
 		NewGame = new NewGame();
@@ -59,6 +71,14 @@ public class CreateGamePageBase : ComponentBase {
 			PatronDefinitions = await PatronDefinitionFactory.CreateAsync( CancellationToken.None );
 			ResourceDefinitions = await ResourceDefinitionFactory.CreateAsync( CancellationToken.None );
 			PlayerColourDefinitions = await PlayerColourDefinitionFactory.CreateAsync( CancellationToken.None );
+			InventoryResourceDefinitions = await InventoryResourceDefinitionFactory.CreateAsync( CancellationToken.None );
+			foreach(ResourceDefinition definition in ResourceDefinitions) {
+				NewGame.Resources[definition.Id] = 0;
+			}
+			foreach( InventoryResourceDefinition definition in InventoryResourceDefinitions ) {
+				NewGame.Resources[definition.Id] = definition.Minimum;
+			}
+			StateHasChanged();
 		}
 	}
 
@@ -75,6 +95,9 @@ public class CreateGamePageBase : ComponentBase {
 	) {
 		DisplayState = DisplayState.CreateGame;
 		NewGame.Colour = playerColourId;
+		PlayerColourDefinition = PlayerColourDefinitions.First( d => d.Id == playerColourId );
+		
+		_ = ResourcesButtonAttributes?.Remove( "disabled" );
 		return Task.CompletedTask;
 	}
 
