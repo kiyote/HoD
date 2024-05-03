@@ -1,24 +1,22 @@
 ﻿@inherits ResourceComponentBase
 
-<div class="item-wrapper">
-    <div class="resource-item">
+<div class="resource-item">
+    <div class="item-wrapper">
         <img src="@Definition.Image.File"
-             width="@Definition.Image.Width"
-             height="@Definition.Image.Height"
-             class="selectable"
-             @onclick="() => OnClickHandler(Definition.Id)" />
-        <div>
-            @Definition.Id
-        </div>
-        <div>
-            @Count / @Limit
-        </div>
-        <div class="item-overlay">
-            <img src="img/subtract.png"
-                 width="20"
-                 height="20"
-                 class="selectable"
-                 @onclick="() => OnSubtractHandler(Definition.Id)" />
-        </div>
+                width="@Definition.Image.Width"
+                height="@Definition.Image.Height"
+                class="selectable"
+                @onclick="() => OnClickHandler(Definition.Id)" />
+        <img src="img/subtract.png"
+                width="20"
+                height="20"
+                class="selectable item-overlay"
+                @onclick="() => OnSubtractHandler(Definition.Id)" />
+    </div>
+    <div>
+        @Definition.Id
+    </div>
+    <div>
+        @Count / @Limit
     </div>
 </div>

@@ -13,6 +13,7 @@ public static class ExtensionMethods {
 			.AddSingleton<IPatronDefinitionFactory, StaticPatronDefinitionFactory>()
 			.AddSingleton<IResourceDefinitionFactory, StaticResourceDefinitionFactory>()
 			.AddSingleton<IPlayerColourDefinitionFactory, StaticPlayerColourDefinitionFactory>()
-			.AddSingleton<IInventoryResourceDefinitionFactory, StaticInventoryResourceDefinitionFactory>();
+			.AddSingleton<IInventoryResourceDefinitionFactory, StaticInventoryResourceDefinitionFactory>()
+			.AddSingleton<IPorterCapacityProvider, PorterCapacityProvider>();
 	}
 }

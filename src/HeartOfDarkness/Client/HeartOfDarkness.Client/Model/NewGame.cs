@@ -6,7 +6,7 @@ public class NewGame {
 
 	public NewGame() {
 		PlayerCount = 1;
-		Resources = new Dictionary<string, int>();
+		Inventory = new PlayerInventory();
 		Colour = "";
 	}
 
@@ -16,7 +16,7 @@ public class NewGame {
 	[Required( ErrorMessage = "You must select a patron." )]
 	public string? Patron { get; set; }
 
-	public IDictionary<string, int> Resources { get; }
+	public PlayerInventory Inventory { get; }
 
 	public int PlayerCount { get; set; }
 

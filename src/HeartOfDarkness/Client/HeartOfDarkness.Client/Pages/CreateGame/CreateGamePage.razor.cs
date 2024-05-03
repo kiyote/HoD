@@ -1,5 +1,4 @@
-﻿using Blazored.LocalStorage;
-using HeartOfDarkness.Client.Data;
+﻿using HeartOfDarkness.Client.Data;
 using HeartOfDarkness.Client.Store.App;
 
 namespace HeartOfDarkness.Client.Pages.CreateGame;
@@ -73,12 +72,24 @@ public class CreateGamePageBase : ComponentBase {
 			PlayerColourDefinitions = await PlayerColourDefinitionFactory.CreateAsync( CancellationToken.None );
 			InventoryResourceDefinitions = await InventoryResourceDefinitionFactory.CreateAsync( CancellationToken.None );
 			foreach(ResourceDefinition definition in ResourceDefinitions) {
-				NewGame.Resources[definition.Id] = 0;
+				NewGame.Inventory[definition.Id] = 0;
 			}
 			foreach( InventoryResourceDefinition definition in InventoryResourceDefinitions ) {
-				NewGame.Resources[definition.Id] = definition.Minimum;
+				NewGame.Inventory[definition.Id] = definition.Start;
 			}
 			StateHasChanged();
+		}
+	}
+
+	protected int AvailablePorterCapacity {
+		get {
+			int availablePorters = NewGame.Inventory[InventoryResourceDefinition.PorterId] - 2;
+			int porterCapacity = availablePorters * 10;
+			int gifts = NewGame.Inventory[InventoryResourceDefinition.GiftsId];
+			int food = NewGame.Inventory[InventoryResourceDefinition.FoodId];
+			int giftWeight = gifts % 10 * 10;
+			int foodWeight = food % 10 * 10;
+			return porterCapacity - ( giftWeight + foodWeight );
 		}
 	}
 

@@ -17,7 +17,7 @@ public class PlayerResourcesComponentBase : ComponentBase {
 	public EventCallback<ResourceDefinition> OnResourceSelected { get; set; }
 
 	[Parameter]
-	public IDictionary<string, int> Resources { get; set; } = default!;
+	public PlayerInventory Inventory { get; set; } = default!;
 
 	[Parameter]
 	public int ResourceLimit { get; set; }
@@ -50,15 +50,12 @@ public class PlayerResourcesComponentBase : ComponentBase {
 		int maximum,
 		int increment
 	) {
-		if( !Resources.ContainsKey( resourceId ) ) {
-			Resources[resourceId] = minimum;
-		}
-		Resources[resourceId] += increment;
-		if( Resources[resourceId] > maximum ) {
-			Resources[resourceId] = maximum;
+		Inventory[resourceId] += increment;
+		if( Inventory[resourceId] > maximum ) {
+			Inventory[resourceId] = maximum;
 			return false;
-		} else if( Resources[resourceId] < minimum ) {
-			Resources[resourceId] = minimum;
+		} else if( Inventory[resourceId] < minimum ) {
+			Inventory[resourceId] = minimum;
 			return false;
 		}
 		return true;

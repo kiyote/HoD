@@ -9,13 +9,13 @@
         <InventoryResourceComponent ColourDefinition=PlayerColourDefinition
                                     Definition=definition
                                     OnResourceSelected=InventoryResourceSelectedHandler
-                                    Count=@(Resources.ContainsKey(definition.Id) ? Resources[definition.Id] : 0)
+                                    Count=@(Inventory[definition.Id])
                                     Limit=definition.Maximum />
     }
     @foreach (ResourceDefinition definition in ResourceDefinitions)
     {
         <ResourceComponent Definition=definition
-                           Count=@(Resources.ContainsKey(definition.Id) ? Resources[definition.Id] : 0)
+                           Count=@(Inventory[definition.Id])
                            Limit=@(CalculatedResourceLimit(definition.Id))
                            OnResourceSelected=ResourceSelectedHandler />
     }

@@ -1,28 +1,26 @@
 ﻿@inherits InventoryResourceComponentBase
 
-<div class="item-wrapper">
-    <div class="resource-item">
+<div class="resource-item">
+    <div class ="item-wrapper">
         <img src="@ImageFile"
-             width="@Definition.Image.Width"
-             height="@Definition.Image.Height"
-             class="selectable"
-             @onclick="() => OnClickHandler(Definition.Id)" />
-        <div>
-            @Definition.Name
-        </div>
-        <div>
-            @Count
-            @if (Limit < int.MaxValue)
-            {
-                <text>/ @Limit</text>
-            }
-        </div>
+                width="@Definition.Image.Width"
+                height="@Definition.Image.Height"
+                class="selectable"
+                @onclick="() => OnClickHandler(Definition.Id)" />
+        <img src="img/subtract.png"
+                width="20"
+                height="20"
+                class="selectable item-overlay"
+                @onclick="() => OnSubtractHandler(Definition.Id)" />
     </div>
-    <div class="item-overlay">
-        <img src="img/subtract.png" 
-        width="20" 
-        height="20"
-        class="selectable"
-        @onclick="() => OnSubtractHandler(Definition.Id)"/>
+    <div>
+        @Definition.Name
+    </div>
+    <div>
+        @Count
+        @if (Limit < int.MaxValue)
+        {
+            <text>/ @Limit</text>
+        }
     </div>
 </div>

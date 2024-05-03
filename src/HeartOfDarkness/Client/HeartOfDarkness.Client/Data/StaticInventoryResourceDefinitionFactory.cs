@@ -12,11 +12,12 @@ internal sealed class StaticInventoryResourceDefinitionFactory : IInventoryResou
 					56,
 					56
 				),
-				"inventory_ammo",
+				InventoryResourceDefinition.AmmoId,
 				"Ammo",
 				0,
 				8,
-				1
+				1,
+				0
 			),
 			new InventoryResourceDefinition(
 				new InventoryResourceImageDefinition(
@@ -24,11 +25,12 @@ internal sealed class StaticInventoryResourceDefinitionFactory : IInventoryResou
 					56,
 					56
 				),
-				"inventory_askari",
+				InventoryResourceDefinition.AskariId,
 				"Askari",
 				0,
 				8,
-				1
+				1,
+				6
 			),
 			new InventoryResourceDefinition(
 				new InventoryResourceImageDefinition(
@@ -36,11 +38,12 @@ internal sealed class StaticInventoryResourceDefinitionFactory : IInventoryResou
 					56,
 					56
 				),
-				"inventory_food",
+				InventoryResourceDefinition.FoodId,
 				"Food",
-				20,
+				0,
 				int.MaxValue,
-				10
+				10,
+				20
 			),
 			new InventoryResourceDefinition(
 				new InventoryResourceImageDefinition(
@@ -48,11 +51,12 @@ internal sealed class StaticInventoryResourceDefinitionFactory : IInventoryResou
 					56,
 					56
 				),
-				"inventory_gifts",
+				InventoryResourceDefinition.GiftsId,
 				"Gifts",
-				10,
+				0,
 				int.MaxValue,
-				5
+				5,
+				10
 			),
 			new InventoryResourceDefinition(
 				new InventoryResourceImageDefinition(
@@ -60,11 +64,12 @@ internal sealed class StaticInventoryResourceDefinitionFactory : IInventoryResou
 					56,
 					56
 				),
-				"inventory_porter",
+				InventoryResourceDefinition.PorterId,
 				"Porter",
 				0,
 				10,
-				1
+				1,
+				8
 			),
 		];
 
