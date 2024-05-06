@@ -1,7 +1,22 @@
 ﻿@inherits InventoryComponentBase
 
-<h3>InventoryComponent</h3>
-
-@code {
-
-}
+<div>
+    @if (InventoryResourceDefinitions.Any() && ColourDefinition != PlayerColourDefinition.None)
+    {
+        foreach (InventoryResourceDefinition definition in InventoryResourceDefinitions)
+        {
+            @if (Inventory[definition.Id] > 0)
+            {
+                <div>
+                    <img src=@(GetImageFile(definition))
+                         width=@(definition.Image.Width)
+                         height=@(definition.Image.Height) />
+                    @if (Inventory[definition.Id] > 1)
+                    {
+                        <text>x @(Inventory[definition.Id])</text>
+                    }
+                </div>
+            }
+        }
+    }
+</div>

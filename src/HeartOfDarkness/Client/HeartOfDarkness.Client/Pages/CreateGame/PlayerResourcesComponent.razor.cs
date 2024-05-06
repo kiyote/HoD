@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using HeartOfDarkness.Client.Data;
+﻿using HeartOfDarkness.Client.Data;
 
 namespace HeartOfDarkness.Client.Pages.CreateGame;
 
@@ -23,26 +22,42 @@ public class PlayerResourcesComponentBase : ComponentBase {
 	[Inject]
 	protected IPorterCapacityProvider PorterCapacity { get; set; } = default!;
 
-
 	[Inject]
 	protected IResourceLimitProvider ResourceLimitProvider { get; set; } = default!;
+
+	protected int CreditsRemaining { get; set; } = 20;
+
+	protected int TotalCredits { get; set; } = 20;
 
 
 	protected Task InventoryResourceSelectedHandler(
 		(string inventoryResourceId, int direction) args
 	) {
-		InventoryResourceDefinition definition = InventoryResourceDefinitions.First( d => d.Id == args.inventoryResourceId );
-		_ = TryAddResource( args.inventoryResourceId, definition.Minimum, definition.Maximum, ( definition.Increment * args.direction ) );
-		StateHasChanged();
+		if (CreditsRemaining > 0|| args.direction < 0 ) {
+			if (args.inventoryResourceId == InventoryResourceDefinition.FoodId
+				|| args.inventoryResourceId == InventoryResourceDefinition.GiftsId
+			) {
+				if (args.direction > 0
+					&& PorterCapacity.GetAvailable( Inventory ) == 0
+				) {
+					return Task.CompletedTask;
+				}
+			}
+			InventoryResourceDefinition definition = InventoryResourceDefinitions.First( d => d.Id == args.inventoryResourceId );
+			_ = TryAddResource( args.inventoryResourceId, definition.Minimum, definition.Maximum, ( definition.Increment * args.direction ) );
+			CreditsRemaining -= ( 1 * args.direction );
+		}
 		return Task.CompletedTask;
 	}
 
 	protected Task ResourceSelectedHandler(
 		(string resourceId, int direction) args
 	) {
-		int limit = ResourceLimitProvider.GetMaximum( ResourceDefinitions, 1, args.resourceId );
-		_ = TryAddResource( args.resourceId, 0, limit, args.direction );
-		StateHasChanged();
+		if ( CreditsRemaining > 0 || args.direction < 0)  {
+			int limit = ResourceLimitProvider.GetMaximum( ResourceDefinitions, 1, args.resourceId );
+			_ = TryAddResource( args.resourceId, 0, limit, args.direction );
+			CreditsRemaining -= ( 1 * args.direction );
+		}
 		return Task.CompletedTask;
 	}
 
