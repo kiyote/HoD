@@ -2,6 +2,8 @@
 
 public record PlayerInventory {
 
+	public static readonly PlayerInventory None = new PlayerInventory();
+
 	private readonly Dictionary<string, int> _resources;
 
 	public PlayerInventory() {

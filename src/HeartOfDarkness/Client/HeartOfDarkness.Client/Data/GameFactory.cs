@@ -2,10 +2,10 @@
 
 internal sealed class GameFactory : IGameFactory {
 
-	private readonly IMapDefinitionFactory _mapDefinitionFactory;
+	private readonly IMapDefinitionProvider _mapDefinitionFactory;
 
 	public GameFactory(
-		IMapDefinitionFactory mapDefinitionFactory
+		IMapDefinitionProvider mapDefinitionFactory
 	) {
 		_mapDefinitionFactory = mapDefinitionFactory;
 	}
@@ -13,7 +13,7 @@ internal sealed class GameFactory : IGameFactory {
 	async Task<Game> IGameFactory.CreateAsync(
 		CancellationToken cancellationToken
 	) {
-		MapDefinition mapDefinition = await _mapDefinitionFactory.CreateAsync(
+		MapDefinition mapDefinition = await _mapDefinitionFactory.GetAsync(
 			cancellationToken
 		);
 		return new Game(
@@ -27,7 +27,7 @@ internal sealed class GameFactory : IGameFactory {
 		SavedGame savedGame,
 		CancellationToken cancellationToken
 	) {
-		MapDefinition mapDefinition = await _mapDefinitionFactory.CreateAsync(
+		MapDefinition mapDefinition = await _mapDefinitionFactory.GetAsync(
 			cancellationToken
 		);
 		return new Game(

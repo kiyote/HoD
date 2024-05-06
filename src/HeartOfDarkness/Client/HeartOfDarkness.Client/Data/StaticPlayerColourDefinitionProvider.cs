@@ -1,11 +1,10 @@
 ﻿
 namespace HeartOfDarkness.Client.Data;
 
-internal sealed class StaticPlayerColourDefinitionFactory : IPlayerColourDefinitionFactory {
-	Task<IList<PlayerColourDefinition>> IPlayerColourDefinitionFactory.CreateAsync(
-		CancellationToken cancellationToken
-	) {
-		IList<PlayerColourDefinition> result = [
+internal sealed class StaticPlayerColourDefinitionProvider : IPlayerColourDefinitionProvider {
+
+	private readonly IList<PlayerColourDefinition> _players =
+		[
 			new PlayerColourDefinition(
 				new PlayerColourImageDefinition(
 					"img/blue-explorer.png",
@@ -48,6 +47,9 @@ internal sealed class StaticPlayerColourDefinitionFactory : IPlayerColourDefinit
 			),
 		];
 
-		return Task.FromResult( result );
+	Task<IList<PlayerColourDefinition>> IPlayerColourDefinitionProvider.GetAsync(
+		CancellationToken cancellationToken
+	) {
+		return Task.FromResult( _players );
 	}
 }

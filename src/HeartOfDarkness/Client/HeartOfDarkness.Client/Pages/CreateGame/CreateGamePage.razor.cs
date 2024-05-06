@@ -19,19 +19,19 @@ public class CreateGamePageBase : ComponentBase {
 	protected IMapStateFactory MapStateFactory { get; set; } = default!;
 
 	[Inject]
-	protected IMapDefinitionFactory MapDefinitionFactory { get; set; } = default!;
+	protected IMapDefinitionProvider MapDefinitionProvider { get; set; } = default!;
 
 	[Inject]
-	protected IPatronDefinitionFactory PatronDefinitionFactory { get; set; } = default!;
+	protected IPatronDefinitionProvider PatronDefinitionProvider { get; set; } = default!;
 
 	[Inject]
-	protected IResourceDefinitionFactory ResourceDefinitionFactory { get; set; } = default!;
+	protected IResourceDefinitionProvider ResourceDefinitionProvider { get; set; } = default!;
 
 	[Inject]
-	protected IPlayerColourDefinitionFactory PlayerColourDefinitionFactory { get; set; } = default!;
+	protected IPlayerColourDefinitionProvider PlayerColourDefinitionProvider { get; set; } = default!;
 
 	[Inject]
-	protected IInventoryResourceDefinitionFactory InventoryResourceDefinitionFactory { get; set; } = default!;
+	protected IInventoryResourceDefinitionProvider InventoryResourceDefinitionProvider { get; set; } = default!;
 
 	protected IList<PatronDefinition> PatronDefinitions { get; set; } = [];
 
@@ -65,12 +65,12 @@ public class CreateGamePageBase : ComponentBase {
 		bool firstRender
 	) {
 		if( firstRender ) {
-			MapDefinition mapDefinition = await MapDefinitionFactory.CreateAsync( CancellationToken.None );
+			MapDefinition mapDefinition = await MapDefinitionProvider.GetAsync( CancellationToken.None );
 			MapState = await MapStateFactory.CreateAsync( mapDefinition, CancellationToken.None );
-			PatronDefinitions = await PatronDefinitionFactory.CreateAsync( CancellationToken.None );
-			ResourceDefinitions = await ResourceDefinitionFactory.CreateAsync( CancellationToken.None );
-			PlayerColourDefinitions = await PlayerColourDefinitionFactory.CreateAsync( CancellationToken.None );
-			InventoryResourceDefinitions = await InventoryResourceDefinitionFactory.CreateAsync( CancellationToken.None );
+			PatronDefinitions = await PatronDefinitionProvider.GetAsync( CancellationToken.None );
+			ResourceDefinitions = await ResourceDefinitionProvider.GetAsync( CancellationToken.None );
+			PlayerColourDefinitions = await PlayerColourDefinitionProvider.GetAsync( CancellationToken.None );
+			InventoryResourceDefinitions = await InventoryResourceDefinitionProvider.GetAsync( CancellationToken.None );
 			foreach(ResourceDefinition definition in ResourceDefinitions) {
 				NewGame.Inventory[definition.Id] = 0;
 			}
@@ -78,19 +78,7 @@ public class CreateGamePageBase : ComponentBase {
 				NewGame.Inventory[definition.Id] = definition.Start;
 			}
 			StateHasChanged();
-		}
-	}
-
-	protected int AvailablePorterCapacity {
-		get {
-			int availablePorters = NewGame.Inventory[InventoryResourceDefinition.PorterId] - 2;
-			int porterCapacity = availablePorters * 10;
-			int gifts = NewGame.Inventory[InventoryResourceDefinition.GiftsId];
-			int food = NewGame.Inventory[InventoryResourceDefinition.FoodId];
-			int giftWeight = gifts % 10 * 10;
-			int foodWeight = food % 10 * 10;
-			return porterCapacity - ( giftWeight + foodWeight );
-		}
+		}	
 	}
 
 	protected Task RegionSelectedHandler(

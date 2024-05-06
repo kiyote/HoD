@@ -20,7 +20,6 @@ else if (DisplayState == DisplayState.SelectResources)
     <h3>Select Resources or <button class="btn btn-primary" @onclick="OnCancelClicked">Accept</button></h3>
     <PlayerResourcesComponent ResourceDefinitions=ResourceDefinitions
                               Inventory=NewGame.Inventory
-                              ResourceLimit=@(NewGame.PlayerCount + 1)
                               InventoryResourceDefinitions=InventoryResourceDefinitions
                               PlayerColourDefinition=PlayerColourDefinition />
 }

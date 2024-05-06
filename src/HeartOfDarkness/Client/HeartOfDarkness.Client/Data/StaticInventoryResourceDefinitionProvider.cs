@@ -1,11 +1,10 @@
 ﻿
 namespace HeartOfDarkness.Client.Data;
 
-internal sealed class StaticInventoryResourceDefinitionFactory : IInventoryResourceDefinitionFactory {
-	Task<IList<InventoryResourceDefinition>> IInventoryResourceDefinitionFactory.CreateAsync(
-		CancellationToken cancellationToken
-	) {
-		IList<InventoryResourceDefinition> result = [
+internal sealed class StaticInventoryResourceDefinitionProvider : IInventoryResourceDefinitionProvider {
+
+	private readonly IList<InventoryResourceDefinition> _definitions =
+[
 			new InventoryResourceDefinition(
 				new InventoryResourceImageDefinition(
 					"img/{colour}-ammo.png",
@@ -73,6 +72,10 @@ internal sealed class StaticInventoryResourceDefinitionFactory : IInventoryResou
 			),
 		];
 
-		return Task.FromResult( result );
+
+	Task<IList<InventoryResourceDefinition>> IInventoryResourceDefinitionProvider.GetAsync(
+		CancellationToken cancellationToken
+	) {
+		return Task.FromResult( _definitions );
 	}
 }

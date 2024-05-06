@@ -2,8 +2,12 @@
 
 public interface IPorterCapacityProvider {
 
-	int GetMaximum();
+	int GetMaximum(
+		PlayerInventory inventory
+	);
 
-	int GetAvailable();
+	int GetAvailable(
+		PlayerInventory inventory
+	);
 
 }

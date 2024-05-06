@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using HeartOfDarkness.Client.Data;
 
 namespace HeartOfDarkness.Client.Pages.CreateGame;
 
@@ -19,29 +20,30 @@ public class PlayerResourcesComponentBase : ComponentBase {
 	[Parameter]
 	public PlayerInventory Inventory { get; set; } = default!;
 
-	[Parameter]
-	public int ResourceLimit { get; set; }
+	[Inject]
+	protected IPorterCapacityProvider PorterCapacity { get; set; } = default!;
+
+
+	[Inject]
+	protected IResourceLimitProvider ResourceLimitProvider { get; set; } = default!;
+
 
 	protected Task InventoryResourceSelectedHandler(
 		(string inventoryResourceId, int direction) args
 	) {
 		InventoryResourceDefinition definition = InventoryResourceDefinitions.First( d => d.Id == args.inventoryResourceId );
 		_ = TryAddResource( args.inventoryResourceId, definition.Minimum, definition.Maximum, ( definition.Increment * args.direction ) );
+		StateHasChanged();
 		return Task.CompletedTask;
 	}
 
 	protected Task ResourceSelectedHandler(
 		(string resourceId, int direction) args
 	) {
-		int limit = CalculatedResourceLimit( args.resourceId );
+		int limit = ResourceLimitProvider.GetMaximum( ResourceDefinitions, 1, args.resourceId );
 		_ = TryAddResource( args.resourceId, 0, limit, args.direction );
+		StateHasChanged();
 		return Task.CompletedTask;
-	}
-
-	protected int CalculatedResourceLimit(
-		string resourceId
-	) {
-		return Math.Min( ResourceLimit, ResourceDefinitions.First( r => r.Id == resourceId ).Limit );
 	}
 
 	private bool TryAddResource(

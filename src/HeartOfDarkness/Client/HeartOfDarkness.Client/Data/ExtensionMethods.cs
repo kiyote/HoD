@@ -6,14 +6,15 @@ public static class ExtensionMethods {
 		this IServiceCollection services
 	) {
 		return services
-			.AddSingleton<IMapDefinitionFactory, StaticMapDefinitionFactory>()
+			.AddSingleton<IMapDefinitionProvider, StaticMapDefinitionProvider>()
 			.AddSingleton<IGameFactory, GameFactory>()
 			.AddSingleton<ISavedGameFactory, SavedGameFactory>()
 			.AddSingleton<IMapStateFactory, MapStateFactory>()
-			.AddSingleton<IPatronDefinitionFactory, StaticPatronDefinitionFactory>()
-			.AddSingleton<IResourceDefinitionFactory, StaticResourceDefinitionFactory>()
-			.AddSingleton<IPlayerColourDefinitionFactory, StaticPlayerColourDefinitionFactory>()
-			.AddSingleton<IInventoryResourceDefinitionFactory, StaticInventoryResourceDefinitionFactory>()
-			.AddSingleton<IPorterCapacityProvider, PorterCapacityProvider>();
+			.AddSingleton<IPatronDefinitionProvider, StaticPatronDefinitionProvider>()
+			.AddSingleton<IResourceDefinitionProvider, StaticResourceDefinitionProvider>()
+			.AddSingleton<IPlayerColourDefinitionProvider, StaticPlayerColourDefinitionProvider>()
+			.AddSingleton<IInventoryResourceDefinitionProvider, StaticInventoryResourceDefinitionProvider>()
+			.AddSingleton<IPorterCapacityProvider, PorterCapacityProvider>()
+			.AddSingleton<IResourceLimitProvider, ResourceLimitProvider>();
 	}
 }

@@ -1,11 +1,10 @@
 ﻿
 namespace HeartOfDarkness.Client.Data;
 
-internal sealed class StaticPatronDefinitionFactory : IPatronDefinitionFactory {
-	Task<IList<PatronDefinition>> IPatronDefinitionFactory.CreateAsync(
-		CancellationToken cancellationToken
-	) {
-		IList<PatronDefinition> result = [
+internal sealed class StaticPatronDefinitionProvider : IPatronDefinitionProvider {
+
+	private readonly IList<PatronDefinition> _patrons =
+		[
 			new PatronDefinition(
 				new PatronImageDefinition(
 					"img/HOD-interest_0.png",
@@ -53,6 +52,9 @@ internal sealed class StaticPatronDefinitionFactory : IPatronDefinitionFactory {
 			)
 		];
 
-		return Task.FromResult( result );
+	Task<IList<PatronDefinition>> IPatronDefinitionProvider.GetAsync(
+		CancellationToken cancellationToken
+	) {
+		return Task.FromResult( _patrons );
 	}
 }
