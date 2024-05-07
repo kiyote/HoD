@@ -1,27 +1,21 @@
 ﻿namespace HeartOfDarkness.Client.Model;
 
-public sealed record MapState {
+public sealed record MapState(
+	Dictionary<string, RegionState> Regions
+) {
 
-	private readonly Dictionary<string, RegionState> _regions;
+	public static readonly MapState None = new MapState();
 
-	public MapState(
-		MapDefinition definition
-	) {
-		Definition = definition;
-		_regions = [];
-		foreach( RegionDefinition region in definition.Regions ) {
-			_regions[region.Id] = new RegionState( region.Id, RegionStyle.Hidden );
-		}
+	public MapState()
+		:this([]) {
 	}
-
-	public MapDefinition Definition { get; }
 
 	public RegionState this[string regionId] {
 		get {
-			return _regions[regionId];
+			return Regions[regionId];
 		}
 		set {
-			_regions[regionId] = value;
+			Regions[regionId] = value;
 		}
 	}
 }

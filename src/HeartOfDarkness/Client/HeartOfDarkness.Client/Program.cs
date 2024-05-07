@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Blazored.LocalStorage;
 using HeartOfDarkness.Client.Data;
 using Microsoft.AspNetCore.Components.Web;
@@ -18,7 +19,12 @@ public static class Program {
 				.AddScoped( sp => new HttpClient {
 					BaseAddress = new Uri( builder.HostEnvironment.BaseAddress )
 				} )
-				.AddBlazoredLocalStorage()
+				.AddBlazoredLocalStorage( config => {
+					config.JsonSerializerOptions.WriteIndented = true;
+					config.JsonSerializerOptions.Converters.Add(
+						new JsonStringEnumConverter()
+					);
+				} )
 				.AddFluxor( opts => opts.ScanAssemblies( typeof( Program ).Assembly ).UseRouting() )
 				.AddModel()
 				.AddData();

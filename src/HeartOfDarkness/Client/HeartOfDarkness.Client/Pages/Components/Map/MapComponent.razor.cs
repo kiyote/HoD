@@ -10,13 +10,16 @@ public class MapComponentBase : ComponentBase {
 	[Parameter, EditorRequired]
 	public MapState State { get; set; } = default!;
 
-	protected string MapFile => State.Definition.Image.File;
+	[Parameter, EditorRequired]
+	public MapDefinition Definition { get; set; } = default!;
 
-	protected int MapWidth => State.Definition.Image.Width;
+	protected string MapFile => Definition.Image.File;
 
-	protected int MapHeight => State.Definition.Image.Height;
+	protected int MapWidth => Definition.Image.Width;
 
-	protected IEnumerable<RegionDefinition> RegionDefinitions => State.Definition.Regions;
+	protected int MapHeight => Definition.Image.Height;
+
+	protected IEnumerable<RegionDefinition> RegionDefinitions => Definition.Regions;
 
 	[JSInvokable]
 	public async Task OnRegionSelectedHandler(

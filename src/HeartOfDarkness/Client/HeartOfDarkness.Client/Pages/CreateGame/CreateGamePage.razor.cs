@@ -42,7 +42,9 @@ public class CreateGamePageBase : ComponentBase {
 
 	protected IList<InventoryResourceDefinition> InventoryResourceDefinitions { get; set; } = [];
 
-	protected Model.MapState MapState { get; set; } = default!;
+	protected MapDefinition MapDefinition { get; set; } = MapDefinition.None;
+
+	protected MapState MapState { get; set; } = MapState.None;
 
 	protected DisplayState DisplayState { get; set; }
 
@@ -66,8 +68,8 @@ public class CreateGamePageBase : ComponentBase {
 		bool firstRender
 	) {
 		if( firstRender ) {
-			MapDefinition mapDefinition = await MapDefinitionProvider.GetAsync( CancellationToken.None );
-			MapState = await MapStateFactory.CreateAsync( mapDefinition, CancellationToken.None );
+			MapDefinition = await MapDefinitionProvider.GetAsync( CancellationToken.None );
+			MapState = await MapStateFactory.CreateAsync( MapDefinition, CancellationToken.None );
 			PatronDefinitions = await PatronDefinitionProvider.GetAsync( CancellationToken.None );
 			ResourceDefinitions = await ResourceDefinitionProvider.GetAsync( CancellationToken.None );
 			PlayerColourDefinitions = await PlayerColourDefinitionProvider.GetAsync( CancellationToken.None );
@@ -110,7 +112,7 @@ public class CreateGamePageBase : ComponentBase {
 	}
 
 	protected Task DoSelectPortOfEntry() {
-		foreach( string regionId in MapState.Definition.PortsOfEntry ) {
+		foreach( string regionId in MapDefinition.PortsOfEntry ) {
 			MapState[regionId] = MapState[regionId] with { Style = Model.RegionStyle.Highlighted };
 		}
 		DisplayState = DisplayState.SelectPortOfEntry;

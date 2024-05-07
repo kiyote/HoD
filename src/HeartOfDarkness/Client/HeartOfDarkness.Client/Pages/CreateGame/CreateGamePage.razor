@@ -8,6 +8,7 @@
 {
     <h3>Select Port of Entry or <button class="btn btn-primary" @onclick="OnCancelClicked">Cancel</button></h3>
     <MapComponent OnRegionSelected="RegionSelectedHandler"
+                  Definition=MapDefinition
                   State=MapState />
 }
 else if (DisplayState == DisplayState.SelectPatron)
