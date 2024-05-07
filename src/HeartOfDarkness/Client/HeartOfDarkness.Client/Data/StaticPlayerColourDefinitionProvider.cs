@@ -6,7 +6,7 @@ internal sealed class StaticPlayerColourDefinitionProvider : IPlayerColourDefini
 	private readonly IList<PlayerColourDefinition> _players =
 		[
 			new PlayerColourDefinition(
-				new PlayerColourImageDefinition(
+				new ImageDefinition(
 					"img/blue-explorer.png",
 					56,
 					56
@@ -14,7 +14,7 @@ internal sealed class StaticPlayerColourDefinitionProvider : IPlayerColourDefini
 				"Blue"
 			),
 			new PlayerColourDefinition(
-				new PlayerColourImageDefinition(
+				new ImageDefinition(
 					"img/brown-explorer.png",
 					56,
 					56
@@ -22,7 +22,7 @@ internal sealed class StaticPlayerColourDefinitionProvider : IPlayerColourDefini
 				"Brown"
 			),
 			new PlayerColourDefinition(
-				new PlayerColourImageDefinition(
+				new ImageDefinition(
 					"img/green-explorer.png",
 					56,
 					56
@@ -30,7 +30,7 @@ internal sealed class StaticPlayerColourDefinitionProvider : IPlayerColourDefini
 				"Green"
 			),
 			new PlayerColourDefinition(
-				new PlayerColourImageDefinition(
+				new ImageDefinition(
 					"img/grey-explorer.png",
 					56,
 					56
@@ -38,7 +38,7 @@ internal sealed class StaticPlayerColourDefinitionProvider : IPlayerColourDefini
 				"Grey"
 			),
 			new PlayerColourDefinition(
-				new PlayerColourImageDefinition(
+				new ImageDefinition(
 					"img/yellow-explorer.png",
 					56,
 					56

@@ -1,6 +1,6 @@
 ﻿namespace HeartOfDarkness.Client.Model; 
 public record InventoryResourceDefinition(
-	InventoryResourceImageDefinition Image,
+	ImageDefinition Image,
 	string Id,
 	string Name,
 	int Minimum,
@@ -8,7 +8,7 @@ public record InventoryResourceDefinition(
 	int Increment,
 	int Start
 ) {
-	public static readonly InventoryResourceDefinition None = new InventoryResourceDefinition( InventoryResourceImageDefinition.None, "", "", 0, 0, 0, 0 );
+	public static readonly InventoryResourceDefinition None = new InventoryResourceDefinition( ImageDefinition.None, "", "", 0, 0, 0, 0 );
 
 	public const string AmmoId = "inventory_ammo";
 	public const string AskariId = "inventory_askari";

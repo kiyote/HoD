@@ -4,7 +4,7 @@ internal sealed class StaticMapDefinitionProvider : IMapDefinitionProvider {
 
 	private readonly MapDefinition _mapDefinition =
 		new MapDefinition(
-			new MapImageDefinition(
+			new ImageDefinition(
 				"img/HOD_map.png",
 				1904,
 				2931

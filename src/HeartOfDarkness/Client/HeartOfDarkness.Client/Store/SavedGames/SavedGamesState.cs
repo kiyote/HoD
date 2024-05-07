@@ -3,7 +3,7 @@
 [FeatureState]
 public record SavedGamesState(
 	bool IsLoading,
-	IEnumerable<SavedGame> Games
+	IEnumerable<Game> Games
 ) {
 
 	public SavedGamesState() : this(

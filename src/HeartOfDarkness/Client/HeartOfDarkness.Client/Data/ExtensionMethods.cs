@@ -8,7 +8,6 @@ public static class ExtensionMethods {
 		return services
 			.AddSingleton<IMapDefinitionProvider, StaticMapDefinitionProvider>()
 			.AddSingleton<IGameFactory, GameFactory>()
-			.AddSingleton<ISavedGameFactory, SavedGameFactory>()
 			.AddSingleton<IMapStateFactory, MapStateFactory>()
 			.AddSingleton<IPatronDefinitionProvider, StaticPatronDefinitionProvider>()
 			.AddSingleton<IResourceDefinitionProvider, StaticResourceDefinitionProvider>()

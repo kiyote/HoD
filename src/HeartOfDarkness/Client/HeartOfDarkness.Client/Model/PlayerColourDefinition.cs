@@ -1,8 +1,8 @@
 ﻿namespace HeartOfDarkness.Client.Model;
 
 public record PlayerColourDefinition(
-	PlayerColourImageDefinition Image,
+	ImageDefinition Image,
 	string Id
 ) {
-	public static readonly PlayerColourDefinition None = new PlayerColourDefinition( PlayerColourImageDefinition.None, "" );
+	public static readonly PlayerColourDefinition None = new PlayerColourDefinition( ImageDefinition.None, "" );
 }

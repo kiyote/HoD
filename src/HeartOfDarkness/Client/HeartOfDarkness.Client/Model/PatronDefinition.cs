@@ -1,7 +1,7 @@
 ﻿namespace HeartOfDarkness.Client.Model;
 
 public record PatronDefinition(
-	PatronImageDefinition Image,
+	ImageDefinition Image,
 	string PatronId,
 	string Institution
 );

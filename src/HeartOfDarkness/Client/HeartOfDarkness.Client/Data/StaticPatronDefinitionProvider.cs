@@ -6,7 +6,7 @@ internal sealed class StaticPatronDefinitionProvider : IPatronDefinitionProvider
 	private readonly IList<PatronDefinition> _patrons =
 		[
 			new PatronDefinition(
-				new PatronImageDefinition(
+				new ImageDefinition(
 					"img/HOD-interest_0.png",
 					56,
 					56
@@ -15,7 +15,7 @@ internal sealed class StaticPatronDefinitionProvider : IPatronDefinitionProvider
 				"Royal Geographic Society"
 			),
 			new PatronDefinition(
-				new PatronImageDefinition(
+				new ImageDefinition(
 					"img/HOD-interest_1.png",
 					56,
 					56
@@ -24,7 +24,7 @@ internal sealed class StaticPatronDefinitionProvider : IPatronDefinitionProvider
 				"University"
 			),
 			new PatronDefinition(
-				new PatronImageDefinition(
+				new ImageDefinition(
 					"img/HOD-interest_2.png",
 					56,
 					56
@@ -33,7 +33,7 @@ internal sealed class StaticPatronDefinitionProvider : IPatronDefinitionProvider
 				"The City"
 			),
 			new PatronDefinition(
-				new PatronImageDefinition(
+				new ImageDefinition(
 					"img/HOD-interest_4.png",
 					56,
 					56
@@ -42,7 +42,7 @@ internal sealed class StaticPatronDefinitionProvider : IPatronDefinitionProvider
 				"Westminster"
 			),
 			new PatronDefinition(
-				new PatronImageDefinition(
+				new ImageDefinition(
 					"img/HOD-interest_2.png",
 					56,
 					56

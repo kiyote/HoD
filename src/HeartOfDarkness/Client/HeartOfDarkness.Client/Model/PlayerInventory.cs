@@ -1,21 +1,19 @@
 ﻿namespace HeartOfDarkness.Client.Model;
 
-public record PlayerInventory {
+public record PlayerInventory(Dictionary<string, int> Resources) {
 
 	public static readonly PlayerInventory None = new PlayerInventory();
 
-	private readonly Dictionary<string, int> _resources;
-
-	public PlayerInventory() {
-		_resources = [];
+	public PlayerInventory()
+		: this([]) {
 	}
 
 	public int this[string resourceId] {
 		get {
-			return _resources[resourceId];
+			return Resources[resourceId];
 		}
 		set {
-			_resources[resourceId] = value;
+			Resources[resourceId] = value;
 		}
 	}
 }

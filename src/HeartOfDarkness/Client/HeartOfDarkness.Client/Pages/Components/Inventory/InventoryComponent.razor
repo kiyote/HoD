@@ -18,5 +18,20 @@
                 </div>
             }
         }
+        foreach (ResourceDefinition definition in ResourceDefinitions)
+        {
+            @if (Inventory[definition.Id] > 0)
+            {
+                <div>
+                    <img src=@(definition.Image.File)
+                         width=@(definition.Image.Width)
+                         height=@(definition.Image.Height) />
+                    @if (Inventory[definition.Id] > 1)
+                    {
+                        <text>x @(Inventory[definition.Id])</text>
+                    }
+                </div>
+            }
+        }
     }
 </div>

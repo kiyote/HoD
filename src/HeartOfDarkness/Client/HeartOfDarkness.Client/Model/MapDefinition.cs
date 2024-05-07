@@ -1,9 +1,9 @@
 ﻿namespace HeartOfDarkness.Client.Model;
 
 public record MapDefinition(
-	MapImageDefinition Image,
+	ImageDefinition Image,
 	IReadOnlyList<string> PortsOfEntry,
 	IReadOnlyList<RegionDefinition> Regions
 ) {
-	public static readonly MapDefinition None = new MapDefinition( MapImageDefinition.None, [], [] );
+	public static readonly MapDefinition None = new MapDefinition( ImageDefinition.None, [], [] );
 }

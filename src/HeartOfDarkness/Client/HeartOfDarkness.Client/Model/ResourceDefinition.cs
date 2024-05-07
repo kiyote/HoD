@@ -1,10 +1,11 @@
 ﻿namespace HeartOfDarkness.Client.Model;
 
 public record ResourceDefinition(
-	ResourceImageDefinition Image,
+	ImageDefinition Image,
 	string Id,
+	string Name,
 	int Limit,
 	bool Abundant
 ) {
-	public static readonly ResourceDefinition None = new ResourceDefinition( ResourceImageDefinition.None, "", 0, false );
+	public static readonly ResourceDefinition None = new ResourceDefinition( ImageDefinition.None, "", "", 0, false );
 }

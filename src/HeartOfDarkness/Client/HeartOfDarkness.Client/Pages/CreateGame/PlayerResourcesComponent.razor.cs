@@ -1,4 +1,5 @@
-﻿using HeartOfDarkness.Client.Data;
+﻿using System.Collections.Generic;
+using HeartOfDarkness.Client.Data;
 
 namespace HeartOfDarkness.Client.Pages.CreateGame;
 
@@ -33,19 +34,20 @@ public class PlayerResourcesComponentBase : ComponentBase {
 	protected Task InventoryResourceSelectedHandler(
 		(string inventoryResourceId, int direction) args
 	) {
-		if (CreditsRemaining > 0|| args.direction < 0 ) {
-			if (args.inventoryResourceId == InventoryResourceDefinition.FoodId
+		if( CreditsRemaining > 0 || args.direction < 0 ) {
+			if( args.inventoryResourceId == InventoryResourceDefinition.FoodId
 				|| args.inventoryResourceId == InventoryResourceDefinition.GiftsId
 			) {
-				if (args.direction > 0
+				if( args.direction > 0
 					&& PorterCapacity.GetAvailable( Inventory ) == 0
 				) {
 					return Task.CompletedTask;
 				}
 			}
 			InventoryResourceDefinition definition = InventoryResourceDefinitions.First( d => d.Id == args.inventoryResourceId );
-			_ = TryAddResource( args.inventoryResourceId, definition.Minimum, definition.Maximum, ( definition.Increment * args.direction ) );
-			CreditsRemaining -= ( 1 * args.direction );
+			if( TryAddResource( args.inventoryResourceId, definition.Start, definition.Maximum, ( definition.Increment * args.direction ) ) ) {
+				CreditsRemaining -= ( 1 * args.direction );
+			}
 		}
 		return Task.CompletedTask;
 	}
@@ -53,10 +55,11 @@ public class PlayerResourcesComponentBase : ComponentBase {
 	protected Task ResourceSelectedHandler(
 		(string resourceId, int direction) args
 	) {
-		if ( CreditsRemaining > 0 || args.direction < 0)  {
+		if( CreditsRemaining > 0 || args.direction < 0 ) {
 			int limit = ResourceLimitProvider.GetMaximum( ResourceDefinitions, 1, args.resourceId );
-			_ = TryAddResource( args.resourceId, 0, limit, args.direction );
-			CreditsRemaining -= ( 1 * args.direction );
+			if( TryAddResource( args.resourceId, 0, limit, args.direction ) ) {
+				CreditsRemaining -= ( 1 * args.direction );
+			}
 		}
 		return Task.CompletedTask;
 	}

@@ -24,15 +24,34 @@ internal sealed class GameFactory : IGameFactory {
 	}
 
 	async Task<Game> IGameFactory.CreateFromSavedGameAsync(
-		SavedGame savedGame,
+		Game savedGame,
 		CancellationToken cancellationToken
 	) {
 		MapDefinition mapDefinition = await _mapDefinitionFactory.GetAsync(
 			cancellationToken
 		);
+
+		return savedGame with {
+			MapDefinition = mapDefinition
+		};
+	}
+
+	async Task<Game> IGameFactory.CreateNewAsync(
+		NewGame newGame,
+		CancellationToken cancellationToken
+	) {
+		MapDefinition mapDefinition = await _mapDefinitionFactory.GetAsync(
+			cancellationToken
+		);
+		Player player = new Player(
+			newGame.Colour,
+			newGame.PortOfEntry ?? throw new InvalidOperationException(),
+			0,
+			newGame.Inventory
+		);
 		return new Game(
-			savedGame.Id,
-			savedGame.Player,
+			Guid.NewGuid(),
+			player,
 			mapDefinition
 		);
 	}

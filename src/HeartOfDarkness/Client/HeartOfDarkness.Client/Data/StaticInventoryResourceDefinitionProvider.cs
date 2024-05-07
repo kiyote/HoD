@@ -6,7 +6,7 @@ internal sealed class StaticInventoryResourceDefinitionProvider : IInventoryReso
 	private readonly IList<InventoryResourceDefinition> _definitions =
 [
 			new InventoryResourceDefinition(
-				new InventoryResourceImageDefinition(
+				new ImageDefinition(
 					"img/{colour}-ammo.png",
 					56,
 					56
@@ -19,7 +19,7 @@ internal sealed class StaticInventoryResourceDefinitionProvider : IInventoryReso
 				0
 			),
 			new InventoryResourceDefinition(
-				new InventoryResourceImageDefinition(
+				new ImageDefinition(
 					"img/{colour}-askari.png",
 					56,
 					56
@@ -32,7 +32,7 @@ internal sealed class StaticInventoryResourceDefinitionProvider : IInventoryReso
 				6
 			),
 			new InventoryResourceDefinition(
-				new InventoryResourceImageDefinition(
+				new ImageDefinition(
 					"img/{colour}-food.png",
 					56,
 					56
@@ -45,7 +45,7 @@ internal sealed class StaticInventoryResourceDefinitionProvider : IInventoryReso
 				20
 			),
 			new InventoryResourceDefinition(
-				new InventoryResourceImageDefinition(
+				new ImageDefinition(
 					"img/{colour}-gifts.png",
 					56,
 					56
@@ -58,7 +58,7 @@ internal sealed class StaticInventoryResourceDefinitionProvider : IInventoryReso
 				10
 			),
 			new InventoryResourceDefinition(
-				new InventoryResourceImageDefinition(
+				new ImageDefinition(
 					"img/{colour}-porter.png",
 					56,
 					56

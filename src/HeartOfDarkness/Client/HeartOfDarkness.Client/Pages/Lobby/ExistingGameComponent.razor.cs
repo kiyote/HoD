@@ -3,6 +3,6 @@
 public class ExistingGameComponentBase : ComponentBase {
 
 	[Parameter]
-	public SavedGame Game { get; set; } = default!;
+	public Game Game { get; set; } = default!;
 }
 

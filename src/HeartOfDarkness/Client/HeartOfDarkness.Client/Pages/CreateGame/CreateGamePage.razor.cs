@@ -1,5 +1,5 @@
 ﻿using HeartOfDarkness.Client.Data;
-using HeartOfDarkness.Client.Store.App;
+using HeartOfDarkness.Client.Store;
 
 namespace HeartOfDarkness.Client.Pages.CreateGame;
 
@@ -12,8 +12,6 @@ public enum DisplayState {
 }
 
 public class CreateGamePageBase : ComponentBase {
-
-
 
 	[Inject]
 	protected IMapStateFactory MapStateFactory { get; set; } = default!;
@@ -32,6 +30,9 @@ public class CreateGamePageBase : ComponentBase {
 
 	[Inject]
 	protected IInventoryResourceDefinitionProvider InventoryResourceDefinitionProvider { get; set; } = default!;
+
+	[Inject]
+	protected IDispatcher Dispatcher { get; set; } = default!;
 
 	protected IList<PatronDefinition> PatronDefinitions { get; set; } = [];
 
@@ -131,7 +132,8 @@ public class CreateGamePageBase : ComponentBase {
 		return Task.CompletedTask;
 	}
 
-	protected static Task OnCreateGameClicked() {
+	protected Task OnCreateGameClicked() {
+		Dispatcher.Dispatch( new CreateNewGameAction( NewGame ) );
 		return Task.CompletedTask;
 	}
 

@@ -22,22 +22,18 @@ public class CurrentGameEffects {
 		LoadSavedGameAction action,
 		IDispatcher dispatcher
 	) {
-		List<SavedGame>? games = await _storage.GetItemAsync<List<SavedGame>?>( "games", CancellationToken.None );
-		SavedGame savedGame = games?.First( g => g.Id == action.Id ) ?? throw new InvalidOperationException();
+		List<Game>? games = await _storage.GetItemAsync<List<Game>?>( "games", CancellationToken.None );
+		Game savedGame = games?.First( g => g.Id == action.Id ) ?? throw new InvalidOperationException();
 		Game game = await _gameFactory.CreateFromSavedGameAsync( savedGame, CancellationToken.None );
 		dispatcher.Dispatch( new LoadSavedGameResultAction( game ) );
 	}
 
 	[EffectMethod]
 	public static Task HandleLoadSavedGameResultAction(
-		LoadSavedGameResultAction action,
+		LoadSavedGameResultAction _,
 		IDispatcher dispatcher
 	) {
-		if( string.IsNullOrWhiteSpace( action.Game.Player.PortOfEntry ) ) {
-			dispatcher.Dispatch( new GoAction( "/portofentry" ) );
-		} else {
-			dispatcher.Dispatch( new GoAction( "/map" ) );
-		}
+		dispatcher.Dispatch( new GoAction( "/play" ) );
 		return Task.CompletedTask;
 	}
 }

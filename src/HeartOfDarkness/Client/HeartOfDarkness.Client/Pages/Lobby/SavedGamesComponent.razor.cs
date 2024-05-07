@@ -12,7 +12,7 @@ public class SavedGamesComponentBase: FluxorComponent {
 	[Inject]
 	protected IDispatcher Dispatcher { get; set; } = default!;
 
-	protected IEnumerable<SavedGame> SavedGames => SavedGamesState.Value.Games;
+	protected IEnumerable<Game> SavedGames => SavedGamesState.Value.Games;
 
 	protected override void OnAfterRender(
 		bool firstRender
@@ -24,13 +24,13 @@ public class SavedGamesComponentBase: FluxorComponent {
 	}
 
 	protected void OnPlayGameClicked(
-		SavedGame game
+		Game game
 	) {
 		Dispatcher.Dispatch( new LoadSavedGameAction( game.Id ) );
 	}
 
 	protected void OnDeleteGameClicked(
-		SavedGame game
+		Game game
 	) {
 		Dispatcher.Dispatch( new DeleteSavedGameAction( game.Id ) );
 	}

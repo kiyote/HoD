@@ -6,14 +6,14 @@ namespace HeartOfDarkness.Client.Store.SavedGames;
 public class SavedGamesEffects {
 
 	private readonly ILocalStorageService _storage;
-	private readonly ISavedGameFactory _savedGameFactory;
+	private readonly IGameFactory _gameFactory;
 
 	public SavedGamesEffects(
 		ILocalStorageService storage,
-		ISavedGameFactory savedGameFactory
+		IGameFactory gameFactory
 	) {
 		_storage = storage;
-		_savedGameFactory = savedGameFactory;
+		_gameFactory = gameFactory;
 	}
 
 	[EffectMethod]
@@ -21,7 +21,7 @@ public class SavedGamesEffects {
 		EnumerateSavedGamesAction _,
 		IDispatcher dispatcher
 	) {
-		List<SavedGame>? games = await _storage.GetItemAsync<List<SavedGame>?>( "games" ).ConfigureAwait( false );
+		List<Game>? games = await _storage.GetItemAsync<List<Game>?>( "games" ).ConfigureAwait( false );
 		dispatcher.Dispatch( new EnumerateSavedGamesResultAction( games ?? [] ) );
 	}
 
@@ -30,7 +30,7 @@ public class SavedGamesEffects {
 		DeleteSavedGameAction action,
 		IDispatcher dispatcher
 	) {
-		List<SavedGame> games = await _storage.GetItemAsync<List<SavedGame>?>( "games" ) ?? [];
+		List<Game> games = await _storage.GetItemAsync<List<Game>?>( "games" ) ?? [];
 		games = games.Where( g => g.Id != action.Id ).ToList();
 		await _storage.SetItemAsync( "games", games );
 		dispatcher.Dispatch( new DeleteSavedGameResultAction( games ) );
@@ -41,8 +41,8 @@ public class SavedGamesEffects {
 		CreateNewGameAction action,
 		IDispatcher dispatcher
 	) {
-		List<SavedGame> games = await _storage.GetItemAsync<List<SavedGame>?>( "games" ) ?? [];
-		SavedGame savedGame = _savedGameFactory.CreateFromGame( action.Game );
+		List<Game> games = await _storage.GetItemAsync<List<Game>?>( "games" ) ?? [];
+		Game savedGame = await _gameFactory.CreateNewAsync( action.Game, CancellationToken.None );
 		games.Add( savedGame );
 		await _storage.SetItemAsync( "games", games );
 		dispatcher.Dispatch( new CreateNewGameResultAction( savedGame, games ) );
