@@ -22,7 +22,8 @@ public sealed record MapState(
 
 public record RegionState(
 	string RegionId,
-	RegionStyle Style
+	RegionStyle Style,
+	ImageDefinition? Token
 ) {
 }
 

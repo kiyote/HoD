@@ -1,0 +1,11 @@
+﻿@inherits MapTokenComponentBase
+
+@if (Image != ImageDefinition.None)
+{
+    <image id="token_@(Definition.Id)"
+           x=@(X)
+           y=@(Y)
+           href=@(Image.File)
+           width="@(Image.Width)px"
+           height="@(Image.Height)px" />
+}

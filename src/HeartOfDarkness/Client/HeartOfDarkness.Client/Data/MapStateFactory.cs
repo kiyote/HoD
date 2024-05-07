@@ -7,7 +7,7 @@ internal sealed class MapStateFactory : IMapStateFactory {
 	) {
 		MapState mapState = new MapState();
 		foreach( RegionDefinition definition in mapDefinition.Regions ) {
-			mapState.Regions[definition.Id] = new RegionState( definition.Id, RegionStyle.Hidden );
+			mapState.Regions[definition.Id] = new RegionState( definition.Id, RegionStyle.Hidden, ImageDefinition.None );
 		}
 
 		return Task.FromResult( mapState );

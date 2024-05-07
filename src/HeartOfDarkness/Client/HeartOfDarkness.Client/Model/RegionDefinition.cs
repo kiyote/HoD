@@ -2,6 +2,7 @@
 
 public record RegionDefinition(
 	string Id,
-	string Shape
+	string Shape,
+	string Token
 ) {
 }

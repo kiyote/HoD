@@ -4,13 +4,16 @@ internal sealed class GameFactory : IGameFactory {
 
 	private readonly IMapDefinitionProvider _mapDefinitionFactory;
 	private readonly IMapStateFactory _mapStateFactory;
+	private readonly IPlayerColourDefinitionProvider _playerColourDefinitionProvider;
 
 	public GameFactory(
 		IMapDefinitionProvider mapDefinitionFactory,
-		IMapStateFactory mapStateFactory
+		IMapStateFactory mapStateFactory,
+		IPlayerColourDefinitionProvider playerColourDefinitionProvider
 	) {
 		_mapDefinitionFactory = mapDefinitionFactory;
 		_mapStateFactory = mapStateFactory;
+		_playerColourDefinitionProvider = playerColourDefinitionProvider;
 	}
 
 	async Task<Game> IGameFactory.CreateAsync(
@@ -48,6 +51,9 @@ internal sealed class GameFactory : IGameFactory {
 		NewGame newGame,
 		CancellationToken cancellationToken
 	) {
+		if (string.IsNullOrWhiteSpace(newGame.PortOfEntry)) {
+			throw new ArgumentException( "PortOfEntry must not be null or whitespace.", nameof( newGame ) );
+		}
 		MapDefinition mapDefinition = await _mapDefinitionFactory.GetAsync(
 			cancellationToken
 		);
@@ -55,6 +61,9 @@ internal sealed class GameFactory : IGameFactory {
 			mapDefinition,
 			CancellationToken.None
 		);
+		IList<PlayerColourDefinition> playerColourDefinitions = await _playerColourDefinitionProvider.GetAsync( CancellationToken.None );
+		PlayerColourDefinition colourDefinition = playerColourDefinitions.First( d => d.Id == newGame.Colour );
+		mapState[newGame.PortOfEntry] = mapState[newGame.PortOfEntry] with { Token = colourDefinition.Image };
 		Player player = new Player(
 			newGame.Colour,
 			newGame.PortOfEntry ?? throw new InvalidOperationException(),

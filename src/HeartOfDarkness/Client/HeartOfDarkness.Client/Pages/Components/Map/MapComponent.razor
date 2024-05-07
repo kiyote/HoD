@@ -1,20 +1,23 @@
 ﻿@inherits MapComponentBase
 
 <div class="map_container">
-    <img src="@(MapFile)" class="map_image">
+    <img src="@MapFile" class="map_image">
 
     <svg xmlns="http://www.w3.org/2000/svg"
          version="1.1"
          id="svgMap"
          class="map_areas"
-         viewBox="0 0 @(MapWidth) @(MapHeight)">
+         viewBox="0 0 @MapWidth @MapHeight">
 
         @foreach (RegionDefinition regionDefinition in RegionDefinitions)
         {
-            <MapRegionComponent Id=@(regionDefinition.Id)
-                                Shape=@(regionDefinition.Shape)
+            <MapRegionComponent Id=@regionDefinition.Id
+                                Shape=@regionDefinition.Shape
                                 RegionStyle="@(State[regionDefinition.Id].Style)"
                                 OnRegionSelected="OnRegionSelectedHandler" />
+
+            <MapTokenComponent Definition=@regionDefinition
+                               Image=@(State[regionDefinition.Id].Token) />
         }
     </svg>
 
