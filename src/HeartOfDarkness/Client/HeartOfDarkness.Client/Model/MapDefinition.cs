@@ -6,4 +6,10 @@ public record MapDefinition(
 	IReadOnlyList<RegionDefinition> Regions
 ) {
 	public static readonly MapDefinition None = new MapDefinition( ImageDefinition.None, [], [] );
+
+	public RegionDefinition this[string regionId] {
+		get {
+			return Regions.First( r => r.Id == regionId );
+		}
+	}
 }

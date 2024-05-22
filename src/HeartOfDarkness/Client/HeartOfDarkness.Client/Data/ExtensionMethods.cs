@@ -14,6 +14,7 @@ public static class ExtensionMethods {
 			.AddSingleton<IPlayerColourDefinitionProvider, StaticPlayerColourDefinitionProvider>()
 			.AddSingleton<IInventoryResourceDefinitionProvider, StaticInventoryResourceDefinitionProvider>()
 			.AddSingleton<IPorterCapacityProvider, PorterCapacityProvider>()
-			.AddSingleton<IResourceLimitProvider, ResourceLimitProvider>();
+			.AddSingleton<IResourceLimitProvider, ResourceLimitProvider>()
+			.AddSingleton<IDramaTrackDefinitionProvider, StaticDramaTrackDefinitionProvider>();
 	}
 }

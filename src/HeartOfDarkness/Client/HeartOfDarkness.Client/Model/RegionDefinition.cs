@@ -3,6 +3,7 @@
 public record RegionDefinition(
 	string Id,
 	string Shape,
-	string Token
+	string Token,
+	IList<string> AdjacentRegionIds
 ) {
 }

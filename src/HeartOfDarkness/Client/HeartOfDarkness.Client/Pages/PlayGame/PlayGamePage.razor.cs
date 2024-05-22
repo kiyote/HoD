@@ -26,6 +26,12 @@ public class PlayGamePageBase: ComponentBase {
 	) {
 		if (firstRender) {
 			PlayerColourDefinitions = await PlayerColourDefinitionProvider.GetAsync( CancellationToken.None );
+			string playerRegionId = GameState.Value.Game.Player.RegionId;
+			RegionDefinition playerRegion = GameState.Value.Game.MapDefinition[playerRegionId];
+			foreach (string regionId in playerRegion.AdjacentRegionIds) {
+				RegionState current = GameState.Value.Game.MapState.Regions[regionId];
+				GameState.Value.Game.MapState.Regions[regionId] = current with { Style = RegionStyle.Highlighted };
+			}
 			StateHasChanged();
 		}
 	}
