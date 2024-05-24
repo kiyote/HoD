@@ -1,0 +1,19 @@
+﻿.matrix_container {
+    position: relative;
+    display: inline-block;
+}
+
+.matrix_image {
+    max-width: 100%;
+    display: block;
+    height: auto;
+    user-select: none
+}
+
+.matrix_areas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    user-select: none
+}

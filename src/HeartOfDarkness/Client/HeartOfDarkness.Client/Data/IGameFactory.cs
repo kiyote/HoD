@@ -2,10 +2,6 @@
 
 public interface IGameFactory {
 
-	Task<Game> CreateAsync(
-		CancellationToken cancellationToken
-	);
-
 	Task<Game> CreateFromSavedGameAsync(
 		Game savedGame,
 		CancellationToken cancellationToken

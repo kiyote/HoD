@@ -35,4 +35,12 @@ public class PlayGamePageBase: ComponentBase {
 			StateHasChanged();
 		}
 	}
+
+	protected void ToggleDisplay() {
+		if (PageState == DisplayState.Map) {
+			PageState = DisplayState.Matrix;
+		} else {
+			PageState = DisplayState.Map;
+		}
+	}
 }

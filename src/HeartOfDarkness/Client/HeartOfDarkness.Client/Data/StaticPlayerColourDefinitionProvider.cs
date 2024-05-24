@@ -11,11 +11,21 @@ internal sealed class StaticPlayerColourDefinitionProvider : IPlayerColourDefini
 					56,
 					56
 				),
+				new ImageDefinition(
+					"img/blue-askari.png",
+					56,
+					56
+				),
 				"Blue"
 			),
 			new PlayerColourDefinition(
 				new ImageDefinition(
 					"img/brown-explorer.png",
+					56,
+					56
+				),
+				new ImageDefinition(
+					"img/brown-askari.png",
 					56,
 					56
 				),
@@ -27,6 +37,11 @@ internal sealed class StaticPlayerColourDefinitionProvider : IPlayerColourDefini
 					56,
 					56
 				),
+				new ImageDefinition(
+					"img/green-askari.png",
+					56,
+					56
+				),
 				"Green"
 			),
 			new PlayerColourDefinition(
@@ -35,11 +50,21 @@ internal sealed class StaticPlayerColourDefinitionProvider : IPlayerColourDefini
 					56,
 					56
 				),
+				new ImageDefinition(
+					"img/grey-askari.png",
+					56,
+					56
+				),
 				"Grey"
 			),
 			new PlayerColourDefinition(
 				new ImageDefinition(
 					"img/yellow-explorer.png",
+					56,
+					56
+				),
+				new ImageDefinition(
+					"img/yellow-askari.png",
 					56,
 					56
 				),

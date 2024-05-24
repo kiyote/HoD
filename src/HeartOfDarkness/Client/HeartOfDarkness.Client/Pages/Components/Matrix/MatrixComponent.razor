@@ -1,0 +1,22 @@
+﻿@inherits MatrixComponentBase
+
+<div class="matrix_container">
+    <img src=@MatrixFile class="matrix_image">
+
+    <svg xmlns="http://www.w3.org/2000/svg"
+         version="1.1"
+         id="svgMap"
+         class="matrix_areas"
+         viewBox="0 0 @MatrixWidth @MatrixHeight">
+
+        @if (AskariToken != ImageDefinition.None)
+        {
+            <image id="token_askari"
+                   x=@(AskariPosition.X)
+                   y=@(AskariPosition.Y)
+                   href=@(AskariToken.File)
+                   width="@(AskariToken.Width)px"
+                   height="@(AskariToken.Height)px" />
+        }
+    </svg>
+</div>

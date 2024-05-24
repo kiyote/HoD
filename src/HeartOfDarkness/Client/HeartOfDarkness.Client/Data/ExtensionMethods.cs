@@ -15,6 +15,7 @@ public static class ExtensionMethods {
 			.AddSingleton<IInventoryResourceDefinitionProvider, StaticInventoryResourceDefinitionProvider>()
 			.AddSingleton<IPorterCapacityProvider, PorterCapacityProvider>()
 			.AddSingleton<IResourceLimitProvider, ResourceLimitProvider>()
-			.AddSingleton<IDramaTrackDefinitionProvider, StaticDramaTrackDefinitionProvider>();
+			.AddSingleton<IDramaTrackDefinitionProvider, StaticDramaTrackDefinitionProvider>()
+			.AddSingleton<IMatrixDefinitionProvider, StaticMatrixDefinitionProvider>();
 	}
 }
