@@ -25,6 +25,7 @@ public class PlayGamePageBase : ComponentBase {
 		bool firstRender
 	) {
 		if( firstRender ) {
+			// TODO: This is bad and is here purely for visualization purposes while developing
 			PlayerColourDefinitions = await PlayerColourDefinitionProvider.GetAsync( CancellationToken.None );
 			string playerRegionId = GameState.Value.Game.Player.RegionId;
 			RegionDefinition playerRegion = GameState.Value.Game.MapDefinition[playerRegionId];

@@ -43,8 +43,8 @@ internal sealed class GameFactory : IGameFactory {
 		NewGame newGame,
 		CancellationToken cancellationToken
 	) {
-		if (string.IsNullOrWhiteSpace(newGame.PortOfEntry)) {
-			throw new ArgumentException( "PortOfEntry must not be null or whitespace.", nameof( newGame ) );
+		if( string.IsNullOrWhiteSpace( newGame.PortOfEntry ) ) {
+			throw new ArgumentException( $"{nameof( newGame.PortOfEntry )} must not be null or whitespace.", nameof( newGame ) );
 		}
 		MapDefinition mapDefinition = await _mapDefinitionFactory.GetAsync(
 			cancellationToken

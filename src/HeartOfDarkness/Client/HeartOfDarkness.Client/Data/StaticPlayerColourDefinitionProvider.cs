@@ -6,6 +6,7 @@ internal sealed class StaticPlayerColourDefinitionProvider : IPlayerColourDefini
 	private readonly IList<PlayerColourDefinition> _players =
 		[
 			new PlayerColourDefinition(
+				"Blue",
 				new ImageDefinition(
 					"img/blue-explorer.png",
 					56,
@@ -15,10 +16,10 @@ internal sealed class StaticPlayerColourDefinitionProvider : IPlayerColourDefini
 					"img/blue-askari.png",
 					56,
 					56
-				),
-				"Blue"
+				)
 			),
 			new PlayerColourDefinition(
+				"Brown",
 				new ImageDefinition(
 					"img/brown-explorer.png",
 					56,
@@ -28,10 +29,10 @@ internal sealed class StaticPlayerColourDefinitionProvider : IPlayerColourDefini
 					"img/brown-askari.png",
 					56,
 					56
-				),
-				"Brown"
+				)
 			),
 			new PlayerColourDefinition(
+				"Green",
 				new ImageDefinition(
 					"img/green-explorer.png",
 					56,
@@ -41,10 +42,10 @@ internal sealed class StaticPlayerColourDefinitionProvider : IPlayerColourDefini
 					"img/green-askari.png",
 					56,
 					56
-				),
-				"Green"
+				)
 			),
 			new PlayerColourDefinition(
+				"Grey",
 				new ImageDefinition(
 					"img/grey-explorer.png",
 					56,
@@ -54,10 +55,10 @@ internal sealed class StaticPlayerColourDefinitionProvider : IPlayerColourDefini
 					"img/grey-askari.png",
 					56,
 					56
-				),
-				"Grey"
+				)
 			),
 			new PlayerColourDefinition(
+				"Yellow",
 				new ImageDefinition(
 					"img/yellow-explorer.png",
 					56,
@@ -67,8 +68,7 @@ internal sealed class StaticPlayerColourDefinitionProvider : IPlayerColourDefini
 					"img/yellow-askari.png",
 					56,
 					56
-				),
-				"Yellow"
+				)
 			),
 		];
 
