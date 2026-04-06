@@ -2,16 +2,16 @@
 public class InventoryResourceComponentBase : ComponentBase {
 
 	[Parameter]
-	public InventoryResourceDefinition Definition { get; set; } = default!;
+	public required InventoryResourceDefinition Definition { get; init; }
 
 	[Parameter]
-	public PlayerColourDefinition ColourDefinition { get; set; } = PlayerColourDefinition.None;
+	public PlayerColourDefinition ColourDefinition { get; init; } = PlayerColourDefinition.None;
 
 	[Parameter]
-	public int Count { get; set; }
+	public required int Count { get; init; }
 
 	[Parameter]
-	public int Limit { get; set; }
+	public required int Limit { get; init; }
 
 	public string ImageFile {
 		get {

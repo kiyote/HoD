@@ -5,13 +5,13 @@ namespace HeartOfDarkness.Client.Pages;
 public class MapComponentBase : ComponentBase {
 
 	[Parameter]
-	public EventCallback<string> OnRegionSelected { get; set; }
+	public required EventCallback<string> OnRegionSelected { get; init; }
 
 	[Parameter, EditorRequired]
-	public MapState State { get; set; } = default!;
+	public required MapState State { get; init; }
 
 	[Parameter, EditorRequired]
-	public MapDefinition Definition { get; set; } = default!;
+	public required MapDefinition Definition { get; init; }
 
 	protected string MapFile => Definition.Image.File;
 

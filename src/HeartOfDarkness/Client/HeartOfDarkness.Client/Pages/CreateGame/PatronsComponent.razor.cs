@@ -5,10 +5,10 @@ namespace HeartOfDarkness.Client.Pages.CreateGame;
 public class PatronsComponentBase: ComponentBase {
 
 	[Parameter]
-	public EventCallback<string> OnPatronSelected { get; set; }
+	public required EventCallback<string> OnPatronSelected { get; init; }
 
 	[Parameter, EditorRequired]
-	public IEnumerable<PatronDefinition> PatronDefinitions { get; set; } = [];
+	public required IEnumerable<PatronDefinition> PatronDefinitions { get; init; }
 
 	[JSInvokable]
 	public async Task OnPatronSelectedHandler(

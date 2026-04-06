@@ -4,20 +4,20 @@ using HeartOfDarkness.Client.Store.SavedGames;
 
 namespace HeartOfDarkness.Client.Pages.Lobby;
 
-public class SavedGamesComponentBase: FluxorComponent {
+public class SavedGamesComponentBase : FluxorComponent {
 
 	[Inject]
-	protected IState<SavedGamesState> SavedGamesState { get; set; } = default!;
+	public required IState<SavedGamesState> SavedGamesState { get; init; }
 
 	[Inject]
-	protected IDispatcher Dispatcher { get; set; } = default!;
+	public required IDispatcher Dispatcher { get; init; }
 
 	protected IEnumerable<Game> SavedGames => SavedGamesState.Value.Games;
 
 	protected override void OnAfterRender(
 		bool firstRender
 	) {
-		if (firstRender) {
+		if( firstRender ) {
 			Dispatcher.Dispatch( new EnumerateSavedGamesAction() );
 		}
 		base.OnAfterRender( firstRender );

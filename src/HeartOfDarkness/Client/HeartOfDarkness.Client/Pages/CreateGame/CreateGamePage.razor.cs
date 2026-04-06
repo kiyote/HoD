@@ -14,25 +14,25 @@ public enum DisplayState {
 public class CreateGamePageBase : ComponentBase {
 
 	[Inject]
-	protected IMapStateFactory MapStateFactory { get; set; } = default!;
+	public required IMapStateFactory MapStateFactory { get; init; }
 
 	[Inject]
-	protected IMapDefinitionProvider MapDefinitionProvider { get; set; } = default!;
+	public required IMapDefinitionProvider MapDefinitionProvider { get; init; }
 
 	[Inject]
-	protected IPatronDefinitionProvider PatronDefinitionProvider { get; set; } = default!;
+	public required IPatronDefinitionProvider PatronDefinitionProvider { get; init; }
 
 	[Inject]
-	protected IResourceDefinitionProvider ResourceDefinitionProvider { get; set; } = default!;
+	public required IResourceDefinitionProvider ResourceDefinitionProvider { get; init; }
 
 	[Inject]
-	protected IPlayerColourDefinitionProvider PlayerColourDefinitionProvider { get; set; } = default!;
+	public required IPlayerColourDefinitionProvider PlayerColourDefinitionProvider { get; init; }
 
 	[Inject]
-	protected IInventoryResourceDefinitionProvider InventoryResourceDefinitionProvider { get; set; } = default!;
+	public required IInventoryResourceDefinitionProvider InventoryResourceDefinitionProvider { get; init; }
 
 	[Inject]
-	protected IDispatcher Dispatcher { get; set; } = default!;
+	public required IDispatcher Dispatcher { get; init; }
 
 	protected IList<PatronDefinition> PatronDefinitions { get; set; } = [];
 

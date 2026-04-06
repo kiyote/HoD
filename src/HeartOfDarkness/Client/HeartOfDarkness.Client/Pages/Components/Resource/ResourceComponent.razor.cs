@@ -5,16 +5,16 @@ namespace HeartOfDarkness.Client.Pages.Components.Resource;
 public class ResourceComponentBase : ComponentBase {
 
 	[Parameter, EditorRequired]
-	public ResourceDefinition Definition { get; set; } = default!;
+	public required ResourceDefinition Definition { get; init; }
 
 	[Parameter]
-	public int Count { get; set; }
+	public required int Count { get; init; }
 
 	[Parameter]
-	public int Limit { get; set; }
+	public required int Limit { get; init; }
 
 	[Parameter]
-	public EventCallback<(string, int)> OnResourceSelected { get; set; }
+	public required EventCallback<(string, int)> OnResourceSelected { get; init; }
 
 	protected async Task OnClickHandler(
 		string resourceId

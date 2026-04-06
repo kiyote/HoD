@@ -3,10 +3,10 @@
 public class PlayerColourComponentBase: ComponentBase {
 
 	[Parameter]
-	public PlayerColourDefinition Definition { get; set; } = PlayerColourDefinition.None;
+	public PlayerColourDefinition Definition { get; init; } = PlayerColourDefinition.None;
 
 	[Parameter]
-	public EventCallback<string> OnPlayerColourSelected { get; set; }
+	public required EventCallback<string> OnPlayerColourSelected { get; init; }
 
 	protected async Task OnClickHandler(
 		string patronId

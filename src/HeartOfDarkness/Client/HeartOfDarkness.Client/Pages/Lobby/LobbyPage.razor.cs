@@ -3,7 +3,7 @@
 public class LobbyPageBase : ComponentBase {
 
 	[Inject]
-	protected NavigationManager Navigation { get; set; } = default!;
+	public required NavigationManager Navigation { get; init; }
 
 	protected void OnCreateGameClicked() {
 		Navigation.NavigateTo( "/create" );

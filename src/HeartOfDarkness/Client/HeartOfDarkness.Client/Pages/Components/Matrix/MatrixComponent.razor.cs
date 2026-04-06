@@ -5,7 +5,7 @@ namespace HeartOfDarkness.Client.Pages.Components.Matrix;
 public class MatrixComponentBase : ComponentBase {
 
 	[Parameter, EditorRequired]
-	public CurrentGameState GameState { get; set; } = default!;
+	public required CurrentGameState GameState { get; init; }
 
 	protected Position AskariPosition { get; set; } = Position.None;
 

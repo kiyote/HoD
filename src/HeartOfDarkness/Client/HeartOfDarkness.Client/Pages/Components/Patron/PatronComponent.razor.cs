@@ -3,19 +3,19 @@
 public class PatronComponentBase : ComponentBase {
 
 	[Parameter, EditorRequired]
-	public string Image { get; set; } = "";
+	public required string Image { get; init; }
 
 	[Parameter]
-	public int Width { get; set; }
+	public required int Width { get; init; }
 
 	[Parameter]
-	public int Height { get; set; }
+	public required int Height { get; init; }
 
 	[Parameter, EditorRequired]
-	public string Id { get; set; } = "";
+	public required string Id { get; init; }
 
 	[Parameter]
-	public EventCallback<string> OnPatronSelected { get; set; }
+	public required EventCallback<string> OnPatronSelected { get; init; }
 
 	protected async Task OnClickHandler(
 		string patronId

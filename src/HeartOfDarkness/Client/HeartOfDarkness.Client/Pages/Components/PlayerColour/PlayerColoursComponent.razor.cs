@@ -2,8 +2,8 @@
 public class PlayerColoursComponentBase: ComponentBase {
 
 	[Parameter]
-	public IEnumerable<PlayerColourDefinition> Definitions { get; set; } = [];
+	public required IEnumerable<PlayerColourDefinition> Definitions { get; init; }
 
 	[Parameter]
-	public EventCallback<string> OnPlayerColourSelected { get; set; }
+	public required EventCallback<string> OnPlayerColourSelected { get; init; }
 }

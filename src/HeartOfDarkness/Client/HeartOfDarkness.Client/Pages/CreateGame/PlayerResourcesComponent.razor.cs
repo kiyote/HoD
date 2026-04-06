@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using HeartOfDarkness.Client.Data;
+﻿using HeartOfDarkness.Client.Data;
 
 namespace HeartOfDarkness.Client.Pages.CreateGame;
 
@@ -9,22 +8,22 @@ public class PlayerResourcesComponentBase : ComponentBase {
 	public PlayerColourDefinition PlayerColourDefinition { get; set; } = PlayerColourDefinition.None;
 
 	[Parameter]
-	public IEnumerable<InventoryResourceDefinition> InventoryResourceDefinitions { get; set; } = default!;
+	public required IEnumerable<InventoryResourceDefinition> InventoryResourceDefinitions { get; init; }
 
 	[Parameter]
-	public IEnumerable<ResourceDefinition> ResourceDefinitions { get; set; } = default!;
+	public required IEnumerable<ResourceDefinition> ResourceDefinitions { get; init; }
 
 	[Parameter]
-	public EventCallback<ResourceDefinition> OnResourceSelected { get; set; }
+	public required EventCallback<ResourceDefinition> OnResourceSelected { get; init; }
 
 	[Parameter]
-	public PlayerInventory Inventory { get; set; } = default!;
+	public required PlayerInventory Inventory { get; init; }
 
 	[Inject]
-	protected IPorterCapacityProvider PorterCapacity { get; set; } = default!;
+	public required IPorterCapacityProvider PorterCapacity { get; init; }
 
 	[Inject]
-	protected IResourceLimitProvider ResourceLimitProvider { get; set; } = default!;
+	public required IResourceLimitProvider ResourceLimitProvider { get; init; }
 
 	protected int CreditsRemaining { get; set; } = 20;
 

@@ -5,16 +5,16 @@ namespace HeartOfDarkness.Client.Pages.Components.Inventory;
 public class InventoryComponentBase: ComponentBase {
 
 	[Parameter]
-	public PlayerInventory Inventory { get; set; } = default!;
+	public required PlayerInventory Inventory { get; init; }
 
 	[Parameter]
 	public PlayerColourDefinition ColourDefinition { get; set; } = PlayerColourDefinition.None;
 
 	[Inject]
-	protected IInventoryResourceDefinitionProvider InventoryResourceDefinitionProvider { get; set; } = default!;
+	public required IInventoryResourceDefinitionProvider InventoryResourceDefinitionProvider { get; init; }
 
 	[Inject]
-	protected IResourceDefinitionProvider ResourceDefinitionProvider { get; set; } = default!;
+	public required IResourceDefinitionProvider ResourceDefinitionProvider { get; init; }
 
 	protected IList<InventoryResourceDefinition> InventoryResourceDefinitions { get; set; } = [];
 

@@ -6,13 +6,13 @@ public class MapRegionComponentBase: ComponentBase {
 	public RegionStyle RegionStyle { get; set; } = RegionStyle.Hidden;
 
 	[Parameter, EditorRequired]
-	public string Id { get; set; } = "";
+	public required string Id { get; init; }
 
 	[Parameter, EditorRequired]
-	public string Shape { get; set; } = "";
+	public required string Shape { get; set; }
 
 	[Parameter]
-	public EventCallback<string> OnRegionSelected { get; set; }
+	public required EventCallback<string> OnRegionSelected { get; init; }
 
 	protected string FinalClass  {
 		get {

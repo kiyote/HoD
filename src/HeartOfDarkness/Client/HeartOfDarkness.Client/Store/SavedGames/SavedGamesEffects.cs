@@ -21,7 +21,7 @@ public class SavedGamesEffects {
 		EnumerateSavedGamesAction _,
 		IDispatcher dispatcher
 	) {
-		List<Game>? games = await _storage.GetItemAsync<List<Game>?>( "games" ).ConfigureAwait( false );
+		List<Game>? games = await _storage.GetItemAsync<List<Game>?>( "games" );
 		dispatcher.Dispatch( new EnumerateSavedGamesResultAction( games ?? [] ) );
 	}
 
@@ -31,7 +31,7 @@ public class SavedGamesEffects {
 		IDispatcher dispatcher
 	) {
 		List<Game> games = await _storage.GetItemAsync<List<Game>?>( "games" ) ?? [];
-		games = games.Where( g => g.Id != action.Id ).ToList();
+		games = [.. games.Where( g => g.Id != action.Id )];
 		await _storage.SetItemAsync( "games", games );
 		dispatcher.Dispatch( new DeleteSavedGameResultAction( games ) );
 	}
