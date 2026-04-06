@@ -16,6 +16,7 @@
 	<PropertyGroup>
 		<!-- Required for JSInterop -->
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<BlazorEnableCompression>true</BlazorEnableCompression>
 	</PropertyGroup>
 
 </Project>

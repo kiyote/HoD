@@ -1,5 +1,4 @@
-﻿using HeartOfDarkness.Client.Data;
-using HeartOfDarkness.Client.Store.CurrentGame;
+﻿using HeartOfDarkness.Client.Store.CurrentGame;
 
 namespace HeartOfDarkness.Client.Pages.PlayGame;
 
@@ -14,19 +13,13 @@ public class PlayGamePageBase : ComponentBase {
 	[Inject]
 	public required IState<CurrentGameState> GameState { get; init; }
 
-	[Inject]
-	public required IPlayerColourDefinitionProvider PlayerColourDefinitionProvider { get; init; }
-
 	protected DisplayState PageState { get; set; } = DisplayState.Map;
-
-	protected IList<PlayerColourDefinition> PlayerColourDefinitions { get; set; } = [];
 
 	protected override async Task OnAfterRenderAsync(
 		bool firstRender
 	) {
 		if( firstRender ) {
 			// TODO: This is bad and is here purely for visualization purposes while developing
-			PlayerColourDefinitions = await PlayerColourDefinitionProvider.GetAsync( CancellationToken.None );
 			string playerRegionId = GameState.Value.Game.Player.RegionId;
 			RegionDefinition playerRegion = GameState.Value.Game.MapDefinition[playerRegionId];
 			foreach( string regionId in playerRegion.AdjacentRegionIds ) {

@@ -74,14 +74,14 @@ public class CreateGamePageBase : ComponentBase {
 			ResourceDefinitions = await ResourceDefinitionProvider.GetAsync( CancellationToken.None );
 			PlayerColourDefinitions = await PlayerColourDefinitionProvider.GetAsync( CancellationToken.None );
 			InventoryResourceDefinitions = await InventoryResourceDefinitionProvider.GetAsync( CancellationToken.None );
-			foreach(ResourceDefinition definition in ResourceDefinitions) {
+			foreach( ResourceDefinition definition in ResourceDefinitions ) {
 				NewGame.Inventory[definition.Id] = 0;
 			}
 			foreach( InventoryResourceDefinition definition in InventoryResourceDefinitions ) {
 				NewGame.Inventory[definition.Id] = definition.Start;
 			}
 			StateHasChanged();
-		}	
+		}
 	}
 
 	protected Task RegionSelectedHandler(
@@ -98,7 +98,7 @@ public class CreateGamePageBase : ComponentBase {
 		DisplayState = DisplayState.CreateGame;
 		NewGame.Colour = playerColourId;
 		PlayerColourDefinition = PlayerColourDefinitions.First( d => d.Id == playerColourId );
-		
+
 		_ = ResourcesButtonAttributes?.Remove( "disabled" );
 		return Task.CompletedTask;
 	}

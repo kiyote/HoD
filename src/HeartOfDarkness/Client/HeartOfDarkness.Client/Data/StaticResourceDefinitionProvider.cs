@@ -14,7 +14,11 @@ internal sealed class StaticResourceDefinitionProvider : IResourceDefinitionProv
 				"altimeter",
 				"Altimeter",
 				int.MaxValue,
-				false
+				false,
+				[
+					"mountain-source",
+					"river-source"
+				]
 			),
 			new ResourceDefinition(
 				new ImageDefinition(
@@ -25,7 +29,8 @@ internal sealed class StaticResourceDefinitionProvider : IResourceDefinitionProv
 				"ammo",
 				"Ammo",
 				int.MaxValue,
-				true
+				true,
+				[]
 			),
 			new ResourceDefinition(
 				new ImageDefinition(
@@ -36,7 +41,8 @@ internal sealed class StaticResourceDefinitionProvider : IResourceDefinitionProv
 				"bible",
 				"Bible",
 				int.MaxValue,
-				true
+				true,
+				[]
 			),
 			new ResourceDefinition(
 				new ImageDefinition(
@@ -47,7 +53,8 @@ internal sealed class StaticResourceDefinitionProvider : IResourceDefinitionProv
 				"books",
 				"Books",
 				int.MaxValue,
-				false
+				false,
+				[]
 			),
 			new ResourceDefinition(
 				new ImageDefinition(
@@ -58,7 +65,8 @@ internal sealed class StaticResourceDefinitionProvider : IResourceDefinitionProv
 				"canoe",
 				"Canoe",
 				1,
-				false
+				false,
+				[]
 			),
 			new ResourceDefinition(
 				new ImageDefinition(
@@ -69,7 +77,8 @@ internal sealed class StaticResourceDefinitionProvider : IResourceDefinitionProv
 				"cannabis",
 				"Cannabis",
 				int.MaxValue,
-				true
+				true,
+				[]
 			),
 			new ResourceDefinition(
 				new ImageDefinition(
@@ -80,7 +89,8 @@ internal sealed class StaticResourceDefinitionProvider : IResourceDefinitionProv
 				"canteen",
 				"Canteen",
 				int.MaxValue,
-				false
+				false,
+				[]
 			),
 			new ResourceDefinition(
 				new ImageDefinition(
@@ -91,7 +101,8 @@ internal sealed class StaticResourceDefinitionProvider : IResourceDefinitionProv
 				"diary",
 				"Diary",
 				int.MaxValue,
-				false
+				false,
+				[]
 			),
 			new ResourceDefinition(
 				new ImageDefinition(
@@ -102,7 +113,8 @@ internal sealed class StaticResourceDefinitionProvider : IResourceDefinitionProv
 				"fishing",
 				"Fishing",
 				int.MaxValue,
-				false
+				false,
+				[]
 			),
 			new ResourceDefinition(
 				new ImageDefinition(
@@ -113,7 +125,8 @@ internal sealed class StaticResourceDefinitionProvider : IResourceDefinitionProv
 				"guide",
 				"Guide",
 				1,
-				false
+				false,
+				[]
 			),
 			new ResourceDefinition(
 				new ImageDefinition(
@@ -124,7 +137,8 @@ internal sealed class StaticResourceDefinitionProvider : IResourceDefinitionProv
 				"machete",
 				"Machete",
 				int.MaxValue,
-				false
+				false,
+				[]
 			),
 			new ResourceDefinition(
 				new ImageDefinition(
@@ -135,7 +149,12 @@ internal sealed class StaticResourceDefinitionProvider : IResourceDefinitionProv
 				"painting",
 				"Painting",
 				int.MaxValue,
-				false
+				false,
+				[
+					"marsh-source",
+					"marsh-river",
+					"waterfall"
+				]
 			),
 			new ResourceDefinition(
 				new ImageDefinition(
@@ -146,7 +165,8 @@ internal sealed class StaticResourceDefinitionProvider : IResourceDefinitionProv
 				"pickaxe",
 				"Pickaxe",
 				int.MaxValue,
-				false
+				false,
+				[]
 			),
 			new ResourceDefinition(
 				new ImageDefinition(
@@ -157,7 +177,8 @@ internal sealed class StaticResourceDefinitionProvider : IResourceDefinitionProv
 				"quinine",
 				"Quinine",
 				int.MaxValue,
-				true
+				true,
+				[]
 			),
 			new ResourceDefinition(
 				new ImageDefinition(
@@ -168,7 +189,8 @@ internal sealed class StaticResourceDefinitionProvider : IResourceDefinitionProv
 				"revolver",
 				"Revolver",
 				int.MaxValue,
-				false
+				false,
+				[]
 			),
 			new ResourceDefinition(
 				new ImageDefinition(
@@ -179,7 +201,8 @@ internal sealed class StaticResourceDefinitionProvider : IResourceDefinitionProv
 				"rifle",
 				"Rifle",
 				int.MaxValue,
-				true
+				true,
+				[]
 			),
 			new ResourceDefinition(
 				new ImageDefinition(
@@ -190,7 +213,11 @@ internal sealed class StaticResourceDefinitionProvider : IResourceDefinitionProv
 				"surveying",
 				"Surveying",
 				int.MaxValue,
-				false
+				false,
+				[
+					"lake-source",
+					"lake-source-largest"
+				]
 			),
 			new ResourceDefinition(
 				new ImageDefinition(
@@ -201,7 +228,8 @@ internal sealed class StaticResourceDefinitionProvider : IResourceDefinitionProv
 				"telescope",
 				"Telescope",
 				int.MaxValue,
-				false
+				false,
+				[]
 			),
 		];
 

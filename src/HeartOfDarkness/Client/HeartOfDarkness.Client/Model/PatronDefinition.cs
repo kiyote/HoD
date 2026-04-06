@@ -3,5 +3,6 @@
 public record PatronDefinition(
 	ImageDefinition Image,
 	string PatronId,
-	string Institution
+	string Institution,
+	string Description
 );

@@ -23,6 +23,6 @@ internal sealed class StaticMatrixDefinitionProvider : IMatrixDefinitionProvider
 	Task<MatrixDefinition> IMatrixDefinitionProvider.GetAsync(
 		CancellationToken cancellationToken
 	) {
-		return Task.FromResult(_matrixDefinition);
+		return Task.FromResult( _matrixDefinition );
 	}
 }

@@ -5,7 +5,8 @@ public record ResourceDefinition(
 	string Id,
 	string Name,
 	int Limit,
-	bool Abundant
+	bool Abundant,
+	IList<string> BonusWaterResourceIds
 ) {
-	public static readonly ResourceDefinition None = new ResourceDefinition( ImageDefinition.None, "", "", 0, false );
+	public static readonly ResourceDefinition None = new ResourceDefinition( ImageDefinition.None, "", "", 0, false, [] );
 }

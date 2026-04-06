@@ -1,17 +1,17 @@
 ﻿@inherits InventoryResourceComponentBase
 
 <div class="resource-item">
-    <div class ="item-wrapper">
+    <div class="item-wrapper">
         <img src="@ImageFile"
-                width="@Definition.Image.Width"
-                height="@Definition.Image.Height"
-                class="selectable"
-                @onclick="() => OnClickHandler(Definition.Id)" />
+             width="@Definition.Image.Width"
+             height="@Definition.Image.Height"
+             class="selectable"
+             @onclick="() => OnClickHandler(Definition.Id)" />
         <img src="img/subtract.png"
-                width="20"
-                height="20"
-                class="selectable item-overlay"
-                @onclick="() => OnSubtractHandler(Definition.Id)" />
+             width="20"
+             height="20"
+             class="selectable item-overlay"
+             @onclick="() => OnSubtractHandler(Definition.Id)" />
     </div>
     <div>
         @Definition.Name

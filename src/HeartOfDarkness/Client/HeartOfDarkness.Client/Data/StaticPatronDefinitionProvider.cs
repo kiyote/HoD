@@ -12,7 +12,8 @@ internal sealed class StaticPatronDefinitionProvider : IPatronDefinitionProvider
 					56
 				),
 				"Exploring",
-				"Royal Geographic Society"
+				"Royal Geographic Society",
+				"If you place any Water Source, Water Feature, Scenery, Mountain, Lake or Lost City markers gain an addtional 3DP."
 			),
 			new PatronDefinition(
 				new ImageDefinition(
@@ -21,7 +22,8 @@ internal sealed class StaticPatronDefinitionProvider : IPatronDefinitionProvider
 					56
 				),
 				"Science",
-				"University"
+				"University",
+				"If you place any Culture or Flora markers, gain an additional 3DP."
 			),
 			new PatronDefinition(
 				new ImageDefinition(
@@ -30,7 +32,8 @@ internal sealed class StaticPatronDefinitionProvider : IPatronDefinitionProvider
 					56
 				),
 				"Finance",
-				"The City"
+				"The City",
+				"If you place any Mineral markers, gain an additional 3DP."
 			),
 			new PatronDefinition(
 				new ImageDefinition(
@@ -39,7 +42,8 @@ internal sealed class StaticPatronDefinitionProvider : IPatronDefinitionProvider
 					56
 				),
 				"Politician",
-				"Westminster"
+				"Westminster",
+				"If you deal with a Kingdom or Warrior Nation, gain an additional 3DP."
 			),
 			new PatronDefinition(
 				new ImageDefinition(
@@ -48,7 +52,8 @@ internal sealed class StaticPatronDefinitionProvider : IPatronDefinitionProvider
 					56
 				),
 				"The News",
-				"Fleet Street"
+				"Fleet Street",
+				"If you draw a Special Discovery marker, gain an additional 3DP."
 			)
 		];
 
