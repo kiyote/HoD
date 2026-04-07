@@ -16,9 +16,9 @@ public class InventoryComponentBase: ComponentBase {
 	[Inject]
 	public required IResourceDefinitionProvider ResourceDefinitionProvider { get; init; }
 
-	protected IList<InventoryResourceDefinition> InventoryResourceDefinitions { get; set; } = [];
+	protected IReadOnlyList<InventoryResourceDefinition> InventoryResourceDefinitions { get; set; } = [];
 
-	protected IList<ResourceDefinition> ResourceDefinitions { get; set; } = [];
+	protected IReadOnlyList<ResourceDefinition> ResourceDefinitions { get; set; } = [];
 
 	protected override async Task OnAfterRenderAsync(
 		bool firstRender

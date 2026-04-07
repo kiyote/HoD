@@ -2,7 +2,7 @@
 
 public interface IResourceDefinitionProvider {
 
-	Task<IList<ResourceDefinition>> GetAsync(
+	Task<IReadOnlyList<ResourceDefinition>> GetAsync(
 		CancellationToken cancellationToken
 	);
 

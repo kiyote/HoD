@@ -1,10 +1,8 @@
 ﻿namespace HeartOfDarkness.Client.Data;
 
-public interface IMapStateFactory {
+public interface IGameDefinitionFactory {
 
-	Task<MapState> CreateAsync(
-		MapDefinition definition,
+	Task<GameDefinition> CreateAsync(
 		CancellationToken cancellationToken = default
 	);
-
 }

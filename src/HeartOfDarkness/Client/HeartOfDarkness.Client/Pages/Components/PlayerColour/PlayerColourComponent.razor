@@ -1,9 +1,9 @@
 ﻿@inherits PlayerColourComponentBase
 
 <div>
-    <img src=@(Definition.Explorer.File)
-         width=@(Definition.Explorer.Width)
-         height=@(Definition.Explorer.Height)
+    <img src=@(Definition.ExplorerToken.File)
+         width=@(Definition.ExplorerToken.Width)
+         height=@(Definition.ExplorerToken.Height)
          @onclick="@(() => OnClickHandler( Definition.Id ))"
          class="selectable" />
 </div>

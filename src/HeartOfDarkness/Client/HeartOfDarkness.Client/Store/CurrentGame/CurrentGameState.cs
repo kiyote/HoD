@@ -3,9 +3,12 @@
 [FeatureState]
 public record CurrentGameState(
 	bool IsLoading,
-	Game Game
+	Game Game,
+	GameDefinition GameDefinition
 ) {
 	public CurrentGameState()
-		:this( false, Game.None ) {
+		:this( false, Game.None, GameDefinition.None ) {
 	}
+
+	public static readonly CurrentGameState None = new CurrentGameState( false, Game.None, GameDefinition.None );
 }

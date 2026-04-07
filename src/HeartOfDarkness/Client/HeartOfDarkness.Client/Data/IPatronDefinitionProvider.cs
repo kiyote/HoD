@@ -2,7 +2,7 @@
 
 public interface IPatronDefinitionProvider {
 
-	Task<IList<PatronDefinition>> GetAsync(
+	Task<IReadOnlyList<PatronDefinition>> GetAsync(
 		CancellationToken cancellationToken
 	);
 

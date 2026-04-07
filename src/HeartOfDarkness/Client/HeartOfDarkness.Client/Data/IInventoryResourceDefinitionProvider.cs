@@ -2,7 +2,7 @@
 
 public interface IInventoryResourceDefinitionProvider {
 
-	Task<IList<InventoryResourceDefinition>> GetAsync(
+	Task<IReadOnlyList<InventoryResourceDefinition>> GetAsync(
 		CancellationToken cancellationToken
 	);
 

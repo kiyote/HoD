@@ -2,5 +2,6 @@
 
 public record CreateNewGameResultAction(
 	Game Game,
+	GameDefinition GameDefinition,
 	IEnumerable<Game> Games
 );

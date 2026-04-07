@@ -7,5 +7,12 @@ public static class CurrentGameReducers {
 		CurrentGameState state,
 		LoadSavedGameResultAction action
 	) =>
-		state with { IsLoading = false, Game = action.Game };
+		state with { IsLoading = false, Game = action.Game, GameDefinition = action.GameDefinition };
+
+	[ReducerMethod]
+	public static CurrentGameState ReduceCreateNewGameResultAction(
+		CurrentGameState state,
+		CreateNewGameResultAction action
+	) =>
+		state with { IsLoading = false, Game = action.Game, GameDefinition = action.GameDefinition };
 }

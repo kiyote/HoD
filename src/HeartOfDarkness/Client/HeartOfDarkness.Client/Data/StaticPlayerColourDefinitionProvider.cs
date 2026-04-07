@@ -3,7 +3,7 @@ namespace HeartOfDarkness.Client.Data;
 
 internal sealed class StaticPlayerColourDefinitionProvider : IPlayerColourDefinitionProvider {
 
-	private readonly IList<PlayerColourDefinition> _players =
+	private readonly IReadOnlyList<PlayerColourDefinition> _players =
 		[
 			new PlayerColourDefinition(
 				"Blue",
@@ -72,7 +72,7 @@ internal sealed class StaticPlayerColourDefinitionProvider : IPlayerColourDefini
 			),
 		];
 
-	Task<IList<PlayerColourDefinition>> IPlayerColourDefinitionProvider.GetAsync(
+	Task<IReadOnlyList<PlayerColourDefinition>> IPlayerColourDefinitionProvider.GetAsync(
 		CancellationToken cancellationToken
 	) {
 		return Task.FromResult( _players );

@@ -1,23 +1,23 @@
-﻿using System.Text.Json.Serialization;
-
-namespace HeartOfDarkness.Client.Model;
+﻿namespace HeartOfDarkness.Client.Model;
 
 public sealed record Game(
+	Guid GameDefinitionId,
 	Guid Id,
 	Player Player,
 	MapState MapState,
 	IList<string> LogLines,
-	[property:JsonIgnore] MapDefinition MapDefinition,
-	[property:JsonIgnore] MatrixDefinition MatrixDefinition,
-	[property:JsonIgnore] PlayerColourDefinition PlayerColourDefinition
+	GamePhase Phase,
+	int Disease,
+	int Horror
 ) {
 	public static readonly Game None = new Game(
+		Guid.Empty,
 		Guid.Empty,
 		Player.None,
 		MapState.None,
 		[],
-		MapDefinition.None,
-		MatrixDefinition.None,
-		PlayerColourDefinition.None
+		GamePhase.Unknown,
+		0,
+		0
 	);
 }

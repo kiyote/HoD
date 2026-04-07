@@ -2,8 +2,8 @@
 
 public record PlayerColourDefinition(
 	string Id,
-	ImageDefinition Explorer,
-	ImageDefinition Askari
+	ImageDefinition ExplorerToken,
+	ImageDefinition AskariToken
 ) {
 	public static readonly PlayerColourDefinition None = new PlayerColourDefinition(
 		"",

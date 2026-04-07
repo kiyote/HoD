@@ -13,14 +13,11 @@
         {
             <MapRegionComponent Id=@regionDefinition.Id
                                 Shape=@regionDefinition.Shape
-                                RegionStyle="@(State[regionDefinition.Id].Style)"
+                                RegionStyle="@(MapState[regionDefinition.Id].Style)"
                                 OnRegionSelected="OnRegionSelectedHandler" />
-
-            <MapTokenComponent Definition=@regionDefinition
-                                Image=@(State[regionDefinition.Id].Token) />
         }
+        @ChildContent
     </svg>
-
 </div>
 
 

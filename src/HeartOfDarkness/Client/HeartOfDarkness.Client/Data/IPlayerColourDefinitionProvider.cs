@@ -2,7 +2,7 @@
 
 public interface IPlayerColourDefinitionProvider {
 
-	Task<IList<PlayerColourDefinition>> GetAsync(
+	Task<IReadOnlyList<PlayerColourDefinition>> GetAsync(
 		CancellationToken cancellationToken
 	);
 

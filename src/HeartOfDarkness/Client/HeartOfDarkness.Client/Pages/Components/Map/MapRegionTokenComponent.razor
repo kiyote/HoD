@@ -1,8 +1,8 @@
-﻿@inherits MapTokenComponentBase
+﻿@inherits MapRegionTokenComponentBase
 
 @if (Image != ImageDefinition.None)
 {
-    <image id="token_@(Definition.Id)"
+    <image id="token_@(RegionDefinition.Id)"
            x=@(X)
            y=@(Y)
            href=@(Image.File)

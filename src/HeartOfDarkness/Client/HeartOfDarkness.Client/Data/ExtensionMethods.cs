@@ -18,6 +18,8 @@ public static class ExtensionMethods {
 			.AddSingleton<IDramaTrackDefinitionProvider, StaticDramaTrackDefinitionProvider>()
 			.AddSingleton<IMatrixDefinitionProvider, StaticMatrixDefinitionProvider>()
 			.AddSingleton<ILogLineProvider, LogLineProvider>()
-			.AddSingleton<IWaterDefinitionProvider, StaticWaterDefinitionProvider>();
+			.AddSingleton<IWaterDefinitionProvider, StaticWaterDefinitionProvider>()
+			.AddSingleton<IRandom, SystemRandom>()
+			.AddSingleton<IGameDefinitionFactory, StaticGameDefinitionFactory>();
 	}
 }

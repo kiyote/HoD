@@ -1,0 +1,21 @@
+﻿@inherits TurnTrackComponentBase
+
+@if (DiseaseToken != ImageDefinition.None)
+{
+    <image id="token_disease"
+           x=@(DiseasePosition.X)
+           y=@(DiseasePosition.Y)
+           href=@(DiseaseToken.File)
+           width="@(DiseaseToken.Width)px"
+           height="@(DiseaseToken.Height)px" />
+}
+
+@if (HorrorToken != ImageDefinition.None)
+{
+    <image id="token_horror"
+           x=@(HorrorPosition.X)
+           y=@(HorrorPosition.Y)
+           href=@(HorrorToken.File)
+           width="@(HorrorToken.Width)px"
+           height="@(HorrorToken.Height)px" />
+}

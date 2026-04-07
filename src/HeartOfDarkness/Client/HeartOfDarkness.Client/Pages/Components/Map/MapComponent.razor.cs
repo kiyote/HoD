@@ -8,18 +8,21 @@ public class MapComponentBase : ComponentBase {
 	public required EventCallback<string> OnRegionSelected { get; init; }
 
 	[Parameter, EditorRequired]
-	public required MapState State { get; init; }
+	public required MapDefinition MapDefinition { get; init; }
 
 	[Parameter, EditorRequired]
-	public required MapDefinition Definition { get; init; }
+	public required MapState MapState { get; init; }
 
-	protected string MapFile => Definition.Image.File;
+	[Parameter]
+	public RenderFragment ChildContent { get; set; } = default!;
 
-	protected int MapWidth => Definition.Image.Width;
+	protected string MapFile => MapDefinition.Image.File;
 
-	protected int MapHeight => Definition.Image.Height;
+	protected int MapWidth => MapDefinition.Image.Width;
 
-	protected IEnumerable<RegionDefinition> RegionDefinitions => Definition.Regions;
+	protected int MapHeight => MapDefinition.Image.Height;
+
+	protected IEnumerable<RegionDefinition> RegionDefinitions => MapDefinition.Regions;
 
 	[JSInvokable]
 	public async Task OnRegionSelectedHandler(

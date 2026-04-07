@@ -17,32 +17,12 @@ public class CreateGamePageBase : ComponentBase {
 	public required IMapStateFactory MapStateFactory { get; init; }
 
 	[Inject]
-	public required IMapDefinitionProvider MapDefinitionProvider { get; init; }
-
-	[Inject]
-	public required IPatronDefinitionProvider PatronDefinitionProvider { get; init; }
-
-	[Inject]
-	public required IResourceDefinitionProvider ResourceDefinitionProvider { get; init; }
-
-	[Inject]
-	public required IPlayerColourDefinitionProvider PlayerColourDefinitionProvider { get; init; }
-
-	[Inject]
-	public required IInventoryResourceDefinitionProvider InventoryResourceDefinitionProvider { get; init; }
+	public required IGameDefinitionFactory GameDefinitionFactory { get; init; }
 
 	[Inject]
 	public required IDispatcher Dispatcher { get; init; }
 
-	protected IList<PatronDefinition> PatronDefinitions { get; set; } = [];
-
-	protected IList<ResourceDefinition> ResourceDefinitions { get; set; } = [];
-
-	protected IList<PlayerColourDefinition> PlayerColourDefinitions { get; set; } = [];
-
-	protected IList<InventoryResourceDefinition> InventoryResourceDefinitions { get; set; } = [];
-
-	protected MapDefinition MapDefinition { get; set; } = MapDefinition.None;
+	protected GameDefinition GameDefinition { get; set; } = GameDefinition.None;
 
 	protected MapState MapState { get; set; } = MapState.None;
 
@@ -68,79 +48,66 @@ public class CreateGamePageBase : ComponentBase {
 		bool firstRender
 	) {
 		if( firstRender ) {
-			MapDefinition = await MapDefinitionProvider.GetAsync( CancellationToken.None );
-			MapState = await MapStateFactory.CreateAsync( MapDefinition, CancellationToken.None );
-			PatronDefinitions = await PatronDefinitionProvider.GetAsync( CancellationToken.None );
-			ResourceDefinitions = await ResourceDefinitionProvider.GetAsync( CancellationToken.None );
-			PlayerColourDefinitions = await PlayerColourDefinitionProvider.GetAsync( CancellationToken.None );
-			InventoryResourceDefinitions = await InventoryResourceDefinitionProvider.GetAsync( CancellationToken.None );
-			foreach( ResourceDefinition definition in ResourceDefinitions ) {
+			GameDefinition = await GameDefinitionFactory.CreateAsync();
+			MapState = await MapStateFactory.CreateAsync( GameDefinition.MapDefinition );
+			foreach( ResourceDefinition definition in GameDefinition.ResourceDefinitions ) {
 				NewGame.Inventory[definition.Id] = 0;
 			}
-			foreach( InventoryResourceDefinition definition in InventoryResourceDefinitions ) {
+			foreach( InventoryResourceDefinition definition in GameDefinition.InventoryResourceDefinitions ) {
 				NewGame.Inventory[definition.Id] = definition.Start;
 			}
 			StateHasChanged();
 		}
 	}
 
-	protected Task RegionSelectedHandler(
+	protected void RegionSelectedHandler(
 		string regionId
 	) {
 		DisplayState = DisplayState.CreateGame;
 		NewGame.PortOfEntry = regionId;
-		return Task.CompletedTask;
 	}
 
-	protected Task PlayerColourSelectedHandler(
+	protected void PlayerColourSelectedHandler(
 		string playerColourId
 	) {
 		DisplayState = DisplayState.CreateGame;
 		NewGame.Colour = playerColourId;
-		PlayerColourDefinition = PlayerColourDefinitions.First( d => d.Id == playerColourId );
+		PlayerColourDefinition = GameDefinition.PlayerColourDefinitions.First( d => d.Id == playerColourId );
 
 		_ = ResourcesButtonAttributes?.Remove( "disabled" );
-		return Task.CompletedTask;
 	}
 
-	protected Task PatronSelectedHandler(
+	protected void PatronSelectedHandler(
 		string patronId
 	) {
 		DisplayState = DisplayState.CreateGame;
 		NewGame.Patron = patronId;
-		return Task.CompletedTask;
 	}
 
-	protected Task DoSelectPortOfEntry() {
-		foreach( string regionId in MapDefinition.PortsOfEntry ) {
+	protected void DoSelectPortOfEntry() {
+		foreach( string regionId in GameDefinition.MapDefinition.PortsOfEntry ) {
 			MapState[regionId] = MapState[regionId] with { Style = Model.RegionStyle.Highlighted };
 		}
 		DisplayState = DisplayState.SelectPortOfEntry;
-		return Task.CompletedTask;
 	}
 
-	protected Task DoSelectPlayerColour() {
+	protected void DoSelectPlayerColour() {
 		DisplayState = DisplayState.SelectPlayerColour;
-		return Task.CompletedTask;
 	}
 
-	protected Task DoSelectPatron() {
+	protected void DoSelectPatron() {
 		DisplayState = DisplayState.SelectPatron;
-		return Task.CompletedTask;
 	}
 
-	protected Task DoSelectResources() {
+	protected void DoSelectResources() {
 		DisplayState = DisplayState.SelectResources;
-		return Task.CompletedTask;
 	}
 
-	protected Task OnCreateGameClicked() {
-		Dispatcher.Dispatch( new CreateNewGameAction( NewGame ) );
-		return Task.CompletedTask;
+	protected void OnCreateGameClicked() {
+		Dispatcher.Dispatch( new CreateNewGameAction( GameDefinition, NewGame ) );
 	}
 
-	protected Task OnCancelClicked() {
+	protected void OnCancelClicked() {
 		DisplayState = DisplayState.CreateGame;
-		return Task.CompletedTask;
 	}
 }

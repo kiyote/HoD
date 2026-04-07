@@ -3,7 +3,7 @@ namespace HeartOfDarkness.Client.Data;
 
 internal sealed class StaticPatronDefinitionProvider : IPatronDefinitionProvider {
 
-	private readonly IList<PatronDefinition> _patrons =
+	private readonly IReadOnlyList<PatronDefinition> _patrons =
 		[
 			new PatronDefinition(
 				new ImageDefinition(
@@ -57,7 +57,7 @@ internal sealed class StaticPatronDefinitionProvider : IPatronDefinitionProvider
 			)
 		];
 
-	Task<IList<PatronDefinition>> IPatronDefinitionProvider.GetAsync(
+	Task<IReadOnlyList<PatronDefinition>> IPatronDefinitionProvider.GetAsync(
 		CancellationToken cancellationToken
 	) {
 		return Task.FromResult( _patrons );

@@ -3,7 +3,7 @@ namespace HeartOfDarkness.Client.Data;
 
 internal sealed class StaticInventoryResourceDefinitionProvider : IInventoryResourceDefinitionProvider {
 
-	private readonly IList<InventoryResourceDefinition> _definitions =
+	private readonly IReadOnlyList<InventoryResourceDefinition> _definitions =
 [
 			new InventoryResourceDefinition(
 				new ImageDefinition(
@@ -73,7 +73,7 @@ internal sealed class StaticInventoryResourceDefinitionProvider : IInventoryReso
 		];
 
 
-	Task<IList<InventoryResourceDefinition>> IInventoryResourceDefinitionProvider.GetAsync(
+	Task<IReadOnlyList<InventoryResourceDefinition>> IInventoryResourceDefinitionProvider.GetAsync(
 		CancellationToken cancellationToken
 	) {
 		return Task.FromResult( _definitions );

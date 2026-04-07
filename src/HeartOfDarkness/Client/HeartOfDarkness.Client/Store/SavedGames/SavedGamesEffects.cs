@@ -42,10 +42,10 @@ public class SavedGamesEffects {
 		IDispatcher dispatcher
 	) {
 		List<Game> games = await _storage.GetItemAsync<List<Game>?>( "games" ) ?? [];
-		Game savedGame = await _gameFactory.CreateNewAsync( action.Game, CancellationToken.None );
+		Game savedGame = await _gameFactory.CreateNewAsync( action.Game, action.GameDefinition, CancellationToken.None );
 		games.Add( savedGame );
 		await _storage.SetItemAsync( "games", games );
-		dispatcher.Dispatch( new CreateNewGameResultAction( savedGame, games ) );
+		dispatcher.Dispatch( new CreateNewGameResultAction( savedGame, action.GameDefinition, games ) );
 	}
 
 	[EffectMethod]

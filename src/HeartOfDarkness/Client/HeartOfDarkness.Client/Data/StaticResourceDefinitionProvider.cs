@@ -3,7 +3,7 @@ namespace HeartOfDarkness.Client.Data;
 
 internal sealed class StaticResourceDefinitionProvider : IResourceDefinitionProvider {
 
-	private readonly IList<ResourceDefinition> _definitions =
+	private readonly IReadOnlyList<ResourceDefinition> _definitions =
 		[
 			new ResourceDefinition(
 				new ImageDefinition(
@@ -233,7 +233,7 @@ internal sealed class StaticResourceDefinitionProvider : IResourceDefinitionProv
 			),
 		];
 
-	Task<IList<ResourceDefinition>> IResourceDefinitionProvider.GetAsync(
+	Task<IReadOnlyList<ResourceDefinition>> IResourceDefinitionProvider.GetAsync(
 		CancellationToken cancellationToken
 	) {
 		return Task.FromResult( _definitions );

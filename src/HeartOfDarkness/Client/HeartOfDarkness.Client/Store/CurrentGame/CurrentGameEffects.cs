@@ -7,14 +7,14 @@ namespace HeartOfDarkness.Client.Store.CurrentGame;
 public class CurrentGameEffects {
 
 	private readonly ILocalStorageService _storage;
-	private readonly IGameFactory _gameFactory;
+	private readonly IGameDefinitionFactory _gameDefinitionFactory;
 
 	public CurrentGameEffects(
 		ILocalStorageService storage,
-		IGameFactory gameFactory
+		IGameDefinitionFactory gameDefinitionFactory
 	) {
 		_storage = storage;
-		_gameFactory = gameFactory;
+		_gameDefinitionFactory = gameDefinitionFactory;
 	}
 
 	[EffectMethod]
@@ -24,8 +24,8 @@ public class CurrentGameEffects {
 	) {
 		List<Game>? games = await _storage.GetItemAsync<List<Game>?>( "games", CancellationToken.None );
 		Game savedGame = games?.FirstOrDefault( g => g.Id == action.Id ) ?? throw new InvalidOperationException();
-		Game game = await _gameFactory.CreateFromSavedGameAsync( savedGame, CancellationToken.None );
-		dispatcher.Dispatch( new LoadSavedGameResultAction( game ) );
+		GameDefinition gameDefinition = await _gameDefinitionFactory.CreateAsync( CancellationToken.None );
+		dispatcher.Dispatch( new LoadSavedGameResultAction( savedGame, gameDefinition ) );
 	}
 
 	[EffectMethod]

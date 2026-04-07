@@ -1,5 +1,6 @@
 ﻿namespace HeartOfDarkness.Client.Store;
 
 public record LoadSavedGameResultAction(
-	Game Game
+	Game Game,
+	GameDefinition GameDefinition
 );

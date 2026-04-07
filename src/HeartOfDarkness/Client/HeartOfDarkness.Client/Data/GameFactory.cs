@@ -2,76 +2,63 @@
 
 internal sealed class GameFactory : IGameFactory {
 
-	private readonly IMapDefinitionProvider _mapDefinitionFactory;
 	private readonly IMapStateFactory _mapStateFactory;
-	private readonly IPlayerColourDefinitionProvider _playerColourDefinitionProvider;
-	private readonly IMatrixDefinitionProvider _matrixDefinitionProvider;
+	private readonly IRandom _random;
+	private readonly ILogLineProvider _logLineProvider;
 
 	public GameFactory(
-		IMapDefinitionProvider mapDefinitionFactory,
 		IMapStateFactory mapStateFactory,
-		IPlayerColourDefinitionProvider playerColourDefinitionProvider,
-		IMatrixDefinitionProvider matrixDefinitionProvider
+		IRandom random,
+		ILogLineProvider logLineProvider
 	) {
-		_mapDefinitionFactory = mapDefinitionFactory;
 		_mapStateFactory = mapStateFactory;
-		_playerColourDefinitionProvider = playerColourDefinitionProvider;
-		_matrixDefinitionProvider = matrixDefinitionProvider;
-	}
-
-	async Task<Game> IGameFactory.CreateFromSavedGameAsync(
-		Game savedGame,
-		CancellationToken cancellationToken
-	) {
-		IList<PlayerColourDefinition> playerColourDefinitions = await _playerColourDefinitionProvider.GetAsync( CancellationToken.None );
-		PlayerColourDefinition colourDefinition = playerColourDefinitions.First( d => d.Id == savedGame.Player.ColourId );
-		MapDefinition mapDefinition = await _mapDefinitionFactory.GetAsync(
-			cancellationToken
-		);
-		MatrixDefinition matrixDefinition = await _matrixDefinitionProvider.GetAsync(
-			cancellationToken
-		);
-
-		return savedGame with {
-			MapDefinition = mapDefinition,
-			MatrixDefinition = matrixDefinition,
-			PlayerColourDefinition = colourDefinition
-		};
+		_random = random;
+		_logLineProvider = logLineProvider;
 	}
 
 	async Task<Game> IGameFactory.CreateNewAsync(
 		NewGame newGame,
+		GameDefinition gameDefinition,
 		CancellationToken cancellationToken
 	) {
 		if( string.IsNullOrWhiteSpace( newGame.PortOfEntry ) ) {
 			throw new ArgumentException( $"{nameof( newGame.PortOfEntry )} must not be null or whitespace.", nameof( newGame ) );
 		}
-		MapDefinition mapDefinition = await _mapDefinitionFactory.GetAsync(
-			cancellationToken
-		);
 		MapState mapState = await _mapStateFactory.CreateAsync(
-			mapDefinition,
+			gameDefinition.MapDefinition,
 			CancellationToken.None
 		);
-		MatrixDefinition matrixDefinition = await _matrixDefinitionProvider.GetAsync(
+		PlayerColourDefinition colourDefinition = gameDefinition.PlayerColourDefinitions.First( d => d.Id == newGame.Colour );
+		mapState[newGame.PortOfEntry] = mapState[newGame.PortOfEntry] with { Token = colourDefinition.ExplorerToken };
+
+		int disease = _random.Roll( DieType.D6, modifier: -2, min: 1 );
+		int horror = disease + 1;
+
+		string startExpeditionLogLine = await _logLineProvider.StartExpeditionAsync(
+			gameDefinition.MapDefinition,
+			newGame.PortOfEntry,
 			cancellationToken
 		);
-		IList<PlayerColourDefinition> playerColourDefinitions = await _playerColourDefinitionProvider.GetAsync( CancellationToken.None );
-		PlayerColourDefinition colourDefinition = playerColourDefinitions.First( d => d.Id == newGame.Colour );
-		mapState[newGame.PortOfEntry] = mapState[newGame.PortOfEntry] with { Token = colourDefinition.Explorer };
+
 		Player player = new Player(
 			newGame.Colour,
 			newGame.PortOfEntry ?? throw new InvalidOperationException(),
 			0,
+			0,
+			0,
 			newGame.Inventory
 		);
 		return new Game(
+			gameDefinition.Id,
 			Guid.NewGuid(),
 			player,
 			mapState,
-			mapDefinition,
-			matrixDefinition,
-			colourDefinition
+			[
+				startExpeditionLogLine
+			],
+			GamePhase.Map,
+			disease,
+			horror
 		);
 	}
 }

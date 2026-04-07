@@ -1,11 +1,11 @@
 ﻿namespace HeartOfDarkness.Client.Pages.Components.Map;
 
-public class MapTokenComponentBase : ComponentBase {
+public class MapRegionTokenComponentBase : ComponentBase {
 
 	private string[] _coords = ["0", "0"];
 
 	[Parameter, EditorRequired]
-	public required RegionDefinition Definition { get; init; }
+	public required RegionDefinition RegionDefinition { get; init; }
 
 	[Parameter]
 	public required ImageDefinition Image { get; init; }
@@ -14,10 +14,7 @@ public class MapTokenComponentBase : ComponentBase {
 		bool firstRender
 	) {
 		if( firstRender ) {
-			_coords = Definition.Token.Split( ',' );
-			if (_coords.Length != 2) {
-				throw new InvalidOperationException( $"Token definition does not contain valid coordinates: `{Definition.Token}`" );
-			}
+			_coords = RegionDefinition.TokenXY.ToXY();
 			StateHasChanged();
 		}
 	}
